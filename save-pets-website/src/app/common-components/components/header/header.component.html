@@ -2,7 +2,12 @@
 <div class="fixed top-0 w-full z-10">
   <div class="block lg:hidden bg-[#E9541C]">
     <div class="flex justify-between">
-      <img src="save-pets-icon.png" alt="save-pets-icon" class="w-16 h-16" />
+      <img
+        src="save-pets-icon.png"
+        alt="save-pets-icon"
+        class="w-16 h-16 cursor-pointer"
+        (click)="routeTo('/home')"
+      />
 
       <span
         class="material-icons text-white text-3xl my-auto mx-2 cursor-pointer"
@@ -13,12 +18,7 @@
     </div>
   </div>
 
-  <nz-drawer
-    [nzClosable]="false"
-    [nzVisible]="visible"
-    nzPlacement="right"
-    (nzOnClose)="visible = false"
-  >
+  <nz-drawer [nzClosable]="false" [nzVisible]="visible" nzPlacement="right">
     <ng-container *nzDrawerContent>
       <div class="flex justify-between bg-[#ff5e0f]">
         <img src="save-pets-logo.png" class="w-16 h-16" />
@@ -51,7 +51,10 @@
         <img src="save-pets-icon.png" alt="save-pets-icon" class="pet-icon" />
 
         <ng-container *ngFor="let site of navSites">
-          <span class="mr-4 my-auto site font-bold text-lg hover:text-lg" (click)="routeTo(site.path)">
+          <span
+            class="mr-4 my-auto site font-bold text-lg"
+            (click)="routeTo(site.path)"
+          >
             {{ site.name }}
           </span>
         </ng-container>

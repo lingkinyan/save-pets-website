@@ -17,6 +17,11 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./module/about-us/about-us.module').then((m) => m.AboutUsModule),
   },
+  {
+    path: 'support-us',
+    loadChildren: () =>
+      import('./module/support-us/support-us.module').then((m) => m.SupportUsModule),
+  },
 
   { path: '**', component: HomeLandingComponent },
 ];

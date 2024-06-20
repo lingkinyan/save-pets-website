@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './common-components/components/header/header.component';
 
 @Component({
@@ -12,6 +11,11 @@ import { HeaderComponent } from './common-components/components/header/header.co
   styleUrl: './app.component.less',
 })
 export class AppComponent {
+  constructor(private router: Router) {}
 
-
+  ngOnInit() {
+    this.router.events.subscribe(() => {
+      window.scrollTo(0, 0);
+    });
+  }
 }

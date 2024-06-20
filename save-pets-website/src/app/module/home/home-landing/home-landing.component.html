@@ -23,7 +23,7 @@
       (visible)="onVisible('our-goals')"
     >
       <h1>Our Goals</h1>
-      <div class="grid md:grid-cols-2 xl:grid-cols-4 my-4 gap-4">
+      <div class="grid grid-cols-2 xl:grid-cols-4 my-4 gap-4">
         <div *ngFor="let goal of goalsList" class="text-center">
           <app-bubble
             [imgSrc]="goal.imgSrc"

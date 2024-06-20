@@ -12,22 +12,27 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 })
 export class HeaderComponent {
   constructor(private router: Router) {}
+
+  visible = false;
+
   navSites = [
     { name: 'Home', path: '/home' },
     { name: 'Adopt', path: '/adopt' },
     { name: 'About Us', path: '/about-us' },
     { name: 'Support Us', path: '/support-us' },
-    { name: 'Contact Us', path: 'contact-us' },
+    { name: 'Contact Us', path: '/contact-us' },
   ];
 
   routeTo(site: string): void {
     if (site === 'ig') {
       window.open('https://www.instagram.com');
     } else {
+      this.visible = false;
       this.router.navigate([site]);
-      scrollTo(0, 0);
+
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 500);
     }
   }
-
-  visible = false;
 }

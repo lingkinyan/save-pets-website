@@ -1,0 +1,52 @@
+<div class="text-center mt-8 mb-4">
+  <h1>Support Us</h1>
+</div>
+
+<div class="px-4 md:px-24 text-center grid gap-12">
+  <left-right-card
+    class="donate hide-content"
+    appIntersectionObserver
+    (visible)="onVisible('donate')"
+    [title]="'Donate'"
+    [content]="
+      'Thank you for supporting us! <br>All proceeds will go 100% towards the animals’ veterinary bills, food, and other pet supplies. <br>All gifts, big or small, helps us immensely. <br>Please consider donating via EMT to savepets@gmail.com (We receive 100%) or use PayPal below'
+    "
+    [imgSrc]="'support-us/donate.jpeg'"
+    [imgAlt]="'Donate'"
+    [buttonText]="'Donate Now!'"
+    (buttonClick)="click()"
+  ></left-right-card>
+
+  <left-right-card
+    class="foster hide-content"
+    appIntersectionObserver
+    (visible)="onVisible('foster')"
+    [title]="'Foster'"
+    [content]="
+      'By fostering today, you can change an animal’s life by providing a safe, loving environment. <br>All expenses are covered by the rescue.'
+    "
+    [imgSrc]="'support-us/forest.avif'"
+    [imgAlt]="'Foster'"
+    [isImageLeft]="false"
+    [buttonText]="'Apply now!'"
+    (buttonClick)="click()"
+  ></left-right-card>
+
+  <left-right-card
+    class="volunteer hide-content"
+    appIntersectionObserver
+    (visible)="onVisible('volunteer')"
+    [title]="'Volunteer'"
+    [content]="
+      'Join our team! <br>We offer opportunities that work with your schedule and availability. <br>Because we are a volunteer run organization, your time is greatly appreciated.'
+    "
+    [imgSrc]="'support-us/volunteer.webp'"
+    [imgAlt]="'Volunteer'"
+    [buttonText]="'Apply now!'"
+    (buttonClick)="click()"
+  ></left-right-card>
+
+  <div class="text-grey text-xl">
+    For further enquiries, please contact Wendy at +1 (416) 371-2398
+  </div>
+</div>

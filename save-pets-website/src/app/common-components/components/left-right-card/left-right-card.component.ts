@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'left-right-card',
@@ -13,4 +13,6 @@ export class LeftRightCardComponent {
   @Input() imgAlt = '';
   @Input() content = '';
   @Input() title = '';
+  @Input() buttonText = '';
+  @Output() buttonClick: EventEmitter<any> = new EventEmitter<any>();
 }

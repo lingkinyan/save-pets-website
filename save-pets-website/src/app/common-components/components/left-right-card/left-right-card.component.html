@@ -7,10 +7,26 @@
       *ngIf="!isImageLeft"
     />
 
-    <div class="p-4 my-auto px-12">
+    <div
+      class="p-4 px-12"
+      [ngClass]="
+        buttonText ? 'flex justify-between flex-col py-12 lg:px-24' : 'my-auto'
+      "
+    >
       <div class="font-bold title text-center" *ngIf="title">{{ title }}</div>
 
       <div class="text-center my-2" [innerHTML]="content"></div>
+
+      <div class="flex justify-center" *ngIf="buttonText">
+        <button
+          nz-button
+          class="ant-btn-orange"
+          (click)="buttonClick.emit()"
+          nzSize="large"
+        >
+          {{ buttonText }}
+        </button>
+      </div>
     </div>
 
     <div class="flex justify-end">
