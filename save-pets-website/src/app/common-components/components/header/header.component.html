@@ -1,0 +1,70 @@
+<!-- Mobile Menu Bar -->
+<div class="fixed top-0 w-full z-10">
+  <div class="block sm:hidden bg-[#E9541C]">
+    <div class="flex justify-between">
+      <img src="save-pets-icon.png" alt="save-pets-icon" class="w-16 h-16" />
+
+      <span
+        class="material-icons text-white text-3xl my-auto mx-2 cursor-pointer"
+        (click)="visible = true"
+      >
+        list
+      </span>
+    </div>
+  </div>
+
+  <nz-drawer
+    [nzClosable]="false"
+    [nzVisible]="visible"
+    nzPlacement="right"
+    (nzOnClose)="visible = false"
+  >
+    <ng-container *nzDrawerContent>
+      <div class="flex justify-between bg-[#ff5e0f]">
+        <img src="save-pets-logo.png" class="w-16 h-16" />
+
+        <span
+          class="material-icons text-white my-auto text-3xl mx-2 cursor-pointer"
+          (click)="visible = false"
+        >
+          close
+        </span>
+      </div>
+
+      <div class="px-8">
+        <ng-container *ngFor="let site of navSites">
+          <div
+            class="my-4 text-xl cursor-pointer hover:underline"
+            (click)="routeTo(site.path)"
+          >
+            {{ site.name }}
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </nz-drawer>
+
+  <!-- Desktop Menu Bar -->
+  <div class="sm:block hidden bg-[#E9541C] text-white">
+    <div class="justify-between flex px-8">
+      <div class="flex">
+        <img src="save-pets-icon.png" alt="save-pets-icon" class="pet-icon" />
+
+        <ng-container *ngFor="let site of navSites">
+          <span class="mr-4 my-auto site font-bold text-lg hover:text-lg" (click)="routeTo(site.path)">
+            {{ site.name }}
+          </span>
+        </ng-container>
+      </div>
+
+      <div class="flex justify-end my-auto">
+        <img
+          src="ig.png"
+          alt="instagram"
+          class="ig-icon"
+          (click)="routeTo('ig')"
+        />
+      </div>
+    </div>
+  </div>
+</div>

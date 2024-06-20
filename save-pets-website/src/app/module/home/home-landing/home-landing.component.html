@@ -1,0 +1,63 @@
+<div class="grid gap-12">
+  <!-- Welcome Banner -->
+  <app-welcome-banner></app-welcome-banner>
+
+  <div class="px-4 md:px-24 text-center grid gap-12">
+    <!-- Save Pet Intro -->
+    <left-right-card
+      class="save-pets-intro hide-content"
+      appIntersectionObserver
+      (visible)="onVisible('save-pets-intro')"
+      [title]="'SavePets'"
+      [content]="
+        'We established our organization on 1st July, 2024. <br>We are a foster based, euthanasia-free, humane animal rescue non-profit organization.'
+      "
+      [imgSrc]="'save-pets-icon.png'"
+      [imgAlt]="'Save Pets Icon'"
+    ></left-right-card>
+
+    <!-- Goals -->
+    <div
+      class="text-center our-goals hide-content"
+      appIntersectionObserver
+      (visible)="onVisible('our-goals')"
+    >
+      <h1>Our Goals</h1>
+      <div class="grid md:grid-cols-2 xl:grid-cols-4 my-4 gap-4">
+        <div *ngFor="let goal of goalsList" class="text-center">
+          <app-bubble
+            [imgSrc]="goal.imgSrc"
+            [content]="goal.content"
+          ></app-bubble>
+        </div>
+      </div>
+    </div>
+
+    <!-- Our Missions -->
+    <div
+      class="text-center our-missions hide-content"
+      appIntersectionObserver
+      (visible)="onVisible('our-missions')"
+    >
+      <white-card>
+        <ng-container>
+          <h1>Our Proposes</h1>
+
+          <div class="my-4">
+            <img
+              src="home-page/propose.webp"
+              alt="Our Proposes"
+              class="proposes-image"
+            />
+
+            <ng-container *ngFor="let item of proposesList; index as i">
+              <div class="text-grey text-left my-2">
+                {{ i + 1 }}. {{ item }}
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </white-card>
+    </div>
+  </div>
+</div>

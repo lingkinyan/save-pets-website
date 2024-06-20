@@ -1,0 +1,41 @@
+// Custom Theming for NG-ZORRO
+// For more information: https://ng.ant.design/docs/customize-theme/en
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+
+@import "../src/styles/drawer.less";
+// Override less variables to here
+// View all variables: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/style/themes/default.less
+
+// @primary-color: #1890ff;
+/* You can add global styles to this file, and also import other style files */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Georgia, "Times New Roman", Times, serif !important;
+  background-color: #d9d9d9;
+}
+
+h1 {
+  font-weight: 700 !important;
+  font-size: 3rem !important;
+}
+
+.text-grey {
+  color: #808080;
+}
+
+.text-orange {
+  color: #e9541c;
+}
+
+.hide-content {
+  opacity: 0;
+}
+
+.show-content {
+  opacity: 1 !important;
+  transition: opacity 2s;
+}

@@ -1,0 +1,28 @@
+<div class="rounded-2xl card">
+  <div class="grid sm:grid-cols-2">
+    <img
+      [src]="imgSrc"
+      [alt]="imgAlt"
+      class="rounded-l-2xl hidden sm:block desktop-image text-left"
+      *ngIf="!isImageLeft"
+    />
+
+    <div class="p-4 my-auto px-12">
+      <div class="font-bold title text-center">{{ title }}</div>
+
+      <div class="text-center my-2" [innerHTML]="content"></div>
+    </div>
+
+    <div class="flex justify-end">
+      <img
+        [src]="imgSrc"
+        [alt]="imgAlt"
+        class="rounded-r-2xl hidden sm:block desktop-image"
+        *ngIf="isImageLeft"
+      />
+    </div>
+
+    <!-- only show when mobile view -->
+    <img [src]="imgSrc" [alt]="imgAlt" class="rounded-b-2xl w-full block sm:hidden" />
+  </div>
+</div>
