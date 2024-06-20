@@ -22,6 +22,11 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./module/support-us/support-us.module').then((m) => m.SupportUsModule),
   },
+  {
+    path: 'contact-us',
+    loadChildren: () =>
+      import('./module/contact-us/contact-us.module').then((m) => m.ContactUsModule),
+  },
 
   { path: '**', component: HomeLandingComponent },
 ];
