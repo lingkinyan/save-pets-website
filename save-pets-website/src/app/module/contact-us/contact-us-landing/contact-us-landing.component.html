@@ -7,15 +7,19 @@
   </div>
 </div>
 
-<div class="px-4 md:px-24 text-center grid gap-12">
+<div class="px-4 md:px-24 text-center grid lg:grid-cols-2 gap-4">
+  <!-- Image -->
+  <img src="contact-us/contact-us.jpeg" alt="Contact Us" />
+
+  <!-- contact form -->
   <form
     nz-form
     [formGroup]="validateForm"
-    class="login-form"
+    class="my-auto"
     (ngSubmit)="submitForm()"
     *ngIf="!isFormSubmitted"
   >
-    <div class="grid lg:grid-cols-2 gap-2">
+    <div class="grid lg:grid-cols-2 gap-4">
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your first name">
           <nz-input-group nzPrefixIcon="user">
@@ -82,17 +86,23 @@
     </div>
   </form>
 
-  <ng-container *ngIf="isFormSubmitted">
-    <div class="col-span-full text-xl font-bold">
+  <!-- Form Response -->
+  <div *ngIf="isFormSubmitted" class="my-auto">
+    <div class="text-xl font-bold">
       Your form has been submitted successfully.
       <br />
       We will contact you as soon as possible!
     </div>
 
     <div class="col-span-full">
-      <button nz-button class="ant-btn-orange" nzSize="large" (click)="routeToHomePage()">
+      <button
+        nz-button
+        class="ant-btn-orange my-4"
+        nzSize="large"
+        (click)="routeToHomePage()"
+      >
         Back to Home Page
       </button>
     </div>
-  </ng-container>
+  </div>
 </div>
