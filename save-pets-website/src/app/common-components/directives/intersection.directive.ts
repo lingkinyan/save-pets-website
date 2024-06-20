@@ -2,7 +2,7 @@
 import { Directive, ElementRef, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Directive({
-  selector: '[appIntersectionObserver]'
+  selector: '[appIntersectionObserver]',
 })
 export class IntersectionDirective implements OnInit {
   @Output() visible: EventEmitter<any> = new EventEmitter();

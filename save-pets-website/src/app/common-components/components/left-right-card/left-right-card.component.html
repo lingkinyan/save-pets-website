@@ -8,7 +8,7 @@
     />
 
     <div class="p-4 my-auto px-12">
-      <div class="font-bold title text-center">{{ title }}</div>
+      <div class="font-bold title text-center" *ngIf="title">{{ title }}</div>
 
       <div class="text-center my-2" [innerHTML]="content"></div>
     </div>
@@ -23,6 +23,10 @@
     </div>
 
     <!-- only show when mobile view -->
-    <img [src]="imgSrc" [alt]="imgAlt" class="rounded-b-2xl w-full block sm:hidden" />
+    <img
+      [src]="imgSrc"
+      [alt]="imgAlt"
+      class="rounded-b-2xl w-full block sm:hidden"
+    />
   </div>
 </div>

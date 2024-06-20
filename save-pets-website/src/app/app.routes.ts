@@ -8,11 +8,14 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: "home",
+    path: 'home',
     loadChildren: () =>
-      import("./module/home/home.module").then(
-        (m) => m.HomeModule
-      ),
+      import('./module/home/home.module').then((m) => m.HomeModule),
+  },
+  {
+    path: 'about-us',
+    loadChildren: () =>
+      import('./module/about-us/about-us.module').then((m) => m.AboutUsModule),
   },
 
   { path: '**', component: HomeLandingComponent },

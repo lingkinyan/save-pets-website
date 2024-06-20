@@ -3,8 +3,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'left-right-card',
-  standalone: true,
-  imports: [CommonModule],
+  standalone: false,
   templateUrl: './left-right-card.component.html',
   styleUrl: './left-right-card.component.less',
 })

@@ -14,6 +14,7 @@ export class HeaderComponent {
   constructor(private router: Router) {}
   navSites = [
     { name: 'Home', path: '/home' },
+    { name: 'Adopt', path: '/adopt' },
     { name: 'About Us', path: '/about-us' },
     { name: 'Support Us', path: '/support-us' },
     { name: 'Contact Us', path: 'contact-us' },
