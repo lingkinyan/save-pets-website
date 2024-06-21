@@ -34,12 +34,37 @@
 
       <div class="px-8">
         <ng-container *ngFor="let site of navSites">
-          <div
-            class="my-4 text-xl cursor-pointer hover:underline"
-            (click)="routeTo(site.path)"
-          >
-            {{ site.name }}
-          </div>
+          <ng-container *ngIf="!site.children">
+            <div
+              class="my-4 text-xl cursor-pointer hover:underline"
+              (click)="routeTo(site.path)"
+            >
+              {{ site.name }}
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="site.children">
+            <div
+              class="my-4 text-xl cursor-pointer hover:underline"
+              (click)="expandMenu('Adopt')"
+            >
+              {{ site.name }}
+
+              <span class="material-icons text-black text-md relative top-1.5">
+                expand_more
+              </span>
+            </div>
+
+            <div *ngIf="site.isExpand">
+              <div
+                *ngFor="let c of site.children"
+                class="px-4 my-2 site hover:underline"
+                (click)="routeTo(c.path)"
+              >
+                {{ c.name }}
+              </div>
+            </div>
+          </ng-container>
         </ng-container>
       </div>
     </ng-container>
@@ -52,12 +77,40 @@
         <img src="save-pets-icon.png" alt="save-pets-icon" class="pet-icon" />
 
         <ng-container *ngFor="let site of navSites">
-          <div
-            class="mr-4 my-auto site font-bold text-lg"
-            (click)="routeTo(site.path)"
-          >
-            {{ site.name }}
-          </div>
+          <ng-container *ngIf="!site.children">
+            <div
+              class="mr-4 my-auto font-bold text-lg flex"
+              (click)="routeTo(site.path)"
+            >
+              <span class="site">
+                {{ site.name }}
+              </span>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="site.children">
+            <div class="mr-4 my-auto font-bold text-lg flex">
+              <span
+                class="site"
+                nz-dropdown
+                [nzDropdownMenu]="menu"
+              >
+                {{ site.name }}
+
+                <span class="material-icons text-white text-sm">
+                  expand_more
+                </span>
+              </span>
+            </div>
+          </ng-container>
+
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li *ngFor="let c of site.children" (click)="routeTo(c.path)">
+                {{ c.name }}
+              </li>
+            </ul>
+          </nz-dropdown-menu>
         </ng-container>
       </div>
 

@@ -1,0 +1,61 @@
+<div class="text-center mt-8 mb-4">
+  <h1>Adopt</h1>
+
+  <div class="my-4 text-grey px-4 md:px-24 lg:px-48">
+    SavePets’s mission is to provide forever homes for the hundreds of animals
+    that need our help. But, as important as it is to ensure that the animals
+    are a suitable match for you, we also want to ensure that you’re in the
+    right position to adopt one. Our adoption process is simple: select which
+    animal you’re interested in, fill out an application form and if selected,
+    there will be a home visit to get to know you a bit more and for further
+    instructions. Note that due to the high volume of adopters we get, you may
+    not hear back from us unless you are selected to move forward with the home
+    visit. However, this doesn’t mean that you don’t meet the criteria. We
+    encourage you to stay updated on our “adopted” to check whether an adopter
+    has already been found.
+  </div>
+</div>
+
+<div class="text-center">
+  <div class="container">
+    <img src="adopt/adoption.jpeg" class="banner" />
+
+    <div class="text-wrapper">
+      <div class="text-white font-bold title">
+        Thanks for adopting instead of buying!
+      </div>
+    </div>
+  </div>
+
+  <div class="px-4 md:px-24 text-center my-12 grid gap-12">
+    <white-card
+      appIntersectionObserver
+      (visible)="onVisible('adoption-timeline')"
+      class="adoption-timeline hide-content"
+    >
+      <nz-timeline>
+        <nz-timeline-item [nzColor]="'#e9541c'" *ngFor="let step of stepList">
+          <div class="text-xl font-bold mx-2">{{ step.title }}</div>
+          <div class="text-grey mx-2" [innerHTML]="step.content"></div>
+        </nz-timeline-item>
+      </nz-timeline>
+    </white-card>
+
+    <white-card
+      appIntersectionObserver
+      (visible)="onVisible('adoption-requirement')"
+      class="adoption-requirement hide-content"
+    >
+      <ng-container>
+        <div class="text-xl font-bold text-left">Adopt Requirement</div>
+
+        <div
+          class="text-grey text-left my-1"
+          *ngFor="let r of adoptionRequirements; index as i"
+        >
+          {{ i + 1 }}. {{ r }}
+        </div>
+      </ng-container>
+    </white-card>
+  </div>
+</div>

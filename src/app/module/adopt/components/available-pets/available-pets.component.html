@@ -1,0 +1,74 @@
+<div class="text-center mt-8 mb-4">
+  <h1>Pets</h1>
+
+  <div class="my-4 text-grey px-4 md:px-24 lg:px-48">
+    These animal are ready to have their new home now.
+    <br />
+    If you are interested in adoption pets, please fill out the application
+    form. <br />
+    We will contact you as soon as possible.
+  </div>
+</div>
+
+<div class="px-4 md:px-24 text-center my-12">
+  <div class="grid lg:grid-cols-2">
+    <nz-select
+      [nzMaxTagCount]="3"
+      nzMode="multiple"
+      nzPlaceHolder="Please select category"
+      [(ngModel)]="selectedCategory"
+      (ngModelChange)="selectedCategoryChange($event)"
+    >
+      <nz-option nzValue="dog" nzLabel="Dog"></nz-option>
+      <nz-option nzValue="cat" nzLabel="Cat"></nz-option>
+      <nz-option nzValue="small-pet" nzLabel="Small Pet"></nz-option>
+    </nz-select>
+  </div>
+
+  <div class="col-span-full col-start-1">
+    <nz-tabset nzCentered (nzSelectChange)="nzSelectChange($event)">
+      <nz-tab nzTitle="Available Pets">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div *ngFor="let pet of copiedAvailablePets">
+            <app-pet-cards
+              [name]="pet.name"
+              [dob]="pet.dob"
+              [imgSrc]="pet.imgSrc"
+              [sex]="pet.sex"
+            ></app-pet-cards>
+          </div>
+
+          <div
+            *ngIf="copiedAvailablePets.length === 0"
+            class="text-lg text-fold text-center col-span-full"
+          >
+            Sorry, the category that you selected is not available now.
+          </div>
+        </div>
+      </nz-tab>
+
+      <nz-tab nzTitle="Adopted Pets">
+        <ng-container *ngIf="selectedIndex === 1">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div *ngFor="let pet of copiedAdoptedPets">
+              <app-pet-cards
+                [name]="pet.name"
+                [dob]="pet.dob"
+                [imgSrc]="pet.imgSrc"
+                [sex]="pet.sex"
+                [showBtn]="false"
+              ></app-pet-cards>
+            </div>
+
+            <div
+              *ngIf="copiedAdoptedPets.length === 0"
+              class="text-lg text-fold text-center col-span-full"
+            >
+              Sorry, the category that you selected is not available now.
+            </div>
+          </div>
+        </ng-container>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+</div>

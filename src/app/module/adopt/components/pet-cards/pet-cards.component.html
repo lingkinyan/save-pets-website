@@ -1,0 +1,22 @@
+<white-card
+  [ngClass]="name"
+  class="hide-content"
+  appIntersectionObserver
+  (visible)="onVisible(name)"
+>
+  <img [src]="imgSrc" [alt]="name" />
+
+  <div class="text-xl font-bold flex justify-center my-2">
+    {{ name }}
+
+    <span
+      class="material-icons font-bold"
+      [ngClass]="sex === 'F' ? 'text-[pink]' : 'text-[#1890ff]'"
+      >{{ sex === "F" ? "female" : "male" }}
+    </span>
+  </div>
+
+  <div class="my-2">{{ dob }}</div>
+
+  <button nz-button class="ant-btn-orange" *ngIf="showBtn">Learn More</button>
+</white-card>
