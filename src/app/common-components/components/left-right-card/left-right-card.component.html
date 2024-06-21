@@ -1,9 +1,9 @@
 <div class="rounded-2xl card">
-  <div class="grid sm:grid-cols-2">
+  <div class="grid lg:grid-cols-2">
     <img
       [src]="imgSrc"
       [alt]="imgAlt"
-      class="rounded-l-2xl hidden sm:block desktop-image text-left"
+      class="rounded-l-2xl hidden lg:block desktop-image text-left"
       *ngIf="!isImageLeft"
     />
 
@@ -33,7 +33,7 @@
       <img
         [src]="imgSrc"
         [alt]="imgAlt"
-        class="rounded-r-2xl hidden sm:block desktop-image"
+        class="rounded-r-2xl hidden lg:block desktop-image"
         *ngIf="isImageLeft"
       />
     </div>
@@ -42,7 +42,7 @@
     <img
       [src]="imgSrc"
       [alt]="imgAlt"
-      class="rounded-b-2xl w-full block sm:hidden"
+      class="rounded-b-2xl w-full block lg:hidden"
     />
   </div>
 </div>

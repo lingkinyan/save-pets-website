@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { IntersectionComponents } from '../../../../common-components/class/intersection.component';
 
 @Component({
   selector: 'app-team-photo-frame',
@@ -6,7 +7,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './team-photo-frame.component.html',
   styleUrl: './team-photo-frame.component.less',
 })
-export class TeamPhotoFrameComponent {
+export class TeamPhotoFrameComponent extends IntersectionComponents{
   @Input() imgSrc = '';
   @Input() name = '';
   @Input() position = '';
