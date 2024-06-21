@@ -1,0 +1,31 @@
+.ant-timeline-item-content {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.ant-timeline-item-head {
+  background-color: #e9541c;
+  position: absolute;
+  left: -0.65rem;
+  top: -0.5rem;
+  width: 2rem;
+  height: 2rem;
+  color: white;
+
+  &::after {
+    counter-increment: ant-timeline-item;
+    content: counters(ant-timeline-item, ".");
+  }
+}
+
+// .ant-steps-dot .ant-steps-item-icon .ant-steps-icon-dot:after,
+// .ant-steps-dot.ant-steps-small .ant-steps-item-icon .ant-steps-icon-dot:after {
+//   counter-increment: nz-step;
+//   color: #fff;
+//   content: counters(nz-step, ".");
+// }
+
+nz-timeline {
+  counter-reset: ant-timeline-item;
+}
