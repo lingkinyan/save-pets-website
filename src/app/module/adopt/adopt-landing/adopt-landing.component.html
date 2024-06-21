@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <div class="px-4 md:px-24 my-12 grid gap-12">
+  <div class="px-4 md:px-24 text-center my-12 grid gap-12">
     <white-card
       appIntersectionObserver
       (visible)="onVisible('adoption-timeline')"
@@ -46,14 +46,16 @@
       (visible)="onVisible('adoption-requirement')"
       class="adoption-requirement hide-content"
     >
-      <h1>Adoption requirements</h1>
+      <ng-container>
+        <div class="text-xl font-bold">Adopt Requirement</div>
 
-      <div
-        class="text-grey text-left my-1"
-        *ngFor="let r of adoptionRequirements; index as i"
-      >
-        {{ i + 1 }}. {{ r }}
-      </div>
+        <div
+          class="text-grey text-left my-1"
+          *ngFor="let r of adoptionRequirements; index as i"
+        >
+          {{ i + 1 }}. {{ r }}
+        </div>
+      </ng-container>
     </white-card>
   </div>
 </div>
