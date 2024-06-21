@@ -31,7 +31,7 @@
     <white-card
       appIntersectionObserver
       (visible)="onVisible('adoption-timeline')"
-      class="adoption-timeline"
+      class="adoption-timeline hide-content"
     >
       <nz-timeline>
         <nz-timeline-item [nzColor]="'#e9541c'" *ngFor="let step of stepList">
@@ -44,7 +44,7 @@
     <white-card
       appIntersectionObserver
       (visible)="onVisible('adoption-requirement')"
-      class="adoption-requirement"
+      class="adoption-requirement hide-content"
     >
       <h1>Adoption requirements</h1>
 

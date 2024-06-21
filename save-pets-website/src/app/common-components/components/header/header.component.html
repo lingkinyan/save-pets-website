@@ -1,4 +1,5 @@
 <!-- Mobile Menu Bar -->
+
 <div class="fixed top-0 w-full z-10">
   <div class="block lg:hidden bg-[#E9541C]">
     <div class="flex justify-between">
@@ -51,12 +52,12 @@
         <img src="save-pets-icon.png" alt="save-pets-icon" class="pet-icon" />
 
         <ng-container *ngFor="let site of navSites">
-          <span
+          <div
             class="mr-4 my-auto site font-bold text-lg"
             (click)="routeTo(site.path)"
           >
             {{ site.name }}
-          </span>
+          </div>
         </ng-container>
       </div>
 

@@ -1,10 +1,5 @@
 <div class="text-center mt-8 mb-4">
   <h1>Contact Us</h1>
-
-  <div class="my-4 text-grey" *ngIf="!isFormSubmitted">
-    Please leave your message here and <br />
-    we will contact you as soon as possible!
-  </div>
 </div>
 
 <div class="px-4 md:px-24 text-center grid lg:grid-cols-2 gap-4">
@@ -12,79 +7,85 @@
   <img src="contact-us/contact-us.jpeg" alt="Contact Us" />
 
   <!-- contact form -->
-  <form
-    nz-form
-    [formGroup]="validateForm"
-    class="my-auto"
-    (ngSubmit)="submitForm()"
-    *ngIf="!isFormSubmitted"
-  >
-    <div class="grid lg:grid-cols-2 gap-4">
-      <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your first name">
-          <nz-input-group nzPrefixIcon="user">
-            <input
-              type="text"
-              nz-input
-              formControlName="firstName"
-              placeholder="First Name"
-            />
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your last name">
-          <nz-input-group nzPrefixIcon="user">
-            <input
-              type="text"
-              nz-input
-              formControlName="lastName"
-              placeholder="Last Name"
-            />
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item class="col-span-full">
-        <nz-form-control nzErrorTip="Please input your email">
-          <nz-input-group nzPrefixIcon="mail">
-            <input
-              type="text"
-              nz-input
-              formControlName="email"
-              placeholder="Email"
-            />
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item class="col-span-full">
-        <nz-form-control nzErrorTip="Please input your message">
-          <textarea
-            nzPrefixIcon="message"
-            rows="4"
-            nz-input
-            formControlName="message"
-            placeholder="Message"
-          ></textarea>
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item class="col-span-full">
-        <nz-form-control>
-          <button
-            nz-button
-            class="ant-btn-orange"
-            nzSize="large"
-            [disabled]="!validateForm.valid"
-          >
-            Submit
-          </button>
-        </nz-form-control>
-      </nz-form-item>
+  <div class="my-4 text-grey" *ngIf="!isFormSubmitted">
+    <div class="my-4">
+      Please leave your message here and <br />
+      we will contact you as soon as possible!
     </div>
-  </form>
+    <form
+      nz-form
+      [formGroup]="validateForm"
+      class="my-auto"
+      (ngSubmit)="submitForm()"
+      *ngIf="!isFormSubmitted"
+    >
+      <div class="grid lg:grid-cols-2 gap-4">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Please input your first name">
+            <nz-input-group nzPrefixIcon="user">
+              <input
+                type="text"
+                nz-input
+                formControlName="firstName"
+                placeholder="First Name"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Please input your last name">
+            <nz-input-group nzPrefixIcon="user">
+              <input
+                type="text"
+                nz-input
+                formControlName="lastName"
+                placeholder="Last Name"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item class="col-span-full">
+          <nz-form-control nzErrorTip="Please input your email">
+            <nz-input-group nzPrefixIcon="mail">
+              <input
+                type="text"
+                nz-input
+                formControlName="email"
+                placeholder="Email"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item class="col-span-full">
+          <nz-form-control nzErrorTip="Please input your message">
+            <textarea
+              nzPrefixIcon="message"
+              rows="4"
+              nz-input
+              formControlName="message"
+              placeholder="Message"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item class="col-span-full">
+          <nz-form-control>
+            <button
+              nz-button
+              class="ant-btn-orange"
+              nzSize="large"
+              [disabled]="!validateForm.valid"
+            >
+              Submit
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </form>
+  </div>
 
   <!-- Form Response -->
   <div *ngIf="isFormSubmitted" class="my-auto">
