@@ -16,7 +16,17 @@
     </span>
   </div>
 
-  <div class="my-2">{{ dob }}</div>
+  <div class="my-2 text-center">
+    <span class="material-icons text-md relative top-1"> cake </span>
+    {{ age }}
+  </div>
 
-  <button nz-button class="ant-btn-orange" *ngIf="showBtn">Learn More</button>
+  <button
+    nz-button
+    class="ant-btn-orange"
+    *ngIf="showBtn"
+    (click)="btnClicked.emit()"
+  >
+    Learn More
+  </button>
 </white-card>

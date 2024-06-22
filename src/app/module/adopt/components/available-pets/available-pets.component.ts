@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { Title } from "@angular/platform-browser";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-available-pets",
@@ -7,6 +9,10 @@ import { Component } from "@angular/core";
   styleUrl: "./available-pets.component.less",
 })
 export class AvailablePetsComponent {
+  constructor(private router: Router, private title: Title) {
+    this.title.setTitle("Pets | Save Pets");
+  }
+
   selectedCategory: string[] = [];
 
   selectedIndex: number = 0;
@@ -15,52 +21,59 @@ export class AvailablePetsComponent {
   availablePets = [
     {
       name: "Happy",
-      dob: "31/12/2023",
+      dob: "2022-12-31",
       sex: "F",
       imgSrc: "home-page/circle-1.jpeg",
       category: "cat",
+      id: 1,
     },
     {
       name: "Lucy",
-      dob: "31/12/2023",
+      dob: "2024-02-10",
       sex: "M",
       imgSrc: "home-page/circle-2.webp",
       category: "cat",
+      id: 2,
     },
     {
       name: "Jack",
-      dob: "31/12/2023",
+      dob: "2022-12-31",
       sex: "M",
       imgSrc: "home-page/circle-3.webp",
       category: "cat",
+      id: 3,
     },
     {
       name: "QQ",
-      dob: "31/12/2023",
+      dob: "2022-12-31",
       sex: "F",
       imgSrc: "home-page/circle-4.jpeg",
       category: "dog",
+      id: 4,
     },
     {
       name: "Mimi",
-      dob: "31/12/2023",
+      dob: "2022-12-31",
       sex: "M",
       imgSrc: "home-page/circle-1.jpeg",
       category: "dog",
+      id: 5,
     },
     {
       name: "Yoko",
-      dob: "31/12/2023",
+      dob: "2022-12-31",
       sex: "F",
       imgSrc: "home-page/circle-1.jpeg",
       category: "dog",
+      id: 6,
     },
     {
       name: "Handsome",
-      dob: "31/12/2023",
+      dob: "2022-12-31",
       sex: "M",
       imgSrc: "home-page/circle-1.jpeg",
       category: "small-pet",
+      id: 7,
     },
   ];
 
@@ -69,14 +82,14 @@ export class AvailablePetsComponent {
   adoptedPets = [
     {
       name: "Nice",
-      dob: "31/12/2023",
+      dob: "2022-12-31",
       sex: "F",
       imgSrc: "home-page/circle-1.jpeg",
       category: "cat",
     },
     {
       name: "Testing",
-      dob: "31/12/2023",
+      dob: "2022-12-31",
       sex: "M",
       imgSrc: "home-page/circle-2.webp",
       category: "dog",
@@ -114,5 +127,9 @@ export class AvailablePetsComponent {
 
   nzSelectChange(type: any): void {
     this.selectedIndex = type.index;
+  }
+
+  goToDetailsPage(id: number): void {
+    this.router.navigate(["/adopt/pet-info/" + id]);
   }
 }

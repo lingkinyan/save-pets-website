@@ -1,31 +1,37 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 import {
   FormControl,
   FormGroup,
   NonNullableFormBuilder,
   Validators,
-} from '@angular/forms';
-import { Router } from '@angular/router';
+} from "@angular/forms";
+import { Title } from "@angular/platform-browser";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-contact-us-landing',
+  selector: "app-contact-us-landing",
   standalone: false,
-  templateUrl: './contact-us-landing.component.html',
-  styleUrl: './contact-us-landing.component.less',
+  templateUrl: "./contact-us-landing.component.html",
+  styleUrl: "./contact-us-landing.component.less",
 })
 export class ContactUsLandingComponent {
-  constructor(private fb: NonNullableFormBuilder, private router: Router) {}
-
+  constructor(
+    private fb: NonNullableFormBuilder,
+    private router: Router,
+    private title: Title
+  ) {
+    this.title.setTitle("Contact Us | Save Pets");
+  }
   validateForm: FormGroup<{
     firstName: FormControl<string>;
     lastName: FormControl<string>;
     email: FormControl<string>;
     message: FormControl<string>;
   }> = this.fb.group({
-    firstName: ['', [Validators.required]],
-    lastName: ['', [Validators.required]],
-    email: ['', [Validators.required]],
-    message: ['', [Validators.required]],
+    firstName: ["", [Validators.required]],
+    lastName: ["", [Validators.required]],
+    email: ["", [Validators.required]],
+    message: ["", [Validators.required]],
   });
 
   isFormSubmitted = false;
@@ -33,7 +39,7 @@ export class ContactUsLandingComponent {
   submitForm(): void {
     if (this.validateForm.valid) {
       // TODO
-      console.log('submit', this.validateForm.value);
+      console.log("submit", this.validateForm.value);
       this.validateForm.reset();
       this.isFormSubmitted = true;
     } else {
@@ -47,6 +53,6 @@ export class ContactUsLandingComponent {
   }
 
   routeToHomePage(): void {
-    this.router.navigate(['/home']);
+    this.router.navigate(["/home"]);
   }
 }

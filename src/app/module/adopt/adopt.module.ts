@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-
+import { CommonModule, DatePipe } from "@angular/common";
 import { AdoptRoutingModule } from "./adopt-routing.module";
 import { CommonComponentModule } from "../../common-components/common-component.components";
 import { AdoptLandingComponent } from "./adopt-landing/adopt-landing.component";
@@ -12,6 +11,11 @@ import { FormsModule } from "@angular/forms";
 import { NzTabsModule } from "ng-zorro-antd/tabs";
 import { PetCardsComponent } from "./components/pet-cards/pet-cards.component";
 import { NzButtonModule } from "ng-zorro-antd/button";
+import { PetInfoComponent } from "./components/pet-info/pet-info.component";
+import { NzBreadCrumbModule } from "ng-zorro-antd/breadcrumb";
+import { NzCarouselModule } from "ng-zorro-antd/carousel";
+import { TextAlignComponent } from "./components/text-align/text-align.component";
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,8 @@ import { NzButtonModule } from "ng-zorro-antd/button";
     ProcedureComponent,
     AvailablePetsComponent,
     PetCardsComponent,
+    PetInfoComponent,
+    TextAlignComponent,
   ],
   imports: [
     CommonModule,
@@ -28,7 +34,10 @@ import { NzButtonModule } from "ng-zorro-antd/button";
     NzSelectModule,
     FormsModule,
     NzTabsModule,
-    NzButtonModule
+    NzButtonModule,
+    NzBreadCrumbModule,
+    NzCarouselModule,
+    NzDividerModule
   ],
 })
 export class AdoptModule {}

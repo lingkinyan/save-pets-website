@@ -1,0 +1,96 @@
+<div class="px-4 md:px-28 mt-8 mb-4 grid grid gap-12">
+  <nz-breadcrumb>
+    <nz-breadcrumb-item>Adopt</nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a (click)="routeToPage('pets')">Pets</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>{{ petInfo.name }}</nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <h1 class="text-xl font-bold text-center">Hi I'm {{ petInfo.name }}</h1>
+
+  <nz-carousel nzAutoPlay [nzAutoPlaySpeed]="5000">
+    <div nz-carousel-content *ngFor="let image of petInfo.imageList">
+      <img [src]="image" [alt]="petInfo.name" />
+    </div>
+  </nz-carousel>
+
+  <white-card>
+    <div class="grid gap-4">
+      <text-align [title]="'Name'" [content]="petInfo.name"></text-align>
+      <text-align
+        [title]="'Sex'"
+        [content]="petInfo.sex === 'F' ? 'Female' : 'Male'"
+      ></text-align>
+      <text-align
+        [title]="'Age'"
+        [content]="petAge + ' (Born on ' + petInfo.dob + ')'"
+      ></text-align>
+      <text-align [title]="'Breed'" [content]="petInfo.breed"></text-align>
+      <text-align
+        [title]="'Weight'"
+        [content]="petInfo.weight + ' kg'"
+      ></text-align>
+      <text-align [title]="'Color'" [content]="petInfo.color"></text-align>
+      <text-align
+        [title]="'Health status'"
+        [content]="petInfo.healthStatus"
+      ></text-align>
+      <text-align
+        [title]="'Personality'"
+        [content]="petInfo.personality"
+      ></text-align>
+      <text-align
+        [title]="'Ideal Family'"
+        [content]="petInfo.idealFamily"
+      ></text-align>
+      <text-align
+        [title]="'Rescue process'"
+        [content]="petInfo.rescueProcess"
+      ></text-align>
+
+      <nz-divider></nz-divider>
+
+      <div class="text-lg grid gap-4">
+        <div class="font-bold">
+          Only local (Great Toronto Area) adoption is accepted.
+        </div>
+        <div>
+          If you’re interested in adopting this pet, please fill out this
+          <span
+            class="underline font-bold cursor-pointer"
+            (click)="routeToPage('application-form')"
+            >adoption form</span
+          >
+          to express your interest.
+        </div>
+
+        <div>
+          Now We will reach back in
+          <span class="font-bold">3-4 business days</span> for further
+          instructions.
+        </div>
+      </div>
+    </div>
+  </white-card>
+
+  <div class="flex justify-center flex-col md:flex-row">
+    <button
+      nz-button
+      class="ant-btn-orange"
+      nzSize="large"
+      (click)="routeToPage('application-form')"
+    >
+      Adopt Me
+    </button>
+
+    <button
+      nz-button
+      class="ant-btn-orange my-4 md:my-0 md:mx-8"
+      nzSize="large"
+      (click)="routeToPage('donate')"
+    >
+      Donation
+    </button>
+  </div>
+</div>

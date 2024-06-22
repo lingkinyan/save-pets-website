@@ -35,6 +35,7 @@
               [dob]="pet.dob"
               [imgSrc]="pet.imgSrc"
               [sex]="pet.sex"
+              (btnClicked)="goToDetailsPage(pet.id)"
             ></app-pet-cards>
           </div>
 

@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { IntersectionComponents } from "../../../../common-components/class/intersection.component";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: "app-procedure",
@@ -8,6 +9,10 @@ import { IntersectionComponents } from "../../../../common-components/class/inte
   styleUrl: "./procedure.component.less",
 })
 export class ProcedureComponent extends IntersectionComponents {
+  constructor(private title: Title) {
+    super();
+    this.title.setTitle("Adopt Procedure | Save Pets");
+  }
   stepList = [
     {
       title: "Finding your Furry Friend",
