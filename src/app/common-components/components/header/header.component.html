@@ -1,10 +1,10 @@
 <!-- Mobile Menu Bar -->
 
 <div class="fixed top-0 w-full z-10">
-  <div class="block lg:hidden bg-[#E9541C]">
+  <div class="block lg:hidden bg-[#ff5e0f]">
     <div class="flex justify-between">
       <img
-        src="save-pets-icon.png"
+        src="save-pets-icon.jpeg"
         alt="save-pets-icon"
         class="w-16 h-16 cursor-pointer"
         (click)="routeTo('/home')"
@@ -22,7 +22,8 @@
   <nz-drawer [nzClosable]="false" [nzVisible]="visible" nzPlacement="right">
     <ng-container *nzDrawerContent>
       <div class="flex justify-between bg-[#ff5e0f]">
-        <img src="save-pets-logo.png" class="w-16 h-16" />
+        <img src="save-pets-logo.jpeg" class="w-16 h-16" 
+        />
 
         <span
           class="material-icons text-white my-auto text-3xl mx-2 cursor-pointer"
@@ -71,10 +72,12 @@
   </nz-drawer>
 
   <!-- Desktop Menu Bar -->
-  <div class="lg:block hidden bg-[#E9541C] text-white">
+  <div class="lg:block hidden bg-[#ff5e0f] text-white">
     <div class="justify-between flex px-8">
       <div class="flex">
-        <img src="save-pets-icon.png" alt="save-pets-icon" class="pet-icon" />
+        <img src="save-pets-icon.jpeg" alt="save-pets-icon" class="pet-icon"
+        (click)="routeTo('/home')"
+         />
 
         <ng-container *ngFor="let site of navSites">
           <ng-container *ngIf="!site.children">

@@ -11,7 +11,7 @@ import { Title } from "@angular/platform-browser";
 export class ProcedureComponent extends IntersectionComponents {
   constructor(private title: Title) {
     super();
-    this.title.setTitle("Adopt Procedure | Save Pets");
+    this.title.setTitle("Adopt Procedure | Pets Save");
   }
   stepList = [
     {

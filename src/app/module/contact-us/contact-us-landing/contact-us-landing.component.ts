@@ -20,7 +20,7 @@ export class ContactUsLandingComponent {
     private router: Router,
     private title: Title
   ) {
-    this.title.setTitle("Contact Us | Save Pets");
+    this.title.setTitle("Contact Us | Pets Save");
   }
   validateForm: FormGroup<{
     firstName: FormControl<string>;

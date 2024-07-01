@@ -11,4 +11,9 @@ export class TeamPhotoFrameComponent extends IntersectionComponents{
   @Input() imgSrc = '';
   @Input() name = '';
   @Input() position = '';
+
+  className = ''
+  ngOnInit(): void {
+    this.className = this.name.replace(' ', '-')
+  }
 }

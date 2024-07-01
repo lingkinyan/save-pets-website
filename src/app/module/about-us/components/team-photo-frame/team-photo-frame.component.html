@@ -1,4 +1,9 @@
-<white-card>
+<white-card
+  [ngClass]="className"
+  class="hide-content"
+  appIntersectionObserver
+  (visible)="onVisible(className)"
+>
   <div class="flex justify-center">
     <img [src]="imgSrc" [alt]="name" />
   </div>
