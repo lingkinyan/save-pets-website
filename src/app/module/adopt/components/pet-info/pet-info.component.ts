@@ -35,7 +35,7 @@ export class PetInfoComponent {
 
   ngOnInit(): void {
     // TODO: get pet info by APIs
-    this.titleService.setTitle(this.petInfo.name + " | Pets Save");
+    this.titleService.setTitle(this.petInfo.name + " | Pet Save");
 
     this.petAge = GetAge.getAge(this.petInfo.dob);
   }

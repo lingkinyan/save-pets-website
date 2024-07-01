@@ -11,7 +11,7 @@ import { Title } from "@angular/platform-browser";
 export class AboutUsLandingComponent extends IntersectionComponents {
   constructor(private title: Title) {
     super();
-    this.title.setTitle("About Us | Pets Save");
+    this.title.setTitle("About Us | Pet Save");
   }
   memberList = [
     {

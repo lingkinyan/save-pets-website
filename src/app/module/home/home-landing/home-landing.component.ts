@@ -11,7 +11,7 @@ import { Title } from "@angular/platform-browser";
 export class HomeLandingComponent extends IntersectionComponents {
   constructor(private title: Title) {
     super();
-    this.title.setTitle("Home | Pets Save");
+    this.title.setTitle("Home | Pet Save");
   }
   
   goalsList = [

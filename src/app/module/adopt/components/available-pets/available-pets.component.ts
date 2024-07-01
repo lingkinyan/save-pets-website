@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 })
 export class AvailablePetsComponent {
   constructor(private router: Router, private title: Title) {
-    this.title.setTitle("Pets | Pets Save");
+    this.title.setTitle("Pets | Pet Save");
   }
 
   selectedCategory: string[] = [];
