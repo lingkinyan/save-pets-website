@@ -22,7 +22,7 @@ export class ProcedureComponent extends IntersectionComponents {
     {
       title: "Filling out an Application",
       content:
-        "Once you have selected your preferred animal, fill out an application form, also found at the end of each animal’s description, to state your interest. <br>Due to the volume of applications we get, it may take up to 2 weeks for us to process the applications. <br>Again, you will only hear back from us if you have been selected to move on to step 3: home visit.",
+        "Once you have selected your preferred animal, fill out an <a href='https://forms.gle/nuKTmB3ZbrsLAqJx9' target='_blank' class='font-bold underline'>application form</a>, also found at the end of each animal’s description, to state your interest. <br>Due to the volume of applications we get, it may take up to 2 weeks for us to process the applications. <br>Again, you will only hear back from us if you have been selected to move on to step 3: home visit.",
     },
     {
       title: "Arranging a Home Visit",

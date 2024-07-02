@@ -23,7 +23,7 @@ export class HeaderComponent {
       isExpand: false,
       children: [
         { name: "Adopt Procedure", path: "/adopt/adopt-procedure" },
-        { name: "Application Form", path: "/adopt//application-form" },
+        { name: "Application Form", path: "/adopt/application-form" },
         { name: "Available Pets", path: "/adopt/available-pets" },
       ],
     },
@@ -35,6 +35,8 @@ export class HeaderComponent {
   routeTo(site: string): void {
     if (site === "ig") {
       window.open("https://www.instagram.com");
+    } else if (site === "/adopt/application-form") {
+      window.open("https://forms.gle/nuKTmB3ZbrsLAqJx9");
     } else {
       this.visible = false;
 

@@ -46,7 +46,7 @@ export class PetInfoComponent {
     }
 
     if (page === "application-form") {
-      this.router.navigate(["/adopt/application-form"]);
+      window.open("https://forms.gle/nuKTmB3ZbrsLAqJx9")
     }
 
     if (page === "donate") {

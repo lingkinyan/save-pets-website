@@ -14,8 +14,12 @@ export class SupportUsLandingComponent extends IntersectionComponents {
     this.title.setTitle("Support Us | Pet Save");
   }
   
-  click(): void {
+  click(action?: string): void {
     // TODO
     console.log("clicked");
+
+    if(action === 'foster') {
+      window.open('https://docs.google.com/forms/d/1O7LEsYVC2uqoDxMaSeQLVscHU85DIFY6weq7yonwypM/viewform?edit_requested=true')
+    }
   }
 }
