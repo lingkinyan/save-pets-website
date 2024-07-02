@@ -17,7 +17,7 @@ export class ProcedureComponent extends IntersectionComponents {
     {
       title: "Finding your Furry Friend",
       content:
-        "Our website and instagram page are constantly being updated with the most recent and past rescues. <br>Head to the “available for adoption” pages to search for your perfect match. <br>Learn more about them and their rescue stories by selecting “read more.”",
+        "Our website and instagram page are constantly being updated with the most recent and past rescues. <br>Head to the <a href='https://www.petsaveorg.com/adopt/available-pets' target='_blank' class='font-bold underline'>available for adoption</a> pages to search for your perfect match. <br>Learn more about them and their rescue stories by selecting 'Learn more.'",
     },
     {
       title: "Filling out an Application",
