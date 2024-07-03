@@ -7,7 +7,7 @@ import { NzTimelineModule } from "ng-zorro-antd/timeline";
 import { ProcedureComponent } from "./components/procedure/procedure.component";
 import { AvailablePetsComponent } from "./components/available-pets/available-pets.component";
 import { NzSelectModule } from "ng-zorro-antd/select";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NzTabsModule } from "ng-zorro-antd/tabs";
 import { PetCardsComponent } from "./components/pet-cards/pet-cards.component";
 import { NzButtonModule } from "ng-zorro-antd/button";
@@ -16,12 +16,16 @@ import { NzBreadCrumbModule } from "ng-zorro-antd/breadcrumb";
 import { NzCarouselModule } from "ng-zorro-antd/carousel";
 import { TextAlignComponent } from "./components/text-align/text-align.component";
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { AdoptionApplicationFormComponent } from "./components/adoption-application-form/adoption-application-form.component";
+import { NzFormModule } from "ng-zorro-antd/form";
+import { NzInputModule } from "ng-zorro-antd/input";
 
 @NgModule({
   declarations: [
     AdoptLandingComponent,
     ProcedureComponent,
     AvailablePetsComponent,
+    AdoptionApplicationFormComponent,
     PetCardsComponent,
     PetInfoComponent,
     TextAlignComponent,
@@ -37,7 +41,11 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
     NzButtonModule,
     NzBreadCrumbModule,
     NzCarouselModule,
-    NzDividerModule
+    NzDividerModule,
+    NzFormModule,
+    ReactiveFormsModule,
+    NzInputModule,
+    NzSelectModule
   ],
 })
 export class AdoptModule {}

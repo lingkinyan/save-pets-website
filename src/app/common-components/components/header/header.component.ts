@@ -35,8 +35,6 @@ export class HeaderComponent {
   routeTo(site: string): void {
     if (site === "ig") {
       window.open("https://www.instagram.com");
-    } else if (site === "/adopt/application-form") {
-      window.open("https://forms.gle/nuKTmB3ZbrsLAqJx9");
     } else {
       this.visible = false;
 
