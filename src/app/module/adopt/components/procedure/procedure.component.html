@@ -13,6 +13,9 @@
       (visible)="onVisible('adoption-timeline')"
       class="adoption-timeline hide-content"
     >
+      <div class="text-2xl text-center mt-4 mb-8 font-bold">
+        Adopt Procedures
+      </div>
       <nz-timeline>
         <nz-timeline-item [nzColor]="'#ff5e0f'" *ngFor="let step of stepList">
           <div class="text-xl font-bold mx-2">{{ step.title }}</div>
@@ -27,7 +30,10 @@
       class="adoption-requirement hide-content"
     >
       <ng-container>
-        <div class="text-xl font-bold text-left">Adopt Requirement</div>
+        <!-- <div class="text-xl font-bold text-left">Adopt Requirement</div> -->
+        <div class="text-2xl text-center mt-4 mb-8 font-bold">
+          Adopt Requirements
+        </div>
 
         <div
           class="text-grey text-left my-1"
