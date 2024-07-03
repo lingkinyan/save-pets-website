@@ -1,0 +1,661 @@
+<div class="text-center mt-8 mb-4">
+  <h1>Adoption Application Form</h1>
+</div>
+
+<div class="px-4 md:px-24 text-center gap-4">
+  <white-card>
+    <div class="gap-4">
+      <form nz-form [formGroup]="applicationForm" class="my-auto">
+        <div class="grid lg:grid-cols-2 gap-4">
+          <nz-form-item class="col-start-1 col-span-full">
+            <nz-form-control nzErrorTip="Please select at least 1 pet">
+              <nz-form-label nzRequired
+                >Which dog/cat are you applying to adopt</nz-form-label
+              >
+              <nz-select nzMode="multiple" formControlName="adoptPet">
+                <nz-option
+                  *ngFor="let option of availablePetsList"
+                  [nzLabel]="option.name"
+                  [nzValue]="option.name"
+                ></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- Personal info -->
+          <ng-container>
+            <nz-divider class="col-span-full"> </nz-divider>
+            <div class="col-span-full text-xl font-bold text-left">
+              Personal Information
+            </div>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your first name">
+                <nz-form-label nzRequired>First Name</nz-form-label>
+                <nz-input-group>
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="applicantFirstName"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your last name">
+                <nz-form-label nzRequired>Last Name</nz-form-label>
+                <nz-input-group>
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="applicantLastName"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your age">
+                <nz-form-label nzRequired>Age</nz-form-label>
+                <nz-input-group>
+                  <input type="number" nz-input formControlName="age" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control
+                nzErrorTip="Please input your social media account"
+              >
+                <nz-form-label nzRequired>Social Media Link</nz-form-label>
+                <nz-input-group>
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="socialMediaAccount"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your phone number">
+                <nz-form-label nzRequired>Phone Number</nz-form-label>
+                <nz-input-group>
+                  <input type="number" nz-input formControlName="phoneNo" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your email">
+                <nz-form-label nzRequired>Email</nz-form-label>
+                <nz-input-group>
+                  <input type="text" nz-input formControlName="email" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-divider class="col-span-full"> </nz-divider>
+            <div class="col-span-full text-xl font-bold text-left">
+              Address
+              <span class="text-grey text-md"
+                >(Only accept Great Toronto Area)</span
+              >
+            </div>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your address">
+                <nz-form-label nzRequired>Address</nz-form-label>
+                <nz-input-group>
+                  <input type="type" nz-input formControlName="address" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your city">
+                <nz-form-label nzRequired>City</nz-form-label>
+                <nz-input-group>
+                  <input type="type" nz-input formControlName="city" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your postal code">
+                <nz-form-label nzRequired>Postal Code</nz-form-label>
+                <nz-input-group>
+                  <input type="type" nz-input formControlName="postalCode" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-divider class="col-span-full"> </nz-divider>
+          </ng-container>
+
+          <!-- Apartment Info -->
+          <ng-container>
+            <div class="col-span-full text-xl font-bold text-left">
+              Apartment Information
+            </div>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please select household type">
+                <nz-form-label nzRequired>Household Type</nz-form-label>
+                <nz-select formControlName="householdType">
+                  <nz-option
+                    *ngFor="let option of houseHoldType"
+                    [nzLabel]="option"
+                    [nzValue]="option"
+                  ></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please select the answer">
+                <nz-form-label nzRequired
+                  >Do you own or rent your home</nz-form-label
+                >
+                <nz-select formControlName="houseOwnership">
+                  <nz-option
+                    *ngFor="let option of houseOwnership"
+                    [nzLabel]="option"
+                    [nzValue]="option"
+                  ></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please select the answer">
+                <nz-form-label nzRequired
+                  >Do you live with children</nz-form-label
+                >
+                <nz-select formControlName="haveChildren">
+                  <nz-option
+                    *ngFor="let option of yesNoOptions"
+                    [nzLabel]="option"
+                    [nzValue]="option"
+                  ></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please select the answer">
+                <nz-form-label nzRequired
+                  >Does your lease allow pets</nz-form-label
+                >
+                <nz-select formControlName="allowPets">
+                  <nz-option
+                    *ngFor="let option of yesNoOptions"
+                    [nzLabel]="option"
+                    [nzValue]="option"
+                  ></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please select the answer">
+                <nz-form-label nzRequired
+                  >If you have a yard, is it fully fenced</nz-form-label
+                >
+                <nz-select formControlName="fencedYard">
+                  <nz-option
+                    *ngFor="let option of yesNoNaOptions"
+                    [nzLabel]="option"
+                    [nzValue]="option"
+                  ></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please select the answer">
+                <nz-form-label nzRequired
+                  >Do you or anyone in your household have allergies to dogs or
+                  cat</nz-form-label
+                >
+                <nz-select formControlName="allergy">
+                  <nz-option
+                    *ngFor="let option of yesNoOptions"
+                    [nzLabel]="option"
+                    [nzValue]="option"
+                  ></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-divider class="col-span-full"> </nz-divider>
+          </ng-container>
+
+          <!-- Household Info Array -->
+          <ng-container
+            *ngIf="
+              applicationForm.value.householdType !== 'Single' &&
+              applicationForm.value.householdType
+            "
+          >
+            <div class="col-span-full text-xl font-bold text-left">
+              Household Information
+            </div>
+
+            <ng-container formArrayName="householdInfo">
+              <ng-container
+                *ngFor="let info of householdInfoArray.controls; index as i"
+              >
+                <ng-container [formGroupName]="i">
+                  <ng-container>
+                    <nz-divider
+                      *ngIf="i > 0"
+                      class="col-span-full"
+                    ></nz-divider>
+
+                    <div class="text-md font-bold col-span-full text-left">
+                      Household {{ i + 1 }}
+                      <span
+                        *ngIf="i > 0"
+                        class="material-icons cursor-pointer text-sm text-grey"
+                        (click)="deleteHouseholdInfo(i)"
+                      >
+                        delete
+                      </span>
+                    </div>
+                    <nz-form-item>
+                      <nz-form-control nzErrorTip="Please input name">
+                        <nz-form-label nzRequired>Name</nz-form-label>
+                        <nz-input-group>
+                          <input type="text" nz-input formControlName="name" />
+                        </nz-input-group>
+                      </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                      <nz-form-control nzErrorTip="Please input age">
+                        <nz-form-label nzRequired>Age</nz-form-label>
+                        <nz-input-group>
+                          <input type="number" nz-input formControlName="age" />
+                        </nz-input-group>
+                      </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                      <nz-form-control nzErrorTip="Please input occupation">
+                        <nz-form-label nzRequired>Occupation</nz-form-label>
+                        <nz-input-group>
+                          <input
+                            type="input"
+                            nz-input
+                            formControlName="occupation"
+                          />
+                        </nz-input-group>
+                      </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                      <nz-form-control
+                        nzErrorTip="Please input hours stay at home"
+                      >
+                        <nz-form-label nzRequired
+                          >Hour(s) stay at home per day</nz-form-label
+                        >
+                        <nz-input-group>
+                          <input
+                            type="number"
+                            nz-input
+                            formControlName="hoursStayAtHome"
+                          />
+                        </nz-input-group>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+
+              <div class="col-span-full text-center">
+                <button
+                  nz-button
+                  class="ant-btn-orange"
+                  (click)="addHouseholdInfo()"
+                >
+                  Add Household Info
+                </button>
+              </div>
+            </ng-container>
+          </ng-container>
+
+          <!-- Children Info Array -->
+          <ng-container *ngIf="applicationForm.value.haveChildren === 'Yes'">
+            <div class="col-span-full text-xl font-bold text-left">
+              Children Information
+            </div>
+            <ng-container formArrayName="childrenInfo">
+              <ng-container
+                *ngFor="let info of childrenInfoArray.controls; index as i"
+              >
+                <ng-container [formGroupName]="i">
+                  <ng-container>
+                    <nz-divider
+                      *ngIf="i > 0"
+                      class="col-span-full"
+                    ></nz-divider>
+
+                    <div class="text-md font-bold col-span-full text-left">
+                      Child {{ i + 1 }}
+                      <span
+                        *ngIf="i > 0"
+                        class="material-icons cursor-pointer text-sm text-grey"
+                        (click)="deleteChildrenInfo(i)"
+                      >
+                        delete
+                      </span>
+                    </div>
+
+                    <nz-form-item>
+                      <nz-form-control nzErrorTip="Please input age">
+                        <nz-form-label nzRequired>Age</nz-form-label>
+                        <nz-input-group>
+                          <input type="number" nz-input formControlName="age" />
+                        </nz-input-group>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+
+              <div class="col-span-full text-center">
+                <button
+                  nz-button
+                  class="ant-btn-orange"
+                  (click)="addChildrenInfo()"
+                >
+                  Add Child Info
+                </button>
+              </div>
+            </ng-container>
+          </ng-container>
+
+          <!-- Petting Information-->
+          <ng-container>
+            <div class="col-span-full text-xl font-bold text-left">
+              Petting Information
+            </div>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input the hour">
+                <nz-form-label nzRequired
+                  >How many hours per day will the dog/cat be left alone at
+                  home</nz-form-label
+                >
+                <nz-input-group>
+                  <input type="number" nz-input formControlName="hourAlone" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input the place">
+                <nz-form-label nzRequired
+                  >Where will your dog/cat be staying during the day and
+                  night</nz-form-label
+                >
+                <nz-input-group>
+                  <input type="input" nz-input formControlName="stayingPlace" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input the place">
+                <nz-form-label nzRequired
+                  >Are there any specific areas in your home that your dog is
+                  not allowed to access</nz-form-label
+                >
+                <nz-input-group>
+                  <input
+                    type="input"
+                    nz-input
+                    formControlName="prohibitedPlace"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item class="col-span-full">
+              <nz-form-control nzErrorTip="Please input your experience">
+                <nz-form-label nzRequired
+                  >What is your experience with caring or training for dogs/
+                  cats</nz-form-label
+                >
+                <textarea nz-input formControlName="experience"></textarea>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item class="col-span-full">
+              <nz-form-control nzErrorTip="Please input your planning">
+                <nz-form-label nzRequired
+                  >How do you plan on caring for your dog/cat when you are out
+                  of town or on vacation or where would the dog/cat go if you
+                  had an emergency or were no longer able to care for the
+                  dog</nz-form-label
+                >
+                <textarea nz-input formControlName="outOfTownPlan"></textarea>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item class="col-span-full">
+              <nz-form-control nzErrorTip="Please select the answer">
+                <nz-form-label nzRequired
+                  >Our update after the dog/cat is adopted is on WhatsApp. Can
+                  you send an update via WhatsApp message, including pictures &
+                  videos of the dog/cat after you pick up the dog</nz-form-label
+                >
+                <nz-select formControlName="ableToUseWhatsapp">
+                  <nz-option
+                    *ngFor="let option of yesNoOptions"
+                    [nzLabel]="option"
+                    [nzValue]="option"
+                  ></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please select the answer">
+                <nz-form-label nzRequired
+                  >Have you ever owned a dog/cat before</nz-form-label
+                >
+                <nz-select formControlName="ownPetBefore">
+                  <nz-option
+                    *ngFor="let option of yesNoOptions"
+                    [nzLabel]="option"
+                    [nzValue]="option"
+                  ></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please select the answer">
+                <nz-form-label nzRequired
+                  >Have you ever surrendered a pet</nz-form-label
+                >
+                <nz-select formControlName="surrenderedPet">
+                  <nz-option
+                    *ngFor="let option of yesNoOptions"
+                    [nzLabel]="option"
+                    [nzValue]="option"
+                  ></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please select the answer">
+                <nz-form-label nzRequired
+                  >Do you currently own any pets</nz-form-label
+                >
+                <nz-select formControlName="currentlyOwnPet">
+                  <nz-option
+                    *ngFor="let option of yesNoOptions"
+                    [nzLabel]="option"
+                    [nzValue]="option"
+                  ></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+
+            <ng-container
+              *ngIf="applicationForm.value.currentlyOwnPet === 'Yes'"
+            >
+              <nz-divider class="col-span-full"></nz-divider>
+              <div class="col-span-full text-xl font-bold text-left">
+                Current Pet Information
+              </div>
+
+              <ng-container formArrayName="currentPetInfo">
+                <ng-container
+                  *ngFor="let info of currentPetInfoArray.controls; index as i"
+                >
+                  <ng-container [formGroupName]="i">
+                    <ng-container>
+                      <nz-divider
+                        *ngIf="i > 0"
+                        class="col-span-full"
+                      ></nz-divider>
+
+                      <div class="text-md font-bold col-span-full text-left">
+                        Pet {{ i + 1 }}
+                        <span
+                          *ngIf="i > 0"
+                          class="material-icons cursor-pointer text-sm text-grey"
+                          (click)="deleteCurrentPetInfo(i)"
+                        >
+                          delete
+                        </span>
+                      </div>
+                      <nz-form-item>
+                        <nz-form-control nzErrorTip="Please input age">
+                          <nz-form-label nzRequired>Age</nz-form-label>
+                          <nz-input-group>
+                            <input
+                              type="number"
+                              nz-input
+                              formControlName="age"
+                            />
+                          </nz-input-group>
+                        </nz-form-control>
+                      </nz-form-item>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+
+                <div class="col-span-full text-center">
+                  <button
+                    nz-button
+                    class="ant-btn-orange"
+                    (click)="addCurrentPetInfo()"
+                  >
+                    Add Pet Info
+                  </button>
+                </div>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+
+          <!-- References -->
+          <ng-container>
+            <div class="col-span-full text-xl font-bold text-left">
+              References
+            </div>
+
+            <div class="text-md font-bold col-span-full text-left">
+              Reference 1
+            </div>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input name">
+                <nz-form-label nzRequired>Name</nz-form-label>
+                <nz-input-group>
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="firstReferenceName"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input phone number">
+                <nz-form-label nzRequired>Phone Number</nz-form-label>
+                <nz-input-group>
+                  <input
+                    type="number"
+                    nz-input
+                    formControlName="firstReferencePhoneNo"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-divider class="col-span-full"></nz-divider>
+            <div class="text-md font-bold col-span-full text-left">
+              Reference 2
+            </div>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input name">
+                <nz-form-label nzRequired>Name</nz-form-label>
+                <nz-input-group>
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="secondReferenceName"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input phone number">
+                <nz-form-label nzRequired>Phone Number</nz-form-label>
+                <nz-input-group>
+                  <input
+                    type="number"
+                    nz-input
+                    formControlName="secondReferencePhoneNo"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </ng-container>
+
+          <div class="font-bold text-md text-center col-span-full">
+            Due to the high volume of applications, if your application is
+            considered a potential match for the dog, you will be contacted.
+            Thank you for your understanding!
+          </div>
+
+          <div class="col-span-full text-center">
+            <nz-form-item>
+              <nz-form-control>
+                <button
+                  nz-button
+                  class="ant-btn-orange"
+                  nzSize="large"
+                  (click)="submitForm()"
+                >
+                  Submit
+                </button>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </form>
+    </div>
+  </white-card>
+</div>
