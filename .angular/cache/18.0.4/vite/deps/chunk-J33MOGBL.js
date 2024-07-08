@@ -2,7 +2,7 @@ import {
   canUseDom,
   updateCSS,
   warn
-} from "./chunk-WKY3DAQ7.js";
+} from "./chunk-R2XUPRFO.js";
 import {
   CSP_NONCE,
   Inject,
@@ -918,6 +918,7 @@ var TinyColor = (
 );
 
 // node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-core-color.mjs
+var statusColors = ["success", "processing", "error", "default", "warning"];
 var presetColors = [
   "pink",
   "red",
@@ -935,6 +936,9 @@ var presetColors = [
 ];
 function isPresetColor(color) {
   return presetColors.indexOf(color) !== -1;
+}
+function isStatusColor(color) {
+  return statusColors.indexOf(color) !== -1;
 }
 var hueStep = 2;
 var saturationStep = 0.16;
@@ -1218,8 +1222,11 @@ export {
   rgbToHsv,
   rgbToHex,
   inputToRGB,
+  statusColors,
+  presetColors,
   isPresetColor,
+  isStatusColor,
   NzConfigService,
   WithConfig
 };
-//# sourceMappingURL=chunk-6L72WO6M.js.map
+//# sourceMappingURL=chunk-J33MOGBL.js.map

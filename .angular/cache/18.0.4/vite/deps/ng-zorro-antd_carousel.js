@@ -1,6 +1,6 @@
 import {
   NzResizeObserver
-} from "./chunk-NHCCEQLU.js";
+} from "./chunk-GQRJJQBV.js";
 import {
   LEFT_ARROW,
   RIGHT_ARROW
@@ -8,15 +8,15 @@ import {
 import {
   NzDragService,
   NzResizeService
-} from "./chunk-HJJ5KRQC.js";
+} from "./chunk-OPH52NSV.js";
 import {
   NzConfigService,
   WithConfig
-} from "./chunk-6L72WO6M.js";
+} from "./chunk-J33MOGBL.js";
 import {
   Directionality
 } from "./chunk-M7TV643H.js";
-import "./chunk-WKY3DAQ7.js";
+import "./chunk-R2XUPRFO.js";
 import {
   Platform
 } from "./chunk-EANLC6MU.js";

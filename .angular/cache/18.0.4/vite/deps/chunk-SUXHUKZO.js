@@ -1,20 +1,20 @@
 import {
+  NzTransitionPatchModule
+} from "./chunk-U27AGHOB.js";
+import {
   NzWaveModule
 } from "./chunk-EZCXWYII.js";
 import {
   NzIconDirective,
   NzIconModule
-} from "./chunk-UB6JI37N.js";
+} from "./chunk-H2FEQAVD.js";
 import {
   NzConfigService,
   WithConfig
-} from "./chunk-6L72WO6M.js";
+} from "./chunk-J33MOGBL.js";
 import {
   Directionality
 } from "./chunk-M7TV643H.js";
-import {
-  NzTransitionPatchModule
-} from "./chunk-U27AGHOB.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -428,4 +428,4 @@ export {
   NzButtonGroupComponent,
   NzButtonModule
 };
-//# sourceMappingURL=chunk-QNZXYEQV.js.map
+//# sourceMappingURL=chunk-SUXHUKZO.js.map

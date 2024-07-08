@@ -1,4 +1,8 @@
 import {
+  ESCAPE,
+  hasModifierKey
+} from "./chunk-27BDGVS6.js";
+import {
   animate,
   query,
   stagger,
@@ -8,10 +12,6 @@ import {
   trigger
 } from "./chunk-ZJJ5N3ZH.js";
 import {
-  ESCAPE,
-  hasModifierKey
-} from "./chunk-27BDGVS6.js";
-import {
   BidiModule,
   Directionality
 } from "./chunk-M7TV643H.js";
@@ -20,7 +20,7 @@ import {
   coerceCssPixelValue,
   coerceElement,
   coerceNumberProperty
-} from "./chunk-WKY3DAQ7.js";
+} from "./chunk-R2XUPRFO.js";
 import {
   Platform,
   RtlScrollAxisType,
@@ -5310,4 +5310,4 @@ export {
   tabSwitchMotion,
   zoomBigMotion
 };
-//# sourceMappingURL=chunk-3XJRXEKM.js.map
+//# sourceMappingURL=chunk-BGZOQZZ2.js.map

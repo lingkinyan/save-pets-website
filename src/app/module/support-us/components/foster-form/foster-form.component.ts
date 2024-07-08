@@ -1,33 +1,25 @@
 import { Component } from "@angular/core";
 import {
   FormArray,
-  FormControl,
   FormGroup,
   NonNullableFormBuilder,
   Validators,
 } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
-import { Router } from "@angular/router";
-import { AvailablePets } from "../../../../common-components/class/available-pets.components";
 import { FormUpdate } from "../../../../common-components/function/form-update.component";
 
 @Component({
-  selector: "app-adoption-application-form",
+  selector: "app-foster-form",
   standalone: false,
-  templateUrl: "./adoption-application-form.component.html",
-  styleUrl: "./adoption-application-form.component.less",
+  templateUrl: "./foster-form.component.html",
+  styleUrl: "./foster-form.component.less",
 })
-export class AdoptionApplicationFormComponent {
-  constructor(
-    private fb: NonNullableFormBuilder,
-    private router: Router,
-    private title: Title
-  ) {
-    this.title.setTitle("Adopt Application Form | Pet Save");
+export class FosterFormComponent {
+  constructor(private fb: NonNullableFormBuilder, private title: Title) {
+    this.title.setTitle("Foster Application Form | Pet Save");
   }
 
-  // Options
-  availablePetsList = AvailablePets.availablePets;
+  petTypeList = ["Dog", "Cat"];
 
   houseHoldType = ["Single", "Family", "Roommate"];
 
@@ -37,53 +29,69 @@ export class AdoptionApplicationFormComponent {
 
   yesNoNaOptions = ["Yes", "No", "N/A"];
 
-  applicationForm: FormGroup = this.fb.group({
-    // General Info
-    adoptPet: [[], [Validators.required]],
+  petTypeOptions = ["Dog", "Cat", "Other"];
 
+  agreeOptions = ["Agree", "Disagree"];
+
+  applicationForm: FormGroup = this.fb.group({
     // Personal Info
     applicantFirstName: ["", [Validators.required]],
     applicantLastName: ["", [Validators.required]],
     age: ["", [Validators.required]],
     phoneNo: ["", [Validators.required]],
     email: ["", [Validators.required]],
-    socialMediaAccount: ["", Validators.required],
+    // socialMediaAccount: ["", Validators.required],
     address: ["", [Validators.required]],
     city: ["", [Validators.required]],
     postalCode: ["", [Validators.required]],
 
-    // HouseHold Info
+    // Occupation Status
+    employmentStatus: ["", Validators.required],
+    occupation: ["", Validators.required],
+
+    // Apartment Info
     householdType: ["", [Validators.required]],
+    householdInfo: this.fb.array([]),
     houseOwnership: ["", [Validators.required]],
     haveChildren: ["", Validators.required],
-    allowPets: ["", [Validators.required]],
-    fencedYard: ["", [Validators.required]],
-    allergy: ["", [Validators.required]],
-    householdInfo: this.fb.array([]),
+    landlordSupportFoster: ["", [Validators.required]],
+    allowHomeVisit: ["", Validators.required],
 
-    // Children Info
+    // // Children Info
     childrenInfo: this.fb.array([]),
 
+    // Previous Petting Info
+    ownedPetBefore: ["", Validators.required],
+    surrenderedPet: ["", Validators.required],
+    primaryCaregiver: ["", Validators.required],
+    ownedPetInfo: this.fb.array([]),
+
     // Petting Info
-    hourAlone: ["", Validators.required],
     stayingPlace: ["", Validators.required],
     prohibitedPlace: ["", Validators.required],
-    experience: ["", Validators.required],
-    outOfTownPlan: ["", Validators.required],
-    ableToUseWhatsapp: ["", Validators.required],
-    ownPetBefore: ["", Validators.required],
-    surrenderedPet: ["", Validators.required],
-    currentlyOwnPet: ["", Validators.required],
-    currentPetInfo: this.fb.array([]),
+    medicalEmergencySituation: ["", Validators.required],
+    purchaseIsProblem: ["", Validators.required],
+    isolatedFromOwnPet: ["", Validators.required],
+    interestPet: [[], Validators.required],
 
-    // References
-    firstReferenceName: ["", Validators.required],
-    firstReferencePhoneNo: ["", Validators.required],
-    secondReferenceName: ["", Validators.required],
-    secondReferencePhoneNo: ["", Validators.required],
+    // Signature
+    agree: ["", Validators.required],
   });
 
   ngOnInit(): void {
+    this.applicationForm.controls["employmentStatus"].valueChanges.subscribe(
+      (v) => {
+        if (v === "Yes") {
+          this.applicationForm.controls["occupation"].setValidators(
+            Validators.required
+          );
+        } else {
+          this.applicationForm.controls["occupation"].setValue("");
+          this.applicationForm.controls["occupation"].clearValidators();
+        }
+      }
+    );
+
     this.applicationForm.controls["householdType"]?.valueChanges.subscribe(
       (v) => {
         if (v === "Single") {
@@ -93,6 +101,21 @@ export class AdoptionApplicationFormComponent {
           if (this.householdInfoArray.length === 0) {
             this.addHouseholdInfo();
           }
+        }
+      }
+    );
+
+    this.applicationForm.controls["houseOwnership"].valueChanges.subscribe(
+      (v) => {
+        if (v === "Rent") {
+          this.applicationForm.controls["landlordSupportFoster"].setValidators(
+            Validators.required
+          );
+        } else {
+          this.applicationForm.controls["landlordSupportFoster"].setValue("");
+          this.applicationForm.controls[
+            "landlordSupportFoster"
+          ].clearValidators();
         }
       }
     );
@@ -110,15 +133,21 @@ export class AdoptionApplicationFormComponent {
       }
     );
 
-    this.applicationForm.controls["currentlyOwnPet"].valueChanges.subscribe(
+    this.applicationForm.controls["ownedPetBefore"]?.valueChanges.subscribe(
       (v) => {
         if (v === "No") {
-          this.currentPetInfoArray.controls.length = 0;
-          this.applicationForm.controls["currentPetInfo"].patchValue([]);
+          this.applicationForm.controls["primaryCaregiver"].setValue("");
+          this.applicationForm.controls["primaryCaregiver"].clearValidators();
 
+          this.applicationForm.controls["ownedPetInfo"].patchValue([]);
+
+          this.ownedPetInfoArray.controls.length = 0;
         } else {
-          if (this.currentPetInfoArray.length === 0) {
-            this.addCurrentPetInfo();
+          if (this.ownedPetInfoArray.length === 0) {
+            this.addOwnedPetInfo();
+            this.applicationForm.controls["primaryCaregiver"].addValidators(
+              Validators.required
+            );
           }
         }
       }
@@ -133,6 +162,7 @@ export class AdoptionApplicationFormComponent {
         age: ["", Validators.required],
         occupation: ["", Validators.required],
         hoursStayAtHome: ["", Validators.required],
+        supportFosterProgram: ["", Validators.required],
       })
     );
   }
@@ -154,17 +184,19 @@ export class AdoptionApplicationFormComponent {
     this.childrenInfoArray.removeAt(index);
   }
 
-  // Current Pet Info
-  addCurrentPetInfo(): void {
-    this.currentPetInfoArray.push(
+  // Owned Pet Info
+  addOwnedPetInfo(): void {
+    this.ownedPetInfoArray.push(
       this.fb.group({
+        type: ["", Validators.required],
         age: ["", Validators.required],
+        duration: ["", Validators.required],
       })
     );
   }
 
-  deleteCurrentPetInfo(index: number) {
-    this.currentPetInfoArray.removeAt(index);
+  deleteOwnedPetInfo(index: number): void {
+    this.ownedPetInfoArray.removeAt(index);
   }
 
   submitForm(): void {
@@ -176,12 +208,13 @@ export class AdoptionApplicationFormComponent {
       FormUpdate.clearValidators(this.childrenInfoArray);
     }
 
-    if (this.currentPetInfoArray.length === 0) {
-      FormUpdate.clearValidators(this.currentPetInfoArray);
+    if (this.ownedPetInfoArray.length === 0) {
+      FormUpdate.clearValidators(this.ownedPetInfoArray);
     }
 
     FormUpdate.updateTreeValidity(this.applicationForm);
 
+    console.log("value", this.applicationForm);
     if (this.applicationForm.valid) {
       // TODO
       console.log("submit", this.applicationForm.value);
@@ -198,7 +231,7 @@ export class AdoptionApplicationFormComponent {
     return this.applicationForm.get("childrenInfo") as FormArray;
   }
 
-  get currentPetInfoArray(): FormArray {
-    return this.applicationForm.get("currentPetInfo") as FormArray;
+  get ownedPetInfoArray(): FormArray {
+    return this.applicationForm.get("ownedPetInfo") as FormArray;
   }
 }
