@@ -18,8 +18,8 @@ export class FosterFormComponent {
   constructor(private fb: NonNullableFormBuilder, private title: Title) {
     this.title.setTitle("Foster Application Form | Pet Save");
   }
-
-  petTypeList = ["Dog", "Cat"];
+  // Options
+  availablePetsList = ['Dog', 'Cat'];
 
   houseHoldType = ["Single", "Family", "Roommate"];
 
@@ -29,69 +29,53 @@ export class FosterFormComponent {
 
   yesNoNaOptions = ["Yes", "No", "N/A"];
 
-  petTypeOptions = ["Dog", "Cat", "Other"];
-
-  agreeOptions = ["Agree", "Disagree"];
-
   applicationForm: FormGroup = this.fb.group({
+    // General Info
+    fosterPet: [[], [Validators.required]],
+
     // Personal Info
     applicantFirstName: ["", [Validators.required]],
     applicantLastName: ["", [Validators.required]],
     age: ["", [Validators.required]],
     phoneNo: ["", [Validators.required]],
     email: ["", [Validators.required]],
-    // socialMediaAccount: ["", Validators.required],
+    socialMediaAccount: ["", Validators.required],
     address: ["", [Validators.required]],
     city: ["", [Validators.required]],
     postalCode: ["", [Validators.required]],
 
-    // Occupation Status
-    employmentStatus: ["", Validators.required],
-    occupation: ["", Validators.required],
-
-    // Apartment Info
+    // HouseHold Info
     householdType: ["", [Validators.required]],
-    householdInfo: this.fb.array([]),
     houseOwnership: ["", [Validators.required]],
     haveChildren: ["", Validators.required],
-    landlordSupportFoster: ["", [Validators.required]],
-    allowHomeVisit: ["", Validators.required],
+    allowPets: ["", [Validators.required]],
+    fencedYard: ["", [Validators.required]],
+    allergy: ["", [Validators.required]],
+    householdInfo: this.fb.array([]),
 
-    // // Children Info
+    // Children Info
     childrenInfo: this.fb.array([]),
 
-    // Previous Petting Info
-    ownedPetBefore: ["", Validators.required],
-    surrenderedPet: ["", Validators.required],
-    primaryCaregiver: ["", Validators.required],
-    ownedPetInfo: this.fb.array([]),
-
     // Petting Info
+    hourAlone: ["", Validators.required],
     stayingPlace: ["", Validators.required],
     prohibitedPlace: ["", Validators.required],
-    medicalEmergencySituation: ["", Validators.required],
-    purchaseIsProblem: ["", Validators.required],
-    isolatedFromOwnPet: ["", Validators.required],
-    interestPet: [[], Validators.required],
+    experience: ["", Validators.required],
+    outOfTownPlan: ["", Validators.required],
+    ableToUseWhatsapp: ["", Validators.required],
+    ownPetBefore: ["", Validators.required],
+    surrenderedPet: ["", Validators.required],
+    currentlyOwnPet: ["", Validators.required],
+    currentPetInfo: this.fb.array([]),
 
-    // Signature
-    agree: ["", Validators.required],
+    // References
+    firstReferenceName: ["", Validators.required],
+    firstReferencePhoneNo: ["", Validators.required],
+    secondReferenceName: ["", Validators.required],
+    secondReferencePhoneNo: ["", Validators.required],
   });
 
   ngOnInit(): void {
-    this.applicationForm.controls["employmentStatus"].valueChanges.subscribe(
-      (v) => {
-        if (v === "Yes") {
-          this.applicationForm.controls["occupation"].setValidators(
-            Validators.required
-          );
-        } else {
-          this.applicationForm.controls["occupation"].setValue("");
-          this.applicationForm.controls["occupation"].clearValidators();
-        }
-      }
-    );
-
     this.applicationForm.controls["householdType"]?.valueChanges.subscribe(
       (v) => {
         if (v === "Single") {
@@ -101,21 +85,6 @@ export class FosterFormComponent {
           if (this.householdInfoArray.length === 0) {
             this.addHouseholdInfo();
           }
-        }
-      }
-    );
-
-    this.applicationForm.controls["houseOwnership"].valueChanges.subscribe(
-      (v) => {
-        if (v === "Rent") {
-          this.applicationForm.controls["landlordSupportFoster"].setValidators(
-            Validators.required
-          );
-        } else {
-          this.applicationForm.controls["landlordSupportFoster"].setValue("");
-          this.applicationForm.controls[
-            "landlordSupportFoster"
-          ].clearValidators();
         }
       }
     );
@@ -133,21 +102,14 @@ export class FosterFormComponent {
       }
     );
 
-    this.applicationForm.controls["ownedPetBefore"]?.valueChanges.subscribe(
+    this.applicationForm.controls["currentlyOwnPet"].valueChanges.subscribe(
       (v) => {
         if (v === "No") {
-          this.applicationForm.controls["primaryCaregiver"].setValue("");
-          this.applicationForm.controls["primaryCaregiver"].clearValidators();
-
-          this.applicationForm.controls["ownedPetInfo"].patchValue([]);
-
-          this.ownedPetInfoArray.controls.length = 0;
+          this.currentPetInfoArray.controls.length = 0;
+          this.applicationForm.controls["currentPetInfo"].patchValue([]);
         } else {
-          if (this.ownedPetInfoArray.length === 0) {
-            this.addOwnedPetInfo();
-            this.applicationForm.controls["primaryCaregiver"].addValidators(
-              Validators.required
-            );
+          if (this.currentPetInfoArray.length === 0) {
+            this.addCurrentPetInfo();
           }
         }
       }
@@ -162,7 +124,6 @@ export class FosterFormComponent {
         age: ["", Validators.required],
         occupation: ["", Validators.required],
         hoursStayAtHome: ["", Validators.required],
-        supportFosterProgram: ["", Validators.required],
       })
     );
   }
@@ -184,19 +145,17 @@ export class FosterFormComponent {
     this.childrenInfoArray.removeAt(index);
   }
 
-  // Owned Pet Info
-  addOwnedPetInfo(): void {
-    this.ownedPetInfoArray.push(
+  // Current Pet Info
+  addCurrentPetInfo(): void {
+    this.currentPetInfoArray.push(
       this.fb.group({
-        type: ["", Validators.required],
         age: ["", Validators.required],
-        duration: ["", Validators.required],
       })
     );
   }
 
-  deleteOwnedPetInfo(index: number): void {
-    this.ownedPetInfoArray.removeAt(index);
+  deleteCurrentPetInfo(index: number) {
+    this.currentPetInfoArray.removeAt(index);
   }
 
   submitForm(): void {
@@ -208,13 +167,12 @@ export class FosterFormComponent {
       FormUpdate.clearValidators(this.childrenInfoArray);
     }
 
-    if (this.ownedPetInfoArray.length === 0) {
-      FormUpdate.clearValidators(this.ownedPetInfoArray);
+    if (this.currentPetInfoArray.length === 0) {
+      FormUpdate.clearValidators(this.currentPetInfoArray);
     }
 
     FormUpdate.updateTreeValidity(this.applicationForm);
 
-    console.log("value", this.applicationForm);
     if (this.applicationForm.valid) {
       // TODO
       console.log("submit", this.applicationForm.value);
@@ -231,7 +189,7 @@ export class FosterFormComponent {
     return this.applicationForm.get("childrenInfo") as FormArray;
   }
 
-  get ownedPetInfoArray(): FormArray {
-    return this.applicationForm.get("ownedPetInfo") as FormArray;
+  get currentPetInfoArray(): FormArray {
+    return this.applicationForm.get("currentPetInfo") as FormArray;
   }
 }

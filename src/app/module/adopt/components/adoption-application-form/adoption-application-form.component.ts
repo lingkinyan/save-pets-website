@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import {
   FormArray,
-  FormControl,
   FormGroup,
   NonNullableFormBuilder,
   Validators,
@@ -115,7 +114,6 @@ export class AdoptionApplicationFormComponent {
         if (v === "No") {
           this.currentPetInfoArray.controls.length = 0;
           this.applicationForm.controls["currentPetInfo"].patchValue([]);
-
         } else {
           if (this.currentPetInfoArray.length === 0) {
             this.addCurrentPetInfo();

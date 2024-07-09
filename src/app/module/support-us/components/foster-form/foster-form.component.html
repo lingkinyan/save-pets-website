@@ -7,8 +7,24 @@
     <div class="gap-4">
       <form nz-form [formGroup]="applicationForm" class="my-auto">
         <div class="grid lg:grid-cols-2 gap-4">
+          <nz-form-item class="col-start-1 col-span-full">
+            <nz-form-control nzErrorTip="Please select at least 1 pet">
+              <nz-form-label nzRequired
+                >Which dog/cat are you applying to foster</nz-form-label
+              >
+              <nz-select nzMode="multiple" formControlName="fosterPet">
+                <nz-option
+                  *ngFor="let option of availablePetsList"
+                  [nzLabel]="option"
+                  [nzValue]="option"
+                ></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+
           <!-- Personal info -->
           <ng-container>
+            <nz-divider class="col-span-full"> </nz-divider>
             <div class="col-span-full text-xl font-bold text-left">
               Personal Information
             </div>
@@ -44,6 +60,21 @@
                 <nz-form-label nzRequired>Age</nz-form-label>
                 <nz-input-group>
                   <input type="number" nz-input formControlName="age" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control
+                nzErrorTip="Please input your social media account"
+              >
+                <nz-form-label nzRequired>Social Media Link</nz-form-label>
+                <nz-input-group>
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="socialMediaAccount"
+                  />
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
@@ -101,39 +132,9 @@
               </nz-form-control>
             </nz-form-item>
             <nz-divider class="col-span-full"> </nz-divider>
-
-            <div class="col-span-full text-xl font-bold text-left">
-              Occupation Information
-            </div>
-
-            <nz-form-item>
-              <nz-form-control nzErrorTip="Please select employment status">
-                <nz-form-label nzRequired>Are you employed</nz-form-label>
-                <nz-select formControlName="employmentStatus">
-                  <nz-option
-                    *ngFor="let option of yesNoOptions"
-                    [nzLabel]="option"
-                    [nzValue]="option"
-                  ></nz-option>
-                </nz-select>
-              </nz-form-control>
-            </nz-form-item>
-
-            <nz-form-item
-              *ngIf="applicationForm.value.employmentStatus === 'Yes'"
-            >
-              <nz-form-control nzErrorTip="Please input your occupation">
-                <nz-form-label nzRequired>Occupation</nz-form-label>
-                <nz-input-group>
-                  <input type="type" nz-input formControlName="occupation" />
-                </nz-input-group>
-              </nz-form-control>
-            </nz-form-item>
-
-            <nz-divider class="col-span-full"></nz-divider>
           </ng-container>
 
-          <!-- Apartment info -->
+          <!-- Apartment Info -->
           <ng-container>
             <div class="col-span-full text-xl font-bold text-left">
               Apartment Information
@@ -167,24 +168,6 @@
               </nz-form-control>
             </nz-form-item>
 
-            <nz-form-item
-              *ngIf="applicationForm.value.houseOwnership === 'Rent'"
-            >
-              <nz-form-control nzErrorTip="Please select the answer">
-                <nz-form-label nzRequired
-                  >Does your landlord support your participation in the foster
-                  program</nz-form-label
-                >
-                <nz-select formControlName="landlordSupportFoster">
-                  <nz-option
-                    *ngFor="let option of yesNoOptions"
-                    [nzLabel]="option"
-                    [nzValue]="option"
-                  ></nz-option>
-                </nz-select>
-              </nz-form-control>
-            </nz-form-item>
-
             <nz-form-item>
               <nz-form-control nzErrorTip="Please select the answer">
                 <nz-form-label nzRequired
@@ -203,10 +186,9 @@
             <nz-form-item>
               <nz-form-control nzErrorTip="Please select the answer">
                 <nz-form-label nzRequired
-                  >Will you allow a home visit to ensure that your home is
-                  appropriate for fostering</nz-form-label
+                  >Does your lease allow pets</nz-form-label
                 >
-                <nz-select formControlName="allowHomeVisit">
+                <nz-select formControlName="allowPets">
                   <nz-option
                     *ngFor="let option of yesNoOptions"
                     [nzLabel]="option"
@@ -216,7 +198,38 @@
               </nz-form-control>
             </nz-form-item>
 
-            <nz-divider class="col-span-full"></nz-divider>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please select the answer">
+                <nz-form-label nzRequired
+                  >If you have a yard, is it fully fenced</nz-form-label
+                >
+                <nz-select formControlName="fencedYard">
+                  <nz-option
+                    *ngFor="let option of yesNoNaOptions"
+                    [nzLabel]="option"
+                    [nzValue]="option"
+                  ></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please select the answer">
+                <nz-form-label nzRequired
+                  >Do you or anyone in your household have allergies to dogs or
+                  cat</nz-form-label
+                >
+                <nz-select formControlName="allergy">
+                  <nz-option
+                    *ngFor="let option of yesNoOptions"
+                    [nzLabel]="option"
+                    [nzValue]="option"
+                  ></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-divider class="col-span-full"> </nz-divider>
           </ng-container>
 
           <!-- Household Info Array -->
@@ -298,22 +311,6 @@
                         </nz-input-group>
                       </nz-form-control>
                     </nz-form-item>
-
-                    <nz-form-item>
-                      <nz-form-control nzErrorTip="Please select the answer">
-                        <nz-form-label nzRequired
-                          >Does he/she support your participation in the foster
-                          program</nz-form-label
-                        >
-                        <nz-select formControlName="supportFosterProgram">
-                          <nz-option
-                            *ngFor="let option of yesNoOptions"
-                            [nzLabel]="option"
-                            [nzValue]="option"
-                          ></nz-option>
-                        </nz-select>
-                      </nz-form-control>
-                    </nz-form-item>
                   </ng-container>
                 </ng-container>
               </ng-container>
@@ -383,18 +380,97 @@
             </ng-container>
           </ng-container>
 
-          <!-- Previous Petting Information -->
+          <!-- Petting Information-->
           <ng-container>
             <div class="col-span-full text-xl font-bold text-left">
-              Previous Petting Information
+              Petting Information
             </div>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input the hour">
+                <nz-form-label nzRequired
+                  >How many hours per day will the dog/cat be left alone at
+                  home</nz-form-label
+                >
+                <nz-input-group>
+                  <input type="number" nz-input formControlName="hourAlone" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input the place">
+                <nz-form-label nzRequired
+                  >Where will your dog/cat be staying during the day and
+                  night</nz-form-label
+                >
+                <nz-input-group>
+                  <input type="input" nz-input formControlName="stayingPlace" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input the place">
+                <nz-form-label nzRequired
+                  >Are there any specific areas in your home that your dog is
+                  not allowed to access</nz-form-label
+                >
+                <nz-input-group>
+                  <input
+                    type="input"
+                    nz-input
+                    formControlName="prohibitedPlace"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item class="col-span-full">
+              <nz-form-control nzErrorTip="Please input your experience">
+                <nz-form-label nzRequired
+                  >What is your experience with caring or training for dogs/
+                  cats</nz-form-label
+                >
+                <textarea nz-input formControlName="experience"></textarea>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item class="col-span-full">
+              <nz-form-control nzErrorTip="Please input your planning">
+                <nz-form-label nzRequired
+                  >How do you plan on caring for your dog/cat when you are out
+                  of town or on vacation or where would the dog/cat go if you
+                  had an emergency or were no longer able to care for the
+                  dog</nz-form-label
+                >
+                <textarea nz-input formControlName="outOfTownPlan"></textarea>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item class="col-span-full">
+              <nz-form-control nzErrorTip="Please select the answer">
+                <nz-form-label nzRequired
+                  >Our update after the dog/cat is adopted is on WhatsApp. Can
+                  you send an update via WhatsApp message, including pictures &
+                  videos of the dog/cat after you pick up the dog</nz-form-label
+                >
+                <nz-select formControlName="ableToUseWhatsapp">
+                  <nz-option
+                    *ngFor="let option of yesNoOptions"
+                    [nzLabel]="option"
+                    [nzValue]="option"
+                  ></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
 
             <nz-form-item>
               <nz-form-control nzErrorTip="Please select the answer">
                 <nz-form-label nzRequired
-                  >Have you owned pet now / before</nz-form-label
+                  >Have you ever owned a dog/cat before</nz-form-label
                 >
-                <nz-select formControlName="ownedPetBefore">
+                <nz-select formControlName="ownPetBefore">
                   <nz-option
                     *ngFor="let option of yesNoOptions"
                     [nzLabel]="option"
@@ -419,33 +495,32 @@
               </nz-form-control>
             </nz-form-item>
 
-            <!-- Only show when owned pet before -->
-            <ng-container
-              *ngIf="applicationForm.value.ownedPetBefore === 'Yes'"
-            >
-              <nz-form-item>
-                <nz-form-control
-                  nzErrorTip="Please input the primary caregiver"
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please select the answer">
+                <nz-form-label nzRequired
+                  >Do you currently own any pets</nz-form-label
                 >
-                  <nz-form-label nzRequired
-                    >Who is the primary caregiver for your (previous)
-                    pets</nz-form-label
-                  >
-                  <nz-input-group>
-                    <input
-                      type="input"
-                      nz-input
-                      formControlName="primaryCaregiver"
-                    />
-                  </nz-input-group>
-                </nz-form-control>
-              </nz-form-item>
+                <nz-select formControlName="currentlyOwnPet">
+                  <nz-option
+                    *ngFor="let option of yesNoOptions"
+                    [nzLabel]="option"
+                    [nzValue]="option"
+                  ></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
 
+            <ng-container
+              *ngIf="applicationForm.value.currentlyOwnPet === 'Yes'"
+            >
               <nz-divider class="col-span-full"></nz-divider>
+              <div class="col-span-full text-xl font-bold text-left">
+                Current Pet Information
+              </div>
 
-              <ng-container formArrayName="ownedPetInfo">
+              <ng-container formArrayName="currentPetInfo">
                 <ng-container
-                  *ngFor="let info of ownedPetInfoArray.controls; index as i"
+                  *ngFor="let info of currentPetInfoArray.controls; index as i"
                 >
                   <ng-container [formGroupName]="i">
                     <ng-container>
@@ -455,28 +530,15 @@
                       ></nz-divider>
 
                       <div class="text-md font-bold col-span-full text-left">
-                        Owned Pet {{ i + 1 }}
+                        Pet {{ i + 1 }}
                         <span
                           *ngIf="i > 0"
                           class="material-icons cursor-pointer text-sm text-grey"
-                          (click)="deleteOwnedPetInfo(i)"
+                          (click)="deleteCurrentPetInfo(i)"
                         >
                           delete
                         </span>
                       </div>
-                      <nz-form-item>
-                        <nz-form-control nzErrorTip="Please select type">
-                          <nz-form-label nzRequired>Type</nz-form-label>
-                          <nz-select formControlName="type">
-                            <nz-option
-                              *ngFor="let option of petTypeOptions"
-                              [nzLabel]="option"
-                              [nzValue]="option"
-                            ></nz-option>
-                          </nz-select>
-                        </nz-form-control>
-                      </nz-form-item>
-
                       <nz-form-item>
                         <nz-form-control nzErrorTip="Please input age">
                           <nz-form-label nzRequired>Age</nz-form-label>
@@ -489,21 +551,6 @@
                           </nz-input-group>
                         </nz-form-control>
                       </nz-form-item>
-
-                      <nz-form-item>
-                        <nz-form-control nzErrorTip="Please input duration">
-                          <nz-form-label nzRequired
-                            >How many years did you own the pets</nz-form-label
-                          >
-                          <nz-input-group>
-                            <input
-                              type="number"
-                              nz-input
-                              formControlName="duration"
-                            />
-                          </nz-input-group>
-                        </nz-form-control>
-                      </nz-form-item>
                     </ng-container>
                   </ng-container>
                 </ng-container>
@@ -512,156 +559,88 @@
                   <button
                     nz-button
                     class="ant-btn-orange"
-                    (click)="addOwnedPetInfo()"
+                    (click)="addCurrentPetInfo()"
                   >
-                    Add Owned Pet Info
+                    Add Pet Info
                   </button>
                 </div>
               </ng-container>
             </ng-container>
-
-            <nz-divider class="col-span-full"></nz-divider>
           </ng-container>
 
-          <!-- Petting Information-->
+          <!-- References -->
           <ng-container>
             <div class="col-span-full text-xl font-bold text-left">
-              Petting Information
+              References
             </div>
 
-            <nz-form-item class="col-span-full">
-              <nz-form-control nzErrorTip="Please input the place">
-                <nz-form-label nzRequired
-                  >Where will your dog/cat be staying during the day and
-                  night</nz-form-label
-                >
-                <nz-input-group>
-                  <input type="input" nz-input formControlName="stayingPlace" />
-                </nz-input-group>
-              </nz-form-control>
-            </nz-form-item>
+            <div class="text-md font-bold col-span-full text-left">
+              Reference 1
+            </div>
 
-            <nz-form-item class="col-span-full">
-              <nz-form-control nzErrorTip="Please input the place">
-                <nz-form-label nzRequired
-                  >Are there any specific areas in your home that your dog is
-                  not allowed to access</nz-form-label
-                >
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input name">
+                <nz-form-label nzRequired>Name</nz-form-label>
                 <nz-input-group>
                   <input
-                    type="input"
+                    type="text"
                     nz-input
-                    formControlName="prohibitedPlace"
+                    formControlName="firstReferenceName"
                   />
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
 
-            <nz-form-item class="col-span-full">
-              <nz-form-control nzErrorTip="Please input the answer">
-                <nz-form-label nzRequired
-                  >When do you consider a medical emergency needing immediate
-                  attention</nz-form-label
-                >
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input phone number">
+                <nz-form-label nzRequired>Phone Number</nz-form-label>
                 <nz-input-group>
                   <input
-                    type="input"
+                    type="number"
                     nz-input
-                    formControlName="medicalEmergencySituation"
+                    formControlName="firstReferencePhoneNo"
                   />
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
 
-            <nz-form-item class="col-span-full">
-              <nz-form-control nzErrorTip="Please select the answer">
-                <nz-form-label nzRequired
-                  >Although we provide the initial supplies, it may be necessary
-                  for you to purchase your own food/litter. Do you think it will
-                  be a problem</nz-form-label
-                >
-                <nz-select formControlName="purchaseIsProblem">
-                  <nz-option
-                    *ngFor="let option of yesNoOptions"
-                    [nzLabel]="option"
-                    [nzValue]="option"
-                  ></nz-option>
-                </nz-select>
+            <nz-divider class="col-span-full"></nz-divider>
+            <div class="text-md font-bold col-span-full text-left">
+              Reference 2
+            </div>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input name">
+                <nz-form-label nzRequired>Name</nz-form-label>
+                <nz-input-group>
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="secondReferenceName"
+                  />
+                </nz-input-group>
               </nz-form-control>
             </nz-form-item>
 
-            <nz-form-item class="col-span-full">
-              <nz-form-control nzErrorTip="Please select the answer">
-                <nz-form-label nzRequired
-                  >Do you have an area where the foster animal(s) can be
-                  isolated from your own pets if necessary</nz-form-label
-                >
-                <nz-select formControlName="isolatedFromOwnPet">
-                  <nz-option
-                    *ngFor="let option of yesNoNaOptions"
-                    [nzLabel]="option"
-                    [nzValue]="option"
-                  ></nz-option>
-                </nz-select>
-              </nz-form-control>
-            </nz-form-item>
-
-            <nz-form-item class="col-span-full">
-              <nz-form-control
-                nzErrorTip="Please select at least 1 type of pets"
-              >
-                <nz-form-label nzRequired
-                  >Interested in fostering what type of animal</nz-form-label
-                >
-                <nz-select nzMode="multiple" formControlName="interestPet">
-                  <nz-option
-                    *ngFor="let option of petTypeList"
-                    [nzLabel]="option"
-                    [nzValue]="option"
-                  ></nz-option>
-                </nz-select>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input phone number">
+                <nz-form-label nzRequired>Phone Number</nz-form-label>
+                <nz-input-group>
+                  <input
+                    type="number"
+                    nz-input
+                    formControlName="secondReferencePhoneNo"
+                  />
+                </nz-input-group>
               </nz-form-control>
             </nz-form-item>
           </ng-container>
 
-          <div class="col-span-full font-bold text-justify">
-            In signing this application, I understand and agree: I understand
-            that where my volunteer work involves contact of any kind with
-            animals, there is a risk that I may be scratched, bitten, or come
-            into contact with a diseased animal. I agree to release and hold
-            harmless Pet Save and its employees from any and all liability for
-            any damage or injury, whether arising from this contract or a breach
-            thereof or from any act of negligence or gross negligence by Save
-            Pets or its employees. I understand that any and all animals I
-            foster through Pet Save remain the explicit property of Pet Save
-            until they are officially adopted through the rescue. I understand I
-            am not allowed to adopt/foster animals on behalf of Pet Save, and
-            any interested parties (myself included) will be required to submit
-            an adoption application before custody of the animal is transferred.
-            I understand that any medical concerns relating to the animal in my
-            care must first be discussed with the staff and technicians at Save
-            Pets. I know I am not to bring the animal to a veterinarian without
-            first consulting with the staff at Pet Save. If the animal requires
-            a veterinary visit, I know the staff at Pet Save will tell me which
-            veterinarian it should be brought to. By signing below, I certify
-            that the information I have provided on this application form is
-            true and correct. I understand any misrepresentation of the facts
-            may result in my foster parenting privileges being revoked. I give
-            Pet Save full permission to investigate the information provided on
-            this application.
+          <div class="font-bold text-md text-center col-span-full">
+            Due to the high volume of applications, if your application is
+            considered a potential match for the pets, you will be contacted.
+            Thank you for your understanding!
           </div>
-
-          <nz-form-item class="col-span-full">
-            <nz-form-control nzErrorTip="Please read and agree the terms">
-              <nz-select formControlName="agree">
-                <nz-option
-                  *ngFor="let option of agreeOptions"
-                  [nzLabel]="option"
-                  [nzValue]="option"
-                ></nz-option>
-              </nz-select>
-            </nz-form-control>
-          </nz-form-item>
 
           <div class="col-span-full text-center">
             <nz-form-item>

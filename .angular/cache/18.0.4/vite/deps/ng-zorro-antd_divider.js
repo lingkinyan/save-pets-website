@@ -1,7 +1,7 @@
 import {
   NzOutletModule,
   NzStringTemplateOutletDirective
-} from "./chunk-ZNNRUNXM.js";
+} from "./chunk-TDPWPK3L.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -27,7 +27,7 @@ import {
   ɵɵtemplate,
   ɵɵtext,
   ɵɵtextInterpolate
-} from "./chunk-MA6Y222U.js";
+} from "./chunk-AP3EFBYY.js";
 import "./chunk-J4B6MK7R.js";
 
 // node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-divider.mjs
