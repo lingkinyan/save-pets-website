@@ -25,8 +25,13 @@
       <text-align
         [title]="'Age'"
         [content]="petAge + ' (Born on ' + petInfo.dob + ')'"
+        *ngIf="petAge"
       ></text-align>
-      <text-align [title]="'Breed'" [content]="petInfo.breed"></text-align>
+      <text-align
+        [title]="'Breed'"
+        [content]="petInfo.breed"
+        *ngIf="petInfo.breed"
+      ></text-align>
       <text-align
         [title]="'Weight'"
         [content]="petInfo.weight + ' kg'"

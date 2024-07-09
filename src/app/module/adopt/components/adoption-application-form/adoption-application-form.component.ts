@@ -46,7 +46,7 @@ export class AdoptionApplicationFormComponent {
     age: ["", [Validators.required]],
     phoneNo: ["", [Validators.required]],
     email: ["", [Validators.required]],
-    socialMediaAccount: ["", Validators.required],
+    socialMediaAccount: [""],
     address: ["", [Validators.required]],
     city: ["", [Validators.required]],
     postalCode: ["", [Validators.required]],
@@ -121,6 +121,19 @@ export class AdoptionApplicationFormComponent {
         }
       }
     );
+
+    this.applicationForm.controls["houseOwnership"].valueChanges.subscribe(
+      (v) => {
+        if (v === "Rent") {
+          this.applicationForm.controls["allowPets"].addValidators(
+            Validators.required
+          );
+        } else {
+          this.applicationForm.controls["allowPets"].clearValidators();
+          this.applicationForm.controls["allowPets"].setValue("");
+        }
+      }
+    );
   }
 
   // Household info
@@ -130,7 +143,6 @@ export class AdoptionApplicationFormComponent {
         name: ["", Validators.required],
         age: ["", Validators.required],
         occupation: ["", Validators.required],
-        hoursStayAtHome: ["", Validators.required],
       })
     );
   }

@@ -68,7 +68,7 @@
               <nz-form-control
                 nzErrorTip="Please input your social media account"
               >
-                <nz-form-label nzRequired>Social Media Link</nz-form-label>
+                <nz-form-label>Social Media Link</nz-form-label>
                 <nz-input-group>
                   <input
                     type="text"
@@ -168,12 +168,12 @@
               </nz-form-control>
             </nz-form-item>
 
-            <nz-form-item>
+            <nz-form-item *ngIf="applicationForm.value.houseOwnership === 'Rent'">
               <nz-form-control nzErrorTip="Please select the answer">
                 <nz-form-label nzRequired
-                  >Do you live with children</nz-form-label
+                  >Does your lease allow pets</nz-form-label
                 >
-                <nz-select formControlName="haveChildren">
+                <nz-select formControlName="allowPets">
                   <nz-option
                     *ngFor="let option of yesNoOptions"
                     [nzLabel]="option"
@@ -186,9 +186,9 @@
             <nz-form-item>
               <nz-form-control nzErrorTip="Please select the answer">
                 <nz-form-label nzRequired
-                  >Does your lease allow pets</nz-form-label
+                  >Do you live with children</nz-form-label
                 >
-                <nz-select formControlName="allowPets">
+                <nz-select formControlName="haveChildren">
                   <nz-option
                     *ngFor="let option of yesNoOptions"
                     [nzLabel]="option"
@@ -295,22 +295,7 @@
                       </nz-form-control>
                     </nz-form-item>
 
-                    <nz-form-item>
-                      <nz-form-control
-                        nzErrorTip="Please input hours stay at home"
-                      >
-                        <nz-form-label nzRequired
-                          >Hour(s) stay at home per day</nz-form-label
-                        >
-                        <nz-input-group>
-                          <input
-                            type="number"
-                            nz-input
-                            formControlName="hoursStayAtHome"
-                          />
-                        </nz-input-group>
-                      </nz-form-control>
-                    </nz-form-item>
+                   
                   </ng-container>
                 </ng-container>
               </ng-container>
@@ -414,7 +399,7 @@
               <nz-form-control nzErrorTip="Please input the place">
                 <nz-form-label nzRequired
                   >Are there any specific areas in your home that your dog is
-                  not allowed to access</nz-form-label
+                  <span class="font-bold">NOT</span> allowed to access</nz-form-label
                 >
                 <nz-input-group>
                   <input
@@ -451,7 +436,7 @@
             <nz-form-item class="col-span-full">
               <nz-form-control nzErrorTip="Please select the answer">
                 <nz-form-label nzRequired
-                  >Our update after the dog/cat is adopted is on WhatsApp. Can
+                  >Our follow up after the dog/cat is adopted is on WhatsApp. Can
                   you send an update via WhatsApp message, including pictures &
                   videos of the dog/cat after you pick up the dog</nz-form-label
                 >
@@ -570,6 +555,7 @@
 
           <!-- References -->
           <ng-container>
+            <nz-divider class="col-span-full"></nz-divider>
             <div class="col-span-full text-xl font-bold text-left">
               References
             </div>

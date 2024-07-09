@@ -32,7 +32,7 @@ export class HomeLandingComponent extends IntersectionComponents {
     },
     {
       imgSrc: "home-page/circle-4.jpeg",
-      content: "Promote respect for domestic animals",
+      content: "Provide low-cost temporary foster care for animals in need",
     },
   ];
 

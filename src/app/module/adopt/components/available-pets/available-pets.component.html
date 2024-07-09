@@ -33,7 +33,7 @@
             <app-pet-cards
               [name]="pet.name"
               [dob]="pet.dob"
-              [imgSrc]="pet.imgSrc"
+              [imgSrc]="pet.imageList[0]"
               [sex]="pet.sex"
               (btnClicked)="goToDetailsPage(pet.id)"
             ></app-pet-cards>
