@@ -1,28 +1,29 @@
 import {
   NzResizeObserver
-} from "./chunk-3EWCM2BS.js";
+} from "./chunk-IJBAQAMR.js";
+import {
+  NzDragService,
+  NzResizeService
+} from "./chunk-5NQDKSCU.js";
 import {
   LEFT_ARROW,
   RIGHT_ARROW
 } from "./chunk-27BDGVS6.js";
+import "./chunk-UAC2M5XU.js";
 import {
   NzConfigService,
   WithConfig
-} from "./chunk-3IQRMYNG.js";
-import {
-  NzDragService,
-  NzResizeService
-} from "./chunk-RLNHHVJU.js";
+} from "./chunk-ZCXZF4PA.js";
 import {
   Directionality
-} from "./chunk-OU22GMQT.js";
-import "./chunk-YFWSV5QR.js";
+} from "./chunk-7FLEVIUO.js";
+import "./chunk-NYIT7KDZ.js";
 import {
   Platform
-} from "./chunk-GVS5SQZ7.js";
+} from "./chunk-XLXO2Z6Z.js";
 import {
   NgTemplateOutlet
-} from "./chunk-64QPTA5Y.js";
+} from "./chunk-GGS5Q5RE.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -85,7 +86,7 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate,
   ɵɵviewQuery
-} from "./chunk-AP3EFBYY.js";
+} from "./chunk-KWSYZSN2.js";
 import "./chunk-J4B6MK7R.js";
 
 // node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-carousel.mjs

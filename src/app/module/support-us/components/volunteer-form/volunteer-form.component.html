@@ -1,0 +1,249 @@
+<div class="text-center mt-8 mb-4">
+  <h1>Volunteer Application Form</h1>
+</div>
+
+<div class="px-4 md:px-24 text-center gap-4">
+  <white-card>
+    <div class="gap-4">
+      <form nz-form [formGroup]="applicationForm" class="my-auto">
+        <div class="grid lg:grid-cols-2 gap-4">
+          <!-- Personal Information -->
+          <ng-container>
+            <div class="col-span-full text-xl font-bold text-left">
+              Personal Information
+            </div>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your first name">
+                <nz-form-label nzRequired>First Name</nz-form-label>
+                <nz-input-group>
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="applicantFirstName"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your last name">
+                <nz-form-label nzRequired>Last Name</nz-form-label>
+                <nz-input-group>
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="applicantLastName"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your age">
+                <nz-form-label nzRequired>Age</nz-form-label>
+                <nz-input-group>
+                  <input type="number" nz-input formControlName="age" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your phone number">
+                <nz-form-label nzRequired>Phone Number</nz-form-label>
+                <nz-input-group>
+                  <input type="number" nz-input formControlName="phoneNo" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your email">
+                <nz-form-label nzRequired>Email</nz-form-label>
+                <nz-input-group>
+                  <input type="text" nz-input formControlName="email" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your occupation">
+                <nz-form-label nzRequired>Occupation</nz-form-label>
+                <nz-input-group>
+                  <input type="text" nz-input formControlName="occupation" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control
+                nzErrorTip="Please input your emergency contact name"
+              >
+                <nz-form-label nzRequired>Emergency Contact Name</nz-form-label>
+                <nz-input-group>
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="emergencyContactName"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control
+                nzErrorTip="Please input your emergency contact phone number"
+              >
+                <nz-form-label nzRequired
+                  >Emergency Contact Phone Number</nz-form-label
+                >
+                <nz-input-group>
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="emergencyContactPhoneNo"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-divider class="col-span-full"> </nz-divider>
+            <div class="col-span-full text-xl font-bold text-left">
+              Address
+              <span class="text-grey text-md"
+                >(Only accept Great Toronto Area)</span
+              >
+            </div>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your address">
+                <nz-form-label nzRequired>Address</nz-form-label>
+                <nz-input-group>
+                  <input type="type" nz-input formControlName="address" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your city">
+                <nz-form-label nzRequired>City</nz-form-label>
+                <nz-input-group>
+                  <input type="type" nz-input formControlName="city" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your postal code">
+                <nz-form-label nzRequired>Postal Code</nz-form-label>
+                <nz-input-group>
+                  <input type="type" nz-input formControlName="postalCode" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-divider class="col-span-full"> </nz-divider>
+          </ng-container>
+
+          <!-- Volunteer Information -->
+          <ng-container>
+            <div class="col-span-full text-xl font-bold text-left">
+              Volunteer Work Information
+            </div>
+
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input the distance">
+                <nz-form-label nzRequired
+                  >Distance willing to travel</nz-form-label
+                >
+                <nz-input-group nzSuffix="KM">
+                  <input
+                    type="number"
+                    nz-input
+                    formControlName="distanceToTravel"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <div class="col-start-1 col-span-full mt-8 text-left">
+              Availability
+            </div>
+
+            <div
+              class="col-start-1 col-span-full text-[red] text-left"
+              *ngIf="showTableErrorMsg()"
+            >
+              Please select at least 1 period
+            </div>
+
+            <nz-table
+              [nzData]="['']"
+              class="col-start-1 col-span-full"
+              [nzFrontPagination]="false"
+            >
+              <thead>
+                <tr>
+                  <th></th>
+                  <th class="text-center">Morning</th>
+                  <th class="text-center">Afternoon</th>
+                  <th class="text-center">Evening</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let day of dayList; index as i">
+                  <td>{{ day }}</td>
+
+                  <td class="text-center">
+                    <label
+                      nz-checkbox
+                      (ngModelChange)="
+                        checkboxChangeEvent($event, 'morning', i)
+                      "
+                      [ngModel]="getCurrentCheckboxValue('morning', i)"
+                      [ngModelOptions]="{ standalone: true }"
+                    ></label>
+                  </td>
+                  <td class="text-center">
+                    <label
+                      nz-checkbox
+                      (ngModelChange)="
+                        checkboxChangeEvent($event, 'afternoon', i)
+                      "
+                      [ngModel]="getCurrentCheckboxValue('afternoon', i)"
+                      [ngModelOptions]="{ standalone: true }"
+                    ></label>
+                  </td>
+                  <td class="text-center">
+                    <label
+                      nz-checkbox
+                      (ngModelChange)="
+                        checkboxChangeEvent($event, 'evening', i)
+                      "
+                      [ngModel]="getCurrentCheckboxValue('evening', i)"
+                      [ngModelOptions]="{ standalone: true }"
+                    ></label>
+                  </td>
+                </tr>
+              </tbody>
+            </nz-table>
+          </ng-container>
+
+          <div class="col-span-full text-center">
+            <nz-form-item>
+              <nz-form-control>
+                <button
+                  nz-button
+                  class="ant-btn-orange"
+                  nzSize="large"
+                  (click)="submitForm()"
+                >
+                  Submit
+                </button>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </form>
+    </div>
+  </white-card>
+</div>

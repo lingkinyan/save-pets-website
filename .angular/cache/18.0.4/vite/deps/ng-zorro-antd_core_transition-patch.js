@@ -1,8 +1,8 @@
 import {
   NzTransitionPatchDirective,
   NzTransitionPatchModule
-} from "./chunk-JV3T3LOO.js";
-import "./chunk-AP3EFBYY.js";
+} from "./chunk-SVQO7NE7.js";
+import "./chunk-KWSYZSN2.js";
 import "./chunk-J4B6MK7R.js";
 export {
   NzTransitionPatchDirective as ɵNzTransitionPatchDirective,

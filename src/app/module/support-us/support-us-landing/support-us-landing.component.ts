@@ -22,5 +22,9 @@ export class SupportUsLandingComponent extends IntersectionComponents {
     if (action === "foster") {
       this.router.navigate(["/support-us/foster-form"]);
     }
+
+    if (action === "volunteer") {
+      this.router.navigate(["/support-us/volunteer-form"]);
+    }
   }
 }

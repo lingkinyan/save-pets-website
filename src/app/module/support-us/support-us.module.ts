@@ -11,9 +11,16 @@ import { NzDividerModule } from "ng-zorro-antd/divider";
 import { NzInputModule } from "ng-zorro-antd/input";
 import { NzSelectModule } from "ng-zorro-antd/select";
 import { NzButtonModule } from "ng-zorro-antd/button";
+import { VolunteerFormComponent } from "./components/volunteer-form/volunteer-form.component";
+import { NzTableModule } from "ng-zorro-antd/table";
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 
 @NgModule({
-  declarations: [SupportUsLandingComponent, FosterFormComponent],
+  declarations: [
+    SupportUsLandingComponent,
+    FosterFormComponent,
+    VolunteerFormComponent,
+  ],
   imports: [
     CommonModule,
     SupportUsRoutingModule,
@@ -25,6 +32,8 @@ import { NzButtonModule } from "ng-zorro-antd/button";
     NzInputModule,
     NzSelectModule,
     NzButtonModule,
+    NzTableModule,
+    NzCheckboxModule
   ],
 })
 export class SupportUsModule {}
