@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { IntersectionComponents } from "../../../common-components/class/intersection.component";
-import { Title } from "@angular/platform-browser";
+import { Meta, Title } from "@angular/platform-browser";
 
 @Component({
   selector: "app-home-landing",
@@ -9,11 +9,12 @@ import { Title } from "@angular/platform-browser";
   styleUrl: "./home-landing.component.less",
 })
 export class HomeLandingComponent extends IntersectionComponents {
-  constructor(private title: Title) {
+  constructor(private title: Title, private metaService: Meta) {
     super();
     this.title.setTitle("Home | Pet Save");
+    this.metaService.updateTag({ name: "Pet Save", content: 'Pet Save, adopt, adopters, animals, home visit, Rescue animals, abandoned animals, homeless animals, medical service, animal rescue, Saving Lives, One Paw at a Time' });
   }
-  
+
   goalsList = [
     {
       imgSrc: "home-page/circle-1.jpeg",
