@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
 import { Title } from "@angular/platform-browser";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { GetAge } from "../../../../common-components/class/get-age.components";
+import { AvailablePets } from "../../../../common-components/class/available-pets.components";
 
 @Component({
   selector: "app-pet-info",
@@ -10,34 +11,36 @@ import { GetAge } from "../../../../common-components/class/get-age.components";
   styleUrl: "./pet-info.component.less",
 })
 export class PetInfoComponent {
-  constructor(private router: Router, private titleService: Title) {}
-  petInfo: any = {
-    id: 1,
-    name: "Happy",
-    sex: "F",
-    dob: "2022-12-31",
-    breed: "New Breed",
-    weight: "4.1",
-    imageList: [
-      "home-page/circle-1.jpeg",
-      "home-page/circle-2.webp",
-      "home-page/circle-3.webp",
-      "home-page/circle-4.jpeg",
-    ],
-    healthStatus: "Very good",
-    color: "White",
-    personality: "Nice",
-    idealFamily: "Nice",
-    rescueProcess: "Hello",
-  };
+  constructor(
+    private router: Router,
+    private titleService: Title,
+    private activatedRoute: ActivatedRoute
+  ) {}
+
+  petInfo: any;
+
+  petId: string;
 
   petAge = "";
 
-  ngOnInit(): void {
-    // TODO: get pet info by APIs
-    this.titleService.setTitle(this.petInfo.name + " | Pet Save");
+  isLoaded: boolean = false
 
-    this.petAge = GetAge.getAge(this.petInfo.dob);
+  ngOnInit(): void {
+    this.petId = this.activatedRoute.snapshot.paramMap.get("id") ?? "";
+
+    if (this.petId) {
+      this.petInfo = AvailablePets.availablePets.filter(
+        (v) => v.id === +this.petId
+      )[0];
+
+
+      // TODO: get pet info by APIs
+      this.titleService.setTitle(this.petInfo.name + " | Pet Save");
+
+      this.petAge = GetAge.getAge(this.petInfo.dob);
+
+      this.isLoaded = true;
+    }
   }
 
   routeToPage(page: string): void {

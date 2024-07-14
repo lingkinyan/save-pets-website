@@ -13,7 +13,7 @@ export class IntersectionDirective implements OnInit {
     const options = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.15 // 0.5 means when 50% of the element is visible
+      threshold: 0.05 // 0.5 means when 50% of the element is visible
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
