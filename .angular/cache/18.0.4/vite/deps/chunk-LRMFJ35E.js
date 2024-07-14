@@ -1,11 +1,4 @@
 import {
-  DomSanitizer
-} from "./chunk-XNTUPZLR.js";
-import {
-  HttpBackend,
-  HttpClient
-} from "./chunk-AHWO7NLR.js";
-import {
   NzConfigService,
   inputToRGB,
   rgbToHex,
@@ -17,6 +10,13 @@ import {
 import {
   Platform
 } from "./chunk-XLXO2Z6Z.js";
+import {
+  DomSanitizer
+} from "./chunk-XNTUPZLR.js";
+import {
+  HttpBackend,
+  HttpClient
+} from "./chunk-AHWO7NLR.js";
 import {
   DOCUMENT
 } from "./chunk-GGS5Q5RE.js";
@@ -1377,4 +1377,4 @@ export {
   NzIconDirective,
   NzIconModule
 };
-//# sourceMappingURL=chunk-N56OHAX4.js.map
+//# sourceMappingURL=chunk-LRMFJ35E.js.map

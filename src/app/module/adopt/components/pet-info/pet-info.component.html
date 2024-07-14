@@ -9,18 +9,32 @@
 
   <h1 class="text-xl font-bold text-center">Hi I'm {{ petInfo.name }}</h1>
 
-  <nz-carousel nzAutoPlay [nzAutoPlaySpeed]="5000">
+  <nz-carousel nzAutoPlay [nzAutoPlaySpeed]="5000" class="block lg:hidden">
     <div nz-carousel-content *ngFor="let image of petInfo.imageList">
       <img [src]="image" [alt]="'Pet Save - ' + petInfo.name" />
     </div>
   </nz-carousel>
+
+  <div class="hidden lg:block">
+    <div class="grid grid-cols-5">
+      <nz-carousel
+        nzAutoPlay
+        [nzAutoPlaySpeed]="5000"
+        class="col-span-3 col-start-2"
+      >
+        <div nz-carousel-content *ngFor="let image of petInfo.imageList">
+          <img [src]="image" [alt]="'Pet Save - ' + petInfo.name" />
+        </div>
+      </nz-carousel>
+    </div>
+  </div>
 
   <white-card>
     <div class="grid gap-4">
       <text-align [title]="'Name'" [content]="petInfo.name"></text-align>
       <text-align
         [title]="'Sex'"
-        [content]="petInfo.sex === 'F' ? 'Female' : 'Male'"
+        [content]="petInfo.sex"
       ></text-align>
       <text-align
         [title]="'Age'"
@@ -34,26 +48,41 @@
       ></text-align>
       <text-align
         [title]="'Weight'"
-        [content]="petInfo.weight + ' kg'"
+        [content]="petInfo.weight + ' pound(s)'"
+        *ngIf="petInfo.weight && petInfo.weight > 0"
       ></text-align>
+      <text-align
+      [title]="'Characteristics'"
+      [content]="petInfo.characteristics"
+      *ngIf="petInfo.characteristics"
+    ></text-align>
       <text-align [title]="'Color'" [content]="petInfo.color"></text-align>
       <text-align
         [title]="'Health status'"
         [content]="petInfo.healthStatus"
+        *ngIf="petInfo.healthStatus"
+      ></text-align>
+      <text-align
+        [title]="'House Trained'"
+        [content]="petInfo.houseTrained ? 'Yes' : 'No'"
+        *ngIf="petInfo.houseTrained"
       ></text-align>
       <text-align
         [title]="'Personality'"
         [content]="petInfo.personality"
+        *ngIf="petInfo.personality"
       ></text-align>
       <text-align
         [title]="'Ideal Family'"
         [content]="petInfo.idealFamily"
-      ></text-align>
-      <text-align
-        [title]="'Rescue process'"
-        [content]="petInfo.rescueProcess"
+        *ngIf="petInfo.idealFamily"
       ></text-align>
 
+      <div
+        *ngIf="petInfo.description"
+        [innerHTML]="petInfo.description"
+        class="text-lg"
+      ></div>
       <nz-divider></nz-divider>
 
       <div class="text-lg grid gap-4">

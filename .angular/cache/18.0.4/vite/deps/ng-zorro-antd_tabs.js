@@ -1,4 +1,7 @@
 import {
+  NzResizeObserver
+} from "./chunk-4ATCHUPZ.js";
+import {
   A11yModule,
   CdkMonitorFocus,
   FocusKeyManager
@@ -6,39 +9,19 @@ import {
 import {
   NzDropDownDirective,
   NzDropdownMenuComponent
-} from "./chunk-DIYB4XHM.js";
+} from "./chunk-TJFRC3DO.js";
 import {
   NzMenuDirective,
   NzMenuItemComponent,
   NzMenuModule
-} from "./chunk-P5CGJPQT.js";
-import {
-  NavigationEnd,
-  Router,
-  RouterLink
-} from "./chunk-N2PK2TT4.js";
-import {
-  ViewportRuler,
-  tabSwitchMotion
-} from "./chunk-WT7FJTWM.js";
-import {
-  NzOutletModule,
-  NzStringTemplateOutletDirective
-} from "./chunk-SMYBOWXY.js";
-import "./chunk-5XX5SINB.js";
+} from "./chunk-ER7Z23QX.js";
+import "./chunk-KE2KDWJJ.js";
 import "./chunk-SVQO7NE7.js";
 import "./chunk-PPZUKXI4.js";
 import {
-  NzIconDirective,
-  NzIconModule
-} from "./chunk-N56OHAX4.js";
-import "./chunk-DQ3FPYFH.js";
-import "./chunk-YPYR7XK2.js";
-import "./chunk-XNTUPZLR.js";
-import "./chunk-AHWO7NLR.js";
-import {
-  NzResizeObserver
-} from "./chunk-4ATCHUPZ.js";
+  ViewportRuler,
+  tabSwitchMotion
+} from "./chunk-XIAMULVY.js";
 import {
   reqAnimFrame
 } from "./chunk-KLQ2MSNA.js";
@@ -53,6 +36,10 @@ import {
 } from "./chunk-27BDGVS6.js";
 import "./chunk-MQ74VJYZ.js";
 import {
+  NzIconDirective,
+  NzIconModule
+} from "./chunk-LRMFJ35E.js";
+import {
   NzConfigService,
   WithConfig
 } from "./chunk-NRBX2MGB.js";
@@ -64,7 +51,20 @@ import {
   coerceNumberProperty,
   wrapIntoObservable
 } from "./chunk-THY2D7P7.js";
+import "./chunk-DQ3FPYFH.js";
+import "./chunk-YPYR7XK2.js";
 import "./chunk-XLXO2Z6Z.js";
+import {
+  NzOutletModule,
+  NzStringTemplateOutletDirective
+} from "./chunk-SMYBOWXY.js";
+import {
+  NavigationEnd,
+  Router,
+  RouterLink
+} from "./chunk-N2PK2TT4.js";
+import "./chunk-XNTUPZLR.js";
+import "./chunk-AHWO7NLR.js";
 import {
   NgForOf,
   NgIf,

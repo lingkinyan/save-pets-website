@@ -2,7 +2,10 @@ import {
   MenuService,
   NzIsMenuInsideDropDownToken,
   NzMenuModule
-} from "./chunk-P5CGJPQT.js";
+} from "./chunk-ER7Z23QX.js";
+import {
+  NzButtonGroupComponent
+} from "./chunk-KE2KDWJJ.js";
 import {
   ConnectionPositionPair,
   NzNoAnimationDirective,
@@ -10,10 +13,7 @@ import {
   POSITION_MAP,
   TemplatePortal,
   slideMotion
-} from "./chunk-WT7FJTWM.js";
-import {
-  NzButtonGroupComponent
-} from "./chunk-5XX5SINB.js";
+} from "./chunk-XIAMULVY.js";
 import {
   ESCAPE,
   hasModifierKey
@@ -723,4 +723,4 @@ export {
   NzDropDownModule,
   NzContextMenuService
 };
-//# sourceMappingURL=chunk-DIYB4XHM.js.map
+//# sourceMappingURL=chunk-TJFRC3DO.js.map

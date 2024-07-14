@@ -7,7 +7,7 @@ import {
 import {
   NzIconDirective,
   NzIconModule
-} from "./chunk-N56OHAX4.js";
+} from "./chunk-LRMFJ35E.js";
 import {
   NzConfigService,
   WithConfig
@@ -428,4 +428,4 @@ export {
   NzButtonGroupComponent,
   NzButtonModule
 };
-//# sourceMappingURL=chunk-5XX5SINB.js.map
+//# sourceMappingURL=chunk-KE2KDWJJ.js.map

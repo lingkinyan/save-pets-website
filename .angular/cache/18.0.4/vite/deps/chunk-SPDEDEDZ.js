@@ -1,7 +1,4 @@
 import {
-  FocusMonitor
-} from "./chunk-BMDAISLO.js";
-import {
   NzI18nService
 } from "./chunk-FFBVM27Y.js";
 import {
@@ -9,7 +6,10 @@ import {
   NzFormNoStatusService,
   NzFormPatchModule,
   NzFormStatusService
-} from "./chunk-QOMGS44G.js";
+} from "./chunk-SZBSFCTK.js";
+import {
+  FocusMonitor
+} from "./chunk-BMDAISLO.js";
 import {
   COMPOSITION_BUFFER_MODE,
   DefaultValueAccessor,
@@ -35,15 +35,7 @@ import {
   TemplatePortal,
   getPlacementName,
   slideMotion
-} from "./chunk-WT7FJTWM.js";
-import {
-  NzOutletModule,
-  NzStringTemplateOutletDirective
-} from "./chunk-SMYBOWXY.js";
-import {
-  NzIconDirective,
-  NzIconModule
-} from "./chunk-N56OHAX4.js";
+} from "./chunk-XIAMULVY.js";
 import {
   NzDestroyService,
   cancelRequestAnimationFrame,
@@ -59,6 +51,10 @@ import {
   UP_ARROW
 } from "./chunk-27BDGVS6.js";
 import {
+  NzIconDirective,
+  NzIconModule
+} from "./chunk-LRMFJ35E.js";
+import {
   NzConfigService,
   WithConfig
 } from "./chunk-NRBX2MGB.js";
@@ -73,6 +69,10 @@ import {
   Platform,
   _getEventTarget
 } from "./chunk-XLXO2Z6Z.js";
+import {
+  NzOutletModule,
+  NzStringTemplateOutletDirective
+} from "./chunk-SMYBOWXY.js";
 import {
   NgForOf,
   NgIf,
@@ -3885,4 +3885,4 @@ export {
   NzSelectComponent,
   NzSelectModule
 };
-//# sourceMappingURL=chunk-EW22HDV7.js.map
+//# sourceMappingURL=chunk-SPDEDEDZ.js.map

@@ -19,7 +19,7 @@ export class GetAge {
       ageMonths += 12;
     }
 
-    if (ageYears > 0) {
+    if (ageYears > 0 && ageMonths > 0) {
       return (
         ageYears +
         `${ageYears > 1 ? " years" : " year"}` +
@@ -27,6 +27,8 @@ export class GetAge {
         ageMonths +
         `${ageMonths > 1 ? " months" : " month"}`
       );
+    } else if (ageYears > 0 && ageMonths === 0) {
+      return ageYears + `${ageYears > 1 ? " years" : " year"}`;
     } else {
       return ageMonths + `${ageMonths > 1 ? " months" : " month"}`;
     }

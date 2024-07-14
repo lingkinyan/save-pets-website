@@ -1,13 +1,4 @@
 import {
-  animate,
-  query,
-  stagger,
-  state,
-  style,
-  transition,
-  trigger
-} from "./chunk-YPYR7XK2.js";
-import {
   NzDestroyService
 } from "./chunk-KLQ2MSNA.js";
 import {
@@ -24,6 +15,15 @@ import {
   coerceElement,
   coerceNumberProperty
 } from "./chunk-THY2D7P7.js";
+import {
+  animate,
+  query,
+  stagger,
+  state,
+  style,
+  transition,
+  trigger
+} from "./chunk-YPYR7XK2.js";
 import {
   Platform,
   RtlScrollAxisType,
@@ -5670,4 +5670,4 @@ export {
   tabSwitchMotion,
   zoomBigMotion
 };
-//# sourceMappingURL=chunk-WT7FJTWM.js.map
+//# sourceMappingURL=chunk-XIAMULVY.js.map

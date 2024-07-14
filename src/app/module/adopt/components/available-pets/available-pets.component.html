@@ -19,16 +19,16 @@
       [(ngModel)]="selectedCategory"
       (ngModelChange)="selectedCategoryChange($event)"
     >
-      <nz-option nzValue="dog" nzLabel="Dog"></nz-option>
-      <nz-option nzValue="cat" nzLabel="Cat"></nz-option>
-      <nz-option nzValue="small-pet" nzLabel="Small Pet"></nz-option>
+      <nz-option nzValue="DOG" nzLabel="Dog"></nz-option>
+      <nz-option nzValue="CAT" nzLabel="Cat"></nz-option>
+      <nz-option nzValue="SMALL_PET" nzLabel="Small Pet"></nz-option>
     </nz-select>
   </div>
 
   <div class="col-span-full col-start-1">
     <nz-tabset nzCentered (nzSelectChange)="nzSelectChange($event)">
       <nz-tab nzTitle="Available Pets">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
           <div *ngFor="let pet of copiedAvailablePets">
             <app-pet-cards
               [name]="pet.name"
@@ -50,7 +50,7 @@
 
       <nz-tab nzTitle="Adopted Pets">
         <ng-container *ngIf="selectedIndex === 1">
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
             <div *ngFor="let pet of copiedAdoptedPets">
               <app-pet-cards
                 [name]="pet.name"

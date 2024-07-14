@@ -3,6 +3,7 @@ import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { GetAge } from "../../../../common-components/class/get-age.components";
 import { AvailablePets } from "../../../../common-components/class/available-pets.components";
+import { PetInfo } from "../../../../common-components/class/pet-info.component";
 
 @Component({
   selector: "app-pet-info",
@@ -11,13 +12,14 @@ import { AvailablePets } from "../../../../common-components/class/available-pet
   styleUrl: "./pet-info.component.less",
 })
 export class PetInfoComponent {
+PetSex: any;
   constructor(
     private router: Router,
     private titleService: Title,
     private activatedRoute: ActivatedRoute
   ) {}
 
-  petInfo: any;
+  petInfo: PetInfo;
 
   petId: string;
 
