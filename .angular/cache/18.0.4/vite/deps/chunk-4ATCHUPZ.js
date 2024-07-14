@@ -1,6 +1,6 @@
 import {
   coerceElement
-} from "./chunk-NYIT7KDZ.js";
+} from "./chunk-THY2D7P7.js";
 import {
   Directive,
   ElementRef,
@@ -234,4 +234,4 @@ var NzResizeObserverModule = _NzResizeObserverModule;
 export {
   NzResizeObserver
 };
-//# sourceMappingURL=chunk-IJBAQAMR.js.map
+//# sourceMappingURL=chunk-4ATCHUPZ.js.map

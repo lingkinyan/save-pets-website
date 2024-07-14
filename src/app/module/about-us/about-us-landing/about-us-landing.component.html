@@ -9,11 +9,12 @@
     appIntersectionObserver
     (visible)="onVisible('about-us-intro')"
     [title]="'Pet Save'"
-    [content]="'A non-profit group of volunteers based in Canada, Ontario, was established in January 2017 by Wendy Min. <br><br>Since its inception, PETSAVE has rescued over 600 dogs and cats, a feat made possible by the dedication of its volunteers and fosters. <br><br>The organization extends its heartfelt gratitude to the compassionate families in Ontario who have opened their homes to adopt rescue dogs and cats. <br><br>We aim to rescue stray and abandoned dogs and cats and help them find suitable homes. <br><br>We also promote respect for domestic animals and natural life on public platforms. <br><br>PETSAVE Org is a no-kill, non-profit, Canadian-registered'"
+    [content]="
+      'A non-profit group of volunteers based in Canada, Ontario, was established in January 2017 by Wendy Min. <br><br>Since its inception, PETSAVE has rescued over 600 dogs and cats, a feat made possible by the dedication of its volunteers and fosters. <br><br>The organization extends its heartfelt gratitude to the compassionate families in Ontario who have opened their homes to adopt rescue dogs and cats. <br><br>We aim to rescue stray and abandoned dogs and cats and help them find suitable homes. <br><br>We also promote respect for domestic animals and natural life on public platforms. <br><br>PETSAVE Org is a no-kill, non-profit, Canadian-registered'
+    "
     [imgSrc]="'about-us/about-us.jpeg'"
     [imgAlt]="'Pet Save - About Us'"
   ></left-right-card>
-
 
   <!-- Meet Our Team -->
   <div
@@ -23,12 +24,13 @@
   >
     <h1>Meet Our Team</h1>
 
-    <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-8 mt-4">
-      <ng-container *ngFor="let m of memberList">
+    <div class="grid grid-cols-2 xl:grid-cols-3 gap-8 mt-4">
+      <ng-container *ngFor="let m of memberList; index as i">
         <app-team-photo-frame
           [imgSrc]="m.imgSrc"
           [name]="m.name"
           [position]="m.position"
+          [des]="m.des"
         ></app-team-photo-frame>
       </ng-container>
     </div>

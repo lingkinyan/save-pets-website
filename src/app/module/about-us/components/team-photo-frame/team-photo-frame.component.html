@@ -3,11 +3,16 @@
   class="hide-content"
   appIntersectionObserver
   (visible)="onVisible(className)"
+  [isHover]="true"
 >
   <div class="flex justify-center">
     <img [src]="imgSrc" [alt]="name" />
   </div>
 
-  <div class="my-2 font-bold text-xl">{{ name }}</div>
-  <div>{{ position }}</div>
+  <div class="flex justify-between flex-col">
+    <div class="mt-4 font-bold text-xl">{{ name }}</div>
+    <div class="font-bold text-md my-4">{{ position }}</div>
+
+    <div class="italic">{{ des }}</div>
+  </div>
 </white-card>

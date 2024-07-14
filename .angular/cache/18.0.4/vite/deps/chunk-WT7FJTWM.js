@@ -1,11 +1,4 @@
 import {
-  NzDestroyService
-} from "./chunk-5NQDKSCU.js";
-import {
-  ESCAPE,
-  hasModifierKey
-} from "./chunk-27BDGVS6.js";
-import {
   animate,
   query,
   stagger,
@@ -15,6 +8,13 @@ import {
   trigger
 } from "./chunk-YPYR7XK2.js";
 import {
+  NzDestroyService
+} from "./chunk-KLQ2MSNA.js";
+import {
+  ESCAPE,
+  hasModifierKey
+} from "./chunk-27BDGVS6.js";
+import {
   BidiModule,
   Directionality
 } from "./chunk-7FLEVIUO.js";
@@ -23,7 +23,7 @@ import {
   coerceCssPixelValue,
   coerceElement,
   coerceNumberProperty
-} from "./chunk-NYIT7KDZ.js";
+} from "./chunk-THY2D7P7.js";
 import {
   Platform,
   RtlScrollAxisType,
@@ -5670,4 +5670,4 @@ export {
   tabSwitchMotion,
   zoomBigMotion
 };
-//# sourceMappingURL=chunk-PJGIM2UK.js.map
+//# sourceMappingURL=chunk-WT7FJTWM.js.map
