@@ -28,7 +28,7 @@
   <div class="col-span-full col-start-1">
     <nz-tabset nzCentered (nzSelectChange)="nzSelectChange($event)">
       <nz-tab nzTitle="Available Pets">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-12">
           <div *ngFor="let pet of copiedAvailablePets">
             <app-pet-cards
               [name]="pet.name"
@@ -50,7 +50,7 @@
 
       <nz-tab nzTitle="Adopted Pets">
         <ng-container *ngIf="selectedIndex === 1">
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-12">
             <div *ngFor="let pet of copiedAdoptedPets">
               <app-pet-cards
                 [name]="pet.name"

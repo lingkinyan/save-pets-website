@@ -32,10 +32,7 @@
   <white-card>
     <div class="grid gap-4">
       <text-align [title]="'Name'" [content]="petInfo.name"></text-align>
-      <text-align
-        [title]="'Sex'"
-        [content]="petInfo.sex"
-      ></text-align>
+      <text-align [title]="'Sex'" [content]="petInfo.sex"></text-align>
       <text-align
         [title]="'Age'"
         [content]="petAge + ' (Born on ' + petInfo.dob + ')'"
@@ -52,10 +49,10 @@
         *ngIf="petInfo.weight && petInfo.weight > 0"
       ></text-align>
       <text-align
-      [title]="'Characteristics'"
-      [content]="petInfo.characteristics"
-      *ngIf="petInfo.characteristics"
-    ></text-align>
+        [title]="'Characteristics'"
+        [content]="petInfo.characteristics"
+        *ngIf="petInfo.characteristics"
+      ></text-align>
       <text-align [title]="'Color'" [content]="petInfo.color"></text-align>
       <text-align
         [title]="'Health status'"
@@ -77,6 +74,8 @@
         [content]="petInfo.idealFamily"
         *ngIf="petInfo.idealFamily"
       ></text-align>
+
+      <nz-divider></nz-divider>
 
       <div
         *ngIf="petInfo.description"

@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { FormUpdate } from "../../../../common-components/function/form-update.component";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-foster-form",
@@ -15,7 +16,7 @@ import { FormUpdate } from "../../../../common-components/function/form-update.c
   styleUrl: "./foster-form.component.less",
 })
 export class FosterFormComponent {
-  constructor(private fb: NonNullableFormBuilder, private title: Title) {
+  constructor(private fb: NonNullableFormBuilder, private title: Title, private router: Router) {
     this.title.setTitle("Foster Application Form | Pet Save");
   }
   // Options
@@ -191,6 +192,10 @@ export class FosterFormComponent {
     } else {
       FormUpdate.updateTreeValidity(this.applicationForm);
     }
+  }
+
+  routeToSupportUsPage(): void {
+    this.router.navigate(['/support-us'])
   }
 
   get householdInfoArray(): FormArray {

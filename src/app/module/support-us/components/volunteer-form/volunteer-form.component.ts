@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { FormGroup, NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { FormUpdate } from "../../../../common-components/function/form-update.component";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-volunteer-form",
@@ -10,7 +11,7 @@ import { FormUpdate } from "../../../../common-components/function/form-update.c
   styleUrl: "./volunteer-form.component.less",
 })
 export class VolunteerFormComponent {
-  constructor(private fb: NonNullableFormBuilder, private title: Title) {
+  constructor(private fb: NonNullableFormBuilder, private title: Title, private router: Router) {
     this.title.setTitle("Volunteer Application Form | Pet Save");
   }
 
@@ -85,5 +86,9 @@ export class VolunteerFormComponent {
       isEveningBlank &&
       this.isSubmitFormClick
     );
+  }
+
+  routeToSupportUsPage(): void {
+    this.router.navigate(['/support-us'])
   }
 }
