@@ -9,6 +9,7 @@ import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { AvailablePets } from "../../../../common-components/class/available-pets.components";
 import { FormUpdate } from "../../../../common-components/function/form-update.component";
+import { Options } from "../../../../common-components/class/options.component";
 
 @Component({
   selector: "app-adoption-application-form",
@@ -32,9 +33,16 @@ export class AdoptionApplicationFormComponent {
 
   houseOwnership = ["Own", "Rent"];
 
-  yesNoOptions = ["Yes", "No"];
+  yesNoOptions: Options[] = [
+    { value: true, label: "Yes" },
+    { value: false, label: "No" },
+  ];
 
-  yesNoNaOptions = ["Yes", "No", "N/A"];
+  yesNoNaOptions: Options[] = [
+    { value: true, label: "Yes" },
+    { value: false, label: "No" },
+    { value: null, label: "N/A" },
+  ];
 
   applicationForm: FormGroup = this.fb.group({
     // General Info
@@ -98,7 +106,7 @@ export class AdoptionApplicationFormComponent {
 
     this.applicationForm.controls["haveChildren"]?.valueChanges.subscribe(
       (v) => {
-        if (v === "No") {
+        if (!v) {
           this.childrenInfoArray.controls.length = 0;
           this.applicationForm.controls["childrenInfo"].patchValue([]);
         } else {
@@ -111,7 +119,7 @@ export class AdoptionApplicationFormComponent {
 
     this.applicationForm.controls["currentlyOwnPet"].valueChanges.subscribe(
       (v) => {
-        if (v === "No") {
+        if (!v) {
           this.currentPetInfoArray.controls.length = 0;
           this.applicationForm.controls["currentPetInfo"].patchValue([]);
         } else {

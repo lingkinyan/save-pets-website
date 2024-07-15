@@ -185,8 +185,8 @@
                 <nz-select formControlName="allowPets">
                   <nz-option
                     *ngFor="let option of yesNoOptions"
-                    [nzLabel]="option"
-                    [nzValue]="option"
+                    [nzLabel]="option.label"
+                    [nzValue]="option.value"
                   ></nz-option>
                 </nz-select>
               </nz-form-control>
@@ -200,8 +200,8 @@
                 <nz-select formControlName="haveChildren">
                   <nz-option
                     *ngFor="let option of yesNoOptions"
-                    [nzLabel]="option"
-                    [nzValue]="option"
+                    [nzLabel]="option.label"
+                    [nzValue]="option.value"
                   ></nz-option>
                 </nz-select>
               </nz-form-control>
@@ -215,8 +215,8 @@
                 <nz-select formControlName="fencedYard">
                   <nz-option
                     *ngFor="let option of yesNoNaOptions"
-                    [nzLabel]="option"
-                    [nzValue]="option"
+                    [nzLabel]="option.label"
+                    [nzValue]="option.value"
                   ></nz-option>
                 </nz-select>
               </nz-form-control>
@@ -231,8 +231,8 @@
                 <nz-select formControlName="allergy">
                   <nz-option
                     *ngFor="let option of yesNoOptions"
-                    [nzLabel]="option"
-                    [nzValue]="option"
+                    [nzLabel]="option.label"
+                    [nzValue]="option.value"
                   ></nz-option>
                 </nz-select>
               </nz-form-control>
@@ -322,7 +322,7 @@
           </ng-container>
 
           <!-- Children Info Array -->
-          <ng-container *ngIf="applicationForm.value.haveChildren === 'Yes'">
+          <ng-container *ngIf="applicationForm.value.haveChildren">
             <div class="col-span-full text-xl font-bold text-left">
               Children Information
             </div>
@@ -452,8 +452,8 @@
                 <nz-select formControlName="ableToUseWhatsapp">
                   <nz-option
                     *ngFor="let option of yesNoOptions"
-                    [nzLabel]="option"
-                    [nzValue]="option"
+                    [nzLabel]="option.label"
+                    [nzValue]="option.value"
                   ></nz-option>
                 </nz-select>
               </nz-form-control>
@@ -467,8 +467,8 @@
                 <nz-select formControlName="ownPetBefore">
                   <nz-option
                     *ngFor="let option of yesNoOptions"
-                    [nzLabel]="option"
-                    [nzValue]="option"
+                    [nzLabel]="option.label"
+                    [nzValue]="option.value"
                   ></nz-option>
                 </nz-select>
               </nz-form-control>
@@ -482,8 +482,8 @@
                 <nz-select formControlName="surrenderedPet">
                   <nz-option
                     *ngFor="let option of yesNoOptions"
-                    [nzLabel]="option"
-                    [nzValue]="option"
+                    [nzLabel]="option.label"
+                    [nzValue]="option.value"
                   ></nz-option>
                 </nz-select>
               </nz-form-control>
@@ -497,15 +497,15 @@
                 <nz-select formControlName="currentlyOwnPet">
                   <nz-option
                     *ngFor="let option of yesNoOptions"
-                    [nzLabel]="option"
-                    [nzValue]="option"
+                    [nzLabel]="option.label"
+                    [nzValue]="option.value"
                   ></nz-option>
                 </nz-select>
               </nz-form-control>
             </nz-form-item>
 
             <ng-container
-              *ngIf="applicationForm.value.currentlyOwnPet === 'Yes'"
+              *ngIf="applicationForm.value.currentlyOwnPet"
             >
               <nz-divider class="col-span-full"></nz-divider>
               <div class="col-span-full text-xl font-bold text-left">
