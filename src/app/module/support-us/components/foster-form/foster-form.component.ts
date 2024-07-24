@@ -17,11 +17,15 @@ import { Options } from "../../../../common-components/class/options.component";
   styleUrl: "./foster-form.component.less",
 })
 export class FosterFormComponent {
-  constructor(private fb: NonNullableFormBuilder, private title: Title, private router: Router) {
+  constructor(
+    private fb: NonNullableFormBuilder,
+    private title: Title,
+    private router: Router
+  ) {
     this.title.setTitle("Foster Application Form | Pet Save");
   }
   // Options
-  availablePetsList = ['Dog', 'Cat'];
+  availablePetsList = ["Dog", "Cat"];
 
   houseHoldType = ["Single", "Family", "Roommate"];
 
@@ -43,10 +47,10 @@ export class FosterFormComponent {
     fosterPet: [[], [Validators.required]],
 
     // Personal Info
-    applicantFirstName: ["", [Validators.required]],
-    applicantLastName: ["", [Validators.required]],
+    firstName: ["", [Validators.required]],
+    lastName: ["", [Validators.required]],
     age: ["", [Validators.required]],
-    phoneNo: ["", [Validators.required]],
+    phoneNumber: ["", [Validators.required]],
     email: ["", [Validators.required]],
     socialMediaAccount: [""],
     address: ["", [Validators.required]],
@@ -58,8 +62,8 @@ export class FosterFormComponent {
     houseOwnership: ["", [Validators.required]],
     haveChildren: ["", Validators.required],
     allowPets: ["", [Validators.required]],
-    fencedYard: ["", [Validators.required]],
-    allergy: ["", [Validators.required]],
+    haveFencedYard: ["", [Validators.required]],
+    haveAllergy: ["", [Validators.required]],
     householdInfo: this.fb.array([]),
 
     // Children Info
@@ -71,17 +75,14 @@ export class FosterFormComponent {
     prohibitedPlace: ["", Validators.required],
     experience: ["", Validators.required],
     outOfTownPlan: ["", Validators.required],
-    ableToUseWhatsapp: ["", Validators.required],
-    ownPetBefore: ["", Validators.required],
-    surrenderedPet: ["", Validators.required],
-    currentlyOwnPet: ["", Validators.required],
-    currentPetInfo: this.fb.array([]),
+    haveWhatsapp: ["", Validators.required],
+    havePetBefore: ["", Validators.required],
+    haveSurrenderedPetBefore: ["", Validators.required],
+    havePetNow: ["", Validators.required],
+    petsInfo: this.fb.array([]),
 
     // References
-    firstReferenceName: ["", Validators.required],
-    firstReferencePhoneNo: ["", Validators.required],
-    secondReferenceName: ["", Validators.required],
-    secondReferencePhoneNo: ["", Validators.required],
+    referencesInfo: this.fb.array([]),
   });
 
   ngOnInit(): void {
@@ -111,18 +112,16 @@ export class FosterFormComponent {
       }
     );
 
-    this.applicationForm.controls["currentlyOwnPet"].valueChanges.subscribe(
-      (v) => {
-        if (!v) {
-          this.currentPetInfoArray.controls.length = 0;
-          this.applicationForm.controls["currentPetInfo"].patchValue([]);
-        } else {
-          if (this.currentPetInfoArray.length === 0) {
-            this.addCurrentPetInfo();
-          }
+    this.applicationForm.controls["havePetNow"].valueChanges.subscribe((v) => {
+      if (!v) {
+        this.petsInfoArray.controls.length = 0;
+        this.applicationForm.controls["petsInfo"].patchValue([]);
+      } else {
+        if (this.petsInfoArray.length === 0) {
+          this.addPetInfo();
         }
       }
-    );
+    });
 
     this.applicationForm.controls["houseOwnership"].valueChanges.subscribe(
       (v) => {
@@ -136,6 +135,11 @@ export class FosterFormComponent {
         }
       }
     );
+
+    if (this.referencesInfoArray.controls.length === 0) {
+      this.addReferences();
+      this.addReferences();
+    }
   }
 
   // Household info
@@ -167,16 +171,26 @@ export class FosterFormComponent {
   }
 
   // Current Pet Info
-  addCurrentPetInfo(): void {
-    this.currentPetInfoArray.push(
+  addPetInfo(): void {
+    this.petsInfoArray.push(
       this.fb.group({
         age: ["", Validators.required],
       })
     );
   }
 
-  deleteCurrentPetInfo(index: number) {
-    this.currentPetInfoArray.removeAt(index);
+  deletePetInfo(index: number) {
+    this.petsInfoArray.removeAt(index);
+  }
+
+  // References Info
+  addReferences(): void {
+    this.referencesInfoArray.push(
+      this.fb.group({
+        name: ["", Validators.required],
+        phoneNumber: ["", Validators.required],
+      })
+    );
   }
 
   submitForm(): void {
@@ -188,8 +202,8 @@ export class FosterFormComponent {
       FormUpdate.clearValidators(this.childrenInfoArray);
     }
 
-    if (this.currentPetInfoArray.length === 0) {
-      FormUpdate.clearValidators(this.currentPetInfoArray);
+    if (this.petsInfoArray.length === 0) {
+      FormUpdate.clearValidators(this.petsInfoArray);
     }
 
     FormUpdate.updateTreeValidity(this.applicationForm);
@@ -202,10 +216,6 @@ export class FosterFormComponent {
     }
   }
 
-  routeToSupportUsPage(): void {
-    this.router.navigate(['/support-us'])
-  }
-
   get householdInfoArray(): FormArray {
     return this.applicationForm.get("householdInfo") as FormArray;
   }
@@ -214,7 +224,15 @@ export class FosterFormComponent {
     return this.applicationForm.get("childrenInfo") as FormArray;
   }
 
-  get currentPetInfoArray(): FormArray {
-    return this.applicationForm.get("currentPetInfo") as FormArray;
+  get petsInfoArray(): FormArray {
+    return this.applicationForm.get("petsInfo") as FormArray;
+  }
+
+  get referencesInfoArray(): FormArray {
+    return this.applicationForm.get("referencesInfo") as FormArray;
+  }
+
+  routeToSupportUsPage(): void {
+    this.router.navigate(["/support-us"]);
   }
 }

@@ -40,11 +40,7 @@
               <nz-form-control nzErrorTip="Please input your first name">
                 <nz-form-label nzRequired>First Name</nz-form-label>
                 <nz-input-group>
-                  <input
-                    type="text"
-                    nz-input
-                    formControlName="applicantFirstName"
-                  />
+                  <input type="text" nz-input formControlName="firstName" />
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
@@ -53,11 +49,7 @@
               <nz-form-control nzErrorTip="Please input your last name">
                 <nz-form-label nzRequired>Last Name</nz-form-label>
                 <nz-input-group>
-                  <input
-                    type="text"
-                    nz-input
-                    formControlName="applicantLastName"
-                  />
+                  <input type="text" nz-input formControlName="lastName" />
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
@@ -90,7 +82,7 @@
               <nz-form-control nzErrorTip="Please input your phone number">
                 <nz-form-label nzRequired>Phone Number</nz-form-label>
                 <nz-input-group>
-                  <input type="number" nz-input formControlName="phoneNo" />
+                  <input type="number" nz-input formControlName="phoneNumber" />
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
@@ -212,7 +204,7 @@
                 <nz-form-label nzRequired
                   >If you have a yard, is it fully fenced</nz-form-label
                 >
-                <nz-select formControlName="fencedYard">
+                <nz-select formControlName="haveFencedYard">
                   <nz-option
                     *ngFor="let option of yesNoNaOptions"
                     [nzLabel]="option.label"
@@ -228,7 +220,7 @@
                   >Do you or anyone in your household have allergies to dogs or
                   cat</nz-form-label
                 >
-                <nz-select formControlName="allergy">
+                <nz-select formControlName="haveAllergy">
                   <nz-option
                     *ngFor="let option of yesNoOptions"
                     [nzLabel]="option.label"
@@ -449,7 +441,7 @@
                   pictures & videos of the dog/cat after you pick up the
                   dog</nz-form-label
                 >
-                <nz-select formControlName="ableToUseWhatsapp">
+                <nz-select formControlName="haveWhatsapp">
                   <nz-option
                     *ngFor="let option of yesNoOptions"
                     [nzLabel]="option.label"
@@ -464,7 +456,7 @@
                 <nz-form-label nzRequired
                   >Have you ever owned a dog/cat before</nz-form-label
                 >
-                <nz-select formControlName="ownPetBefore">
+                <nz-select formControlName="havePetBefore">
                   <nz-option
                     *ngFor="let option of yesNoOptions"
                     [nzLabel]="option.label"
@@ -479,7 +471,7 @@
                 <nz-form-label nzRequired
                   >Have you ever surrendered a pet</nz-form-label
                 >
-                <nz-select formControlName="surrenderedPet">
+                <nz-select formControlName="haveSurrenderedPetBefore">
                   <nz-option
                     *ngFor="let option of yesNoOptions"
                     [nzLabel]="option.label"
@@ -494,7 +486,7 @@
                 <nz-form-label nzRequired
                   >Do you currently own any pets</nz-form-label
                 >
-                <nz-select formControlName="currentlyOwnPet">
+                <nz-select formControlName="havePetNow">
                   <nz-option
                     *ngFor="let option of yesNoOptions"
                     [nzLabel]="option.label"
@@ -504,17 +496,15 @@
               </nz-form-control>
             </nz-form-item>
 
-            <ng-container
-              *ngIf="applicationForm.value.currentlyOwnPet"
-            >
+            <ng-container *ngIf="applicationForm.value.havePetNow">
               <nz-divider class="col-span-full"></nz-divider>
               <div class="col-span-full text-xl font-bold text-left">
                 Current Pet Information
               </div>
 
-              <ng-container formArrayName="currentPetInfo">
+              <ng-container formArrayName="petsInfo">
                 <ng-container
-                  *ngFor="let info of currentPetInfoArray.controls; index as i"
+                  *ngFor="let info of petsInfoArray.controls; index as i"
                 >
                   <ng-container [formGroupName]="i">
                     <ng-container>
@@ -528,7 +518,7 @@
                         <span
                           *ngIf="i > 0"
                           class="material-icons cursor-pointer text-sm text-grey"
-                          (click)="deleteCurrentPetInfo(i)"
+                          (click)="deletePetInfo(i)"
                         >
                           delete
                         </span>
@@ -553,7 +543,7 @@
                   <button
                     nz-button
                     class="ant-btn-orange"
-                    (click)="addCurrentPetInfo()"
+                    (click)="addPetInfo()"
                   >
                     Add Pet Info
                   </button>
@@ -569,66 +559,39 @@
               References
             </div>
 
-            <div class="text-md font-bold col-span-full text-left">
-              Reference 1
-            </div>
+            <ng-container formArrayName="referencesInfo">
+              <ng-container
+                *ngFor="let r of referencesInfoArray.controls; index as i"
+              >
+                <ng-container [formGroupName]="i">
+                  <div class="text-md font-bold col-span-full text-left">
+                    Reference {{ i + 1 }}
+                  </div>
 
-            <nz-form-item>
-              <nz-form-control nzErrorTip="Please input name">
-                <nz-form-label nzRequired>Name</nz-form-label>
-                <nz-input-group>
-                  <input
-                    type="text"
-                    nz-input
-                    formControlName="firstReferenceName"
-                  />
-                </nz-input-group>
-              </nz-form-control>
-            </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-control nzErrorTip="Please input name">
+                      <nz-form-label nzRequired>Name</nz-form-label>
+                      <nz-input-group>
+                        <input type="text" nz-input formControlName="name" />
+                      </nz-input-group>
+                    </nz-form-control>
+                  </nz-form-item>
 
-            <nz-form-item>
-              <nz-form-control nzErrorTip="Please input phone number">
-                <nz-form-label nzRequired>Phone Number</nz-form-label>
-                <nz-input-group>
-                  <input
-                    type="number"
-                    nz-input
-                    formControlName="firstReferencePhoneNo"
-                  />
-                </nz-input-group>
-              </nz-form-control>
-            </nz-form-item>
-
-            <nz-divider class="col-span-full"></nz-divider>
-            <div class="text-md font-bold col-span-full text-left">
-              Reference 2
-            </div>
-
-            <nz-form-item>
-              <nz-form-control nzErrorTip="Please input name">
-                <nz-form-label nzRequired>Name</nz-form-label>
-                <nz-input-group>
-                  <input
-                    type="text"
-                    nz-input
-                    formControlName="secondReferenceName"
-                  />
-                </nz-input-group>
-              </nz-form-control>
-            </nz-form-item>
-
-            <nz-form-item>
-              <nz-form-control nzErrorTip="Please input phone number">
-                <nz-form-label nzRequired>Phone Number</nz-form-label>
-                <nz-input-group>
-                  <input
-                    type="number"
-                    nz-input
-                    formControlName="secondReferencePhoneNo"
-                  />
-                </nz-input-group>
-              </nz-form-control>
-            </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-control nzErrorTip="Please input phone number">
+                      <nz-form-label nzRequired>Phone Number</nz-form-label>
+                      <nz-input-group>
+                        <input
+                          type="number"
+                          nz-input
+                          formControlName="phoneNumber"
+                        />
+                      </nz-input-group>
+                    </nz-form-control>
+                  </nz-form-item>
+                </ng-container>
+              </ng-container>
+            </ng-container>
           </ng-container>
 
           <div class="font-bold text-md text-center col-span-full">
