@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
+import { PostFormService } from "../../../common-components/services/post-form.service";
 
 @Component({
   selector: "app-contact-us-landing",
@@ -18,7 +19,8 @@ export class ContactUsLandingComponent {
   constructor(
     private fb: NonNullableFormBuilder,
     private router: Router,
-    private title: Title
+    private title: Title,
+    private postFormService: PostFormService
   ) {
     this.title.setTitle("Contact Us | Pet Save");
   }
@@ -30,7 +32,7 @@ export class ContactUsLandingComponent {
   }> = this.fb.group({
     firstName: ["", [Validators.required]],
     lastName: ["", [Validators.required]],
-    email: ["", [Validators.required]],
+    email: ["", [Validators.email, Validators.required]],
     message: ["", [Validators.required]],
   });
 
@@ -38,10 +40,23 @@ export class ContactUsLandingComponent {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      // TODO
-      console.log("submit", this.validateForm.value);
-      this.validateForm.reset();
-      this.isFormSubmitted = true;
+      const formValue = {
+        firstName: this.validateForm.value.firstName,
+        lastName: this.validateForm.value.lastName,
+        email: this.validateForm.value.email,
+        message: this.validateForm.value.message,
+      };
+
+      this.postFormService.postContactUs(formValue).subscribe(
+        (success) => {
+          // console.log("submit", this.validateForm.value);
+          this.validateForm.reset();
+          this.isFormSubmitted = true;
+        },
+        (err) => {
+          console.log(err.message);
+        }
+      );
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
