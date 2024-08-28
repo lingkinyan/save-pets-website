@@ -17,7 +17,7 @@ export class SupportUsLandingComponent extends IntersectionComponents {
 
   click(action?: string): void {
     // TODO
-    console.log("clicked");
+    // console.log("clicked");
 
     if (action === "foster") {
       this.router.navigate(["/support-us/foster-form"]);

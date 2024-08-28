@@ -1,29 +1,29 @@
 import {
   NzResizeObserver
-} from "./chunk-4ATCHUPZ.js";
+} from "./chunk-4VQ3FVJ3.js";
 import {
   NzDragService,
   NzResizeService
-} from "./chunk-KLQ2MSNA.js";
+} from "./chunk-2FZFIDDR.js";
 import {
   LEFT_ARROW,
   RIGHT_ARROW
 } from "./chunk-27BDGVS6.js";
-import "./chunk-MQ74VJYZ.js";
+import "./chunk-IMNVQH5S.js";
 import {
   NzConfigService,
   WithConfig
-} from "./chunk-NRBX2MGB.js";
+} from "./chunk-EBWXKSAH.js";
 import {
   Directionality
-} from "./chunk-7FLEVIUO.js";
-import "./chunk-THY2D7P7.js";
+} from "./chunk-MZHLEEZH.js";
 import {
   Platform
-} from "./chunk-XLXO2Z6Z.js";
+} from "./chunk-A637DYGK.js";
+import "./chunk-G7MDZEZ6.js";
 import {
   NgTemplateOutlet
-} from "./chunk-GGS5Q5RE.js";
+} from "./chunk-HHI3MFSG.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -40,18 +40,11 @@ import {
   Optional,
   Output,
   Renderer2,
-  Subject,
   ViewChild,
   ViewEncapsulation$1,
-  __decorate,
   booleanAttribute,
-  debounceTime,
-  distinctUntilChanged,
-  fromEvent,
   numberAttribute,
   setClassMetadata,
-  takeUntil,
-  timer,
   ɵɵInputTransformsFeature,
   ɵɵNgOnChangesFeature,
   ɵɵStandaloneFeature,
@@ -86,7 +79,16 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate,
   ɵɵviewQuery
-} from "./chunk-KWSYZSN2.js";
+} from "./chunk-Z6MW6ZG3.js";
+import {
+  Subject,
+  __decorate,
+  debounceTime,
+  distinctUntilChanged,
+  fromEvent,
+  takeUntil,
+  timer
+} from "./chunk-FANSKX4D.js";
 import "./chunk-J4B6MK7R.js";
 
 // node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-carousel.mjs

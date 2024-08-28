@@ -19,6 +19,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { AdoptionApplicationFormComponent } from "./components/adoption-application-form/adoption-application-form.component";
 import { NzFormModule } from "ng-zorro-antd/form";
 import { NzInputModule } from "ng-zorro-antd/input";
+import { NzSkeletonModule } from "ng-zorro-antd/skeleton";
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { NzInputModule } from "ng-zorro-antd/input";
     NzFormModule,
     ReactiveFormsModule,
     NzInputModule,
-    NzSelectModule
+    NzSelectModule,
+    NzSkeletonModule,
   ],
 })
 export class AdoptModule {}

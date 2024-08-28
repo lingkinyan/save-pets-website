@@ -15,6 +15,7 @@ import { VolunteerFormComponent } from "./components/volunteer-form/volunteer-fo
 import { NzTableModule } from "ng-zorro-antd/table";
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzBreadCrumbModule } from "ng-zorro-antd/breadcrumb";
+import { NzSkeletonModule } from "ng-zorro-antd/skeleton";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { NzBreadCrumbModule } from "ng-zorro-antd/breadcrumb";
     NzButtonModule,
     NzTableModule,
     NzCheckboxModule,
-    NzBreadCrumbModule
+    NzBreadCrumbModule,
+    NzSkeletonModule
   ],
 })
 export class SupportUsModule {}

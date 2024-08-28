@@ -1,26 +1,28 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { IntersectionDirective } from './directives/intersection.directive';
-import { WhiteCardComponent } from './components/white-card/white-card.component';
-import { LeftRightCardComponent } from './components/left-right-card/left-right-card.component';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { IntersectionDirective } from "./directives/intersection.directive";
+import { WhiteCardComponent } from "./components/white-card/white-card.component";
+import { LeftRightCardComponent } from "./components/left-right-card/left-right-card.component";
+import { NzButtonModule } from "ng-zorro-antd/button";
+import { NzSkeletonModule } from "ng-zorro-antd/skeleton";
 @NgModule({
   declarations: [
     IntersectionDirective,
     WhiteCardComponent,
-    LeftRightCardComponent
+    LeftRightCardComponent,
     // Other components, directives, pipes...
   ],
   imports: [
     CommonModule,
-    NzButtonModule
+    NzButtonModule,
+    NzSkeletonModule,
+
     // Other imported modules...
   ],
   exports: [
     IntersectionDirective,
     WhiteCardComponent,
-    LeftRightCardComponent
+    LeftRightCardComponent,
     // Other exported components, directives, pipes...
   ],
 })

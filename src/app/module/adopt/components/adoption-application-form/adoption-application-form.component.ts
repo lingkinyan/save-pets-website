@@ -10,6 +10,8 @@ import { Router } from "@angular/router";
 import { AvailablePets } from "../../../../common-components/class/available-pets.components";
 import { FormUpdate } from "../../../../common-components/function/form-update.component";
 import { Options } from "../../../../common-components/class/options.component";
+import { GetDropdownService } from "../../../../common-components/services/get-dropdown.service";
+import { forkJoin } from "rxjs";
 
 @Component({
   selector: "app-adoption-application-form",
@@ -21,7 +23,8 @@ export class AdoptionApplicationFormComponent {
   constructor(
     private fb: NonNullableFormBuilder,
     private router: Router,
-    private title: Title
+    private title: Title,
+    private getDropdownService: GetDropdownService
   ) {
     this.title.setTitle("Adopt Application Form | Pet Save");
   }
@@ -87,7 +90,17 @@ export class AdoptionApplicationFormComponent {
     referencesInfo: this.fb.array([]),
   });
 
+  isLoaded: boolean = false;
+
   ngOnInit(): void {
+    forkJoin(this.getDropdownService.getHouseHoldType()).subscribe(
+      (results) => {
+        console.log(results[0]);
+
+        this.isLoaded = true;
+      }
+    );
+
     this.applicationForm.controls["householdType"]?.valueChanges.subscribe(
       (v) => {
         if (v === "Single") {
