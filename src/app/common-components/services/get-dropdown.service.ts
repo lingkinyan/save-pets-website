@@ -26,5 +26,7 @@ export class GetDropdownService {
     return this.http.get(`${url}/house-ownership-types`);
   }
 
-  
+  getPetTypeCategory(): Observable<any> {
+    return this.http.get(`https://api.petsaveorg.com/api/v1/pets/categories`)
+  }
 }

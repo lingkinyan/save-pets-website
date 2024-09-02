@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { ContactUsForm } from "../class/form/contact-us-form.components";
 import { VolunteerForm } from "../class/form/volunteer-form.components";
 import { AdoptionForm } from "../class/form/adoption-form.components";
+import { FosterForm } from "../class/form/foster-form.components";
 
 const url = "https://api.petsaveorg.com/api/v1/forms";
 
@@ -21,7 +22,8 @@ export class PostFormService {
     return this.http.post(`${url}/volunteer-applications`, form);
   }
 
-  postAdoptionForm(form: AdoptionForm): Observable<any> {
+  postAdoptionOrFosterForm(form: AdoptionForm | FosterForm): Observable<any> {
     return this.http.post(`${url}/pets-applications`, form);
   }
+
 }

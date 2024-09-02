@@ -9,6 +9,9 @@ import { Title } from "@angular/platform-browser";
 import { FormUpdate } from "../../../../common-components/function/form-update.component";
 import { Router } from "@angular/router";
 import { Options } from "../../../../common-components/class/options.component";
+import { GetDropdownService } from "../../../../common-components/services/get-dropdown.service";
+import { PostFormService } from "../../../../common-components/services/post-form.service";
+import { forkJoin } from "rxjs";
 
 @Component({
   selector: "app-foster-form",
@@ -20,16 +23,21 @@ export class FosterFormComponent {
   constructor(
     private fb: NonNullableFormBuilder,
     private title: Title,
-    private router: Router
+    private router: Router,
+    private getDropdownService: GetDropdownService,
+    private postFormService: PostFormService
   ) {
     this.title.setTitle("Foster Application Form | Pet Save");
   }
   // Options
-  availablePetsList = ["Dog", "Cat"];
 
-  houseHoldType = ["Single", "Family", "Roommate"];
+  isFormSubmitted: boolean = false;
 
-  houseOwnership = ["Own", "Rent"];
+  availablePetsList = [];
+
+  houseHoldType = [];
+
+  houseOwnership = [];
 
   yesNoOptions: Options[] = [
     { value: true, label: "Yes" },
@@ -38,39 +46,38 @@ export class FosterFormComponent {
 
   yesNoNaOptions: Options[] = [
     { value: true, label: "Yes" },
-    { value: false, label: "No" },
-    { value: null, label: "N/A" },
+    { value: false, label: "No / N/A" },
   ];
 
   applicationForm: FormGroup = this.fb.group({
     // General Info
-    fosterPet: [[], [Validators.required]],
+    fosterPetTypeId: [[], [Validators.required]],
 
     // Personal Info
     firstName: ["", [Validators.required]],
     lastName: ["", [Validators.required]],
     age: ["", [Validators.required]],
-    phoneNumber: ["", [Validators.required]],
-    email: ["", [Validators.required]],
     socialMediaAccount: [""],
+    phoneNumber: ["", [Validators.required]],
+    email: ["", [Validators.email, Validators.required]],
     address: ["", [Validators.required]],
     city: ["", [Validators.required]],
     postalCode: ["", [Validators.required]],
 
     // HouseHold Info
     householdType: ["", [Validators.required]],
-    houseOwnership: ["", [Validators.required]],
+    houseOwnershipId: ["", [Validators.required]],
     haveChildren: ["", Validators.required],
     allowPets: ["", [Validators.required]],
     haveFencedYard: ["", [Validators.required]],
     haveAllergy: ["", [Validators.required]],
-    householdInfo: this.fb.array([]),
+    householdMemberInfo: this.fb.array([]),
 
     // Children Info
     childrenInfo: this.fb.array([]),
 
     // Petting Info
-    hourAlone: ["", Validators.required],
+    hoursAlone: ["", Validators.required],
     stayingPlace: ["", Validators.required],
     prohibitedPlace: ["", Validators.required],
     experience: ["", Validators.required],
@@ -82,15 +89,28 @@ export class FosterFormComponent {
     petsInfo: this.fb.array([]),
 
     // References
-    referencesInfo: this.fb.array([]),
+    referenceInfo: this.fb.array([]),
   });
 
+  isLoaded: boolean = false;
+
   ngOnInit(): void {
+    forkJoin(
+      this.getDropdownService.getHouseHoldType(),
+      this.getDropdownService.getHouseOwnershipType(),
+      this.getDropdownService.getPetTypeCategory()
+    ).subscribe((results) => {
+      this.houseHoldType = results[0];
+      this.houseOwnership = results[1];
+      this.availablePetsList = results[2]
+      this.isLoaded = true;
+    });
+
     this.applicationForm.controls["householdType"]?.valueChanges.subscribe(
       (v) => {
-        if (v === "Single") {
+        if (v === "single") {
           this.householdInfoArray.controls.length = 0;
-          this.applicationForm.controls["householdInfo"].patchValue([]);
+          this.applicationForm.controls["householdMemberInfo"].patchValue([]);
         } else {
           if (this.householdInfoArray.length === 0) {
             this.addHouseholdInfo();
@@ -123,9 +143,9 @@ export class FosterFormComponent {
       }
     });
 
-    this.applicationForm.controls["houseOwnership"].valueChanges.subscribe(
+    this.applicationForm.controls["houseOwnershipId"].valueChanges.subscribe(
       (v) => {
-        if (v === "Rent") {
+        if (v === 1) {
           this.applicationForm.controls["allowPets"].addValidators(
             Validators.required
           );
@@ -209,15 +229,46 @@ export class FosterFormComponent {
     FormUpdate.updateTreeValidity(this.applicationForm);
 
     if (this.applicationForm.valid) {
-      // TODO
-      console.log("submit", this.applicationForm.value);
+      let petsInfoValue = this.applicationForm.value.petsInfo.map((v) => {
+        return v.age;
+      });
+
+      let childrenInfoValue = this.applicationForm.value.childrenInfo.map(
+        (v) => {
+          return v.age;
+        }
+      );
+
+     
+
+      let formValue = this.applicationForm.value;
+      formValue.petsInfo = petsInfoValue;
+      formValue.childrenInfo = childrenInfoValue;
+      if(this.applicationForm.value.houseOwnershipId === 2) {
+       formValue.allowPets = true; 
+      }
+
+      this.postFormService.postAdoptionOrFosterForm(formValue).subscribe(
+        (ok) => {
+          this.applicationForm.reset();
+
+          this.isFormSubmitted = true;
+        },
+        (err) => {
+          FormUpdate.updateTreeValidity(this.applicationForm);
+        }
+      );
     } else {
       FormUpdate.updateTreeValidity(this.applicationForm);
     }
   }
 
+  routeToSupportUsPage(): void {
+    this.router.navigate(["/support-us"]);
+  }
+
   get householdInfoArray(): FormArray {
-    return this.applicationForm.get("householdInfo") as FormArray;
+    return this.applicationForm.get("householdMemberInfo") as FormArray;
   }
 
   get childrenInfoArray(): FormArray {
@@ -229,10 +280,10 @@ export class FosterFormComponent {
   }
 
   get referencesInfoArray(): FormArray {
-    return this.applicationForm.get("referencesInfo") as FormArray;
+    return this.applicationForm.get("referenceInfo") as FormArray;
   }
 
-  routeToSupportUsPage(): void {
-    this.router.navigate(["/support-us"]);
+  capitalizeFirstLetter(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 }

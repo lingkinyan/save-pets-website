@@ -242,7 +242,7 @@ export class AdoptionApplicationFormComponent {
       formValue.childrenInfo = childrenInfoValue
 
       this.postFormService
-        .postAdoptionForm(formValue)
+        .postAdoptionOrFosterForm(formValue)
         .subscribe(
           (ok) => {
             this.applicationForm.reset();
