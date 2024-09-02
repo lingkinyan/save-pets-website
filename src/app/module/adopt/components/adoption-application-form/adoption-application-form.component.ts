@@ -12,6 +12,7 @@ import { FormUpdate } from "../../../../common-components/function/form-update.c
 import { Options } from "../../../../common-components/class/options.component";
 import { GetDropdownService } from "../../../../common-components/services/get-dropdown.service";
 import { forkJoin } from "rxjs";
+import { PostFormService } from "../../../../common-components/services/post-form.service";
 
 @Component({
   selector: "app-adoption-application-form",
@@ -24,17 +25,19 @@ export class AdoptionApplicationFormComponent {
     private fb: NonNullableFormBuilder,
     private router: Router,
     private title: Title,
-    private getDropdownService: GetDropdownService
+    private getDropdownService: GetDropdownService,
+    private postFormService: PostFormService
   ) {
     this.title.setTitle("Adopt Application Form | Pet Save");
   }
 
+  isFormSubmitted: boolean = false;
   // Options
   availablePetsList = AvailablePets.availablePets;
 
-  houseHoldType = ["Single", "Family", "Roommate"];
+  houseHoldType = [];
 
-  houseOwnership = ["Own", "Rent"];
+  houseOwnership = [];
 
   yesNoOptions: Options[] = [
     { value: true, label: "Yes" },
@@ -43,39 +46,38 @@ export class AdoptionApplicationFormComponent {
 
   yesNoNaOptions: Options[] = [
     { value: true, label: "Yes" },
-    { value: false, label: "No" },
-    { value: null, label: "N/A" },
+    { value: false, label: "No / N/A" },
   ];
 
   applicationForm: FormGroup = this.fb.group({
     // General Info
-    adoptPet: [[], [Validators.required]],
+    adoptPetId: [[], [Validators.required]],
 
     // Personal Info
     firstName: ["", [Validators.required]],
     lastName: ["", [Validators.required]],
     age: ["", [Validators.required]],
-    phoneNumber: ["", [Validators.required]],
-    email: ["", [Validators.required]],
     socialMediaAccount: [""],
+    phoneNumber: ["", [Validators.required]],
+    email: ["", [Validators.email, Validators.required]],
     address: ["", [Validators.required]],
     city: ["", [Validators.required]],
     postalCode: ["", [Validators.required]],
 
     // HouseHold Info
     householdType: ["", [Validators.required]],
-    houseOwnership: ["", [Validators.required]],
+    houseOwnershipId: ["", [Validators.required]],
     haveChildren: ["", Validators.required],
     allowPets: ["", [Validators.required]],
     haveFencedYard: ["", [Validators.required]],
     haveAllergy: ["", [Validators.required]],
-    householdInfo: this.fb.array([]),
+    householdMemberInfo: this.fb.array([]),
 
     // Children Info
     childrenInfo: this.fb.array([]),
 
     // Petting Info
-    hourAlone: ["", Validators.required],
+    hoursAlone: ["", Validators.required],
     stayingPlace: ["", Validators.required],
     prohibitedPlace: ["", Validators.required],
     experience: ["", Validators.required],
@@ -87,25 +89,26 @@ export class AdoptionApplicationFormComponent {
     petsInfo: this.fb.array([]),
 
     // References
-    referencesInfo: this.fb.array([]),
+    referenceInfo: this.fb.array([]),
   });
 
   isLoaded: boolean = false;
 
   ngOnInit(): void {
-    forkJoin(this.getDropdownService.getHouseHoldType()).subscribe(
-      (results) => {
-        console.log(results[0]);
-
-        this.isLoaded = true;
-      }
-    );
+    forkJoin(
+      this.getDropdownService.getHouseHoldType(),
+      this.getDropdownService.getHouseOwnershipType()
+    ).subscribe((results) => {
+      this.houseHoldType = results[0];
+      this.houseOwnership = results[1];
+      this.isLoaded = true;
+    });
 
     this.applicationForm.controls["householdType"]?.valueChanges.subscribe(
       (v) => {
-        if (v === "Single") {
+        if (v === "single") {
           this.householdInfoArray.controls.length = 0;
-          this.applicationForm.controls["householdInfo"].patchValue([]);
+          this.applicationForm.controls["householdMemberInfo"].patchValue([]);
         } else {
           if (this.householdInfoArray.length === 0) {
             this.addHouseholdInfo();
@@ -138,9 +141,9 @@ export class AdoptionApplicationFormComponent {
       }
     });
 
-    this.applicationForm.controls["houseOwnership"].valueChanges.subscribe(
+    this.applicationForm.controls["houseOwnershipId"].valueChanges.subscribe(
       (v) => {
-        if (v === "Rent") {
+        if (v === 1) {
           this.applicationForm.controls["allowPets"].addValidators(
             Validators.required
           );
@@ -224,15 +227,43 @@ export class AdoptionApplicationFormComponent {
     FormUpdate.updateTreeValidity(this.applicationForm);
 
     if (this.applicationForm.valid) {
-      // TODO
-      console.log("submit", this.applicationForm.value);
+      let petsInfoValue = this.applicationForm.value.petsInfo.map((v) => {
+        return v.age;
+      });
+
+      let childrenInfoValue = this.applicationForm.value.childrenInfo.map(
+        (v) => {
+          return v.age;
+        }
+      );
+
+      let formValue = this.applicationForm.value
+      formValue.petsInfo = petsInfoValue
+      formValue.childrenInfo = childrenInfoValue
+
+      this.postFormService
+        .postAdoptionForm(formValue)
+        .subscribe(
+          (ok) => {
+            this.applicationForm.reset();
+
+            this.isFormSubmitted = true;
+          },
+          (err) => {
+            FormUpdate.updateTreeValidity(this.applicationForm);
+          }
+        );
     } else {
       FormUpdate.updateTreeValidity(this.applicationForm);
     }
   }
 
+  routeToAdoptionPage(): void {
+    this.router.navigate(["/adopt/adopt-procedure"]);
+  }
+
   get householdInfoArray(): FormArray {
-    return this.applicationForm.get("householdInfo") as FormArray;
+    return this.applicationForm.get("householdMemberInfo") as FormArray;
   }
 
   get childrenInfoArray(): FormArray {
@@ -244,6 +275,10 @@ export class AdoptionApplicationFormComponent {
   }
 
   get referencesInfoArray(): FormArray {
-    return this.applicationForm.get("referencesInfo") as FormArray;
+    return this.applicationForm.get("referenceInfo") as FormArray;
+  }
+
+  capitalizeFirstLetter(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 }

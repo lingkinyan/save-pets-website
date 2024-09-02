@@ -15,7 +15,7 @@
   </white-card>
 
   <white-card *ngIf="isLoaded">
-    <div class="gap-4">
+    <div class="gap-4" *ngIf="!isFormSubmitted">
       <form nz-form [formGroup]="applicationForm" class="my-auto">
         <div class="grid lg:grid-cols-2 gap-4">
           <nz-form-item class="col-start-1 col-span-full">
@@ -23,11 +23,11 @@
               <nz-form-label nzRequired
                 >Which dog/cat are you applying to adopt</nz-form-label
               >
-              <nz-select nzMode="multiple" formControlName="adoptPet">
+              <nz-select nzMode="multiple" formControlName="adoptPetId">
                 <nz-option
                   *ngFor="let option of availablePetsList"
                   [nzLabel]="option.name"
-                  [nzValue]="option.name"
+                  [nzValue]="option.id"
                 ></nz-option>
               </nz-select>
             </nz-form-control>
@@ -86,19 +86,29 @@
               <nz-form-control nzErrorTip="Please input your phone number">
                 <nz-form-label nzRequired>Phone Number</nz-form-label>
                 <nz-input-group>
-                  <input type="number" nz-input formControlName="phoneNumber" />
+                  <input type="text" nz-input formControlName="phoneNumber" />
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
 
             <nz-form-item>
-              <nz-form-control nzErrorTip="Please input your email">
+              <nz-form-control [nzErrorTip]="emailErrorTips">
                 <nz-form-label nzRequired>Email</nz-form-label>
                 <nz-input-group>
                   <input type="text" nz-input formControlName="email" />
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
+
+            <ng-template #emailErrorTips let-control>
+              @if (control.errors?.['email']) {
+                Please input proper email address
+              }
+    
+              @if (control.errors?.['required']) {
+                Please input your email
+              }
+            </ng-template>
 
             <nz-divider class="col-span-full"> </nz-divider>
             <div class="col-span-full text-xl font-bold text-left">
@@ -149,8 +159,8 @@
                 <nz-select formControlName="householdType">
                   <nz-option
                     *ngFor="let option of houseHoldType"
-                    [nzLabel]="option"
-                    [nzValue]="option"
+                    [nzLabel]="capitalizeFirstLetter(option.value)"
+                    [nzValue]="option.value"
                   ></nz-option>
                 </nz-select>
               </nz-form-control>
@@ -161,19 +171,17 @@
                 <nz-form-label nzRequired
                   >Do you own or rent your home</nz-form-label
                 >
-                <nz-select formControlName="houseOwnership">
+                <nz-select formControlName="houseOwnershipId">
                   <nz-option
                     *ngFor="let option of houseOwnership"
-                    [nzLabel]="option"
-                    [nzValue]="option"
+                    [nzLabel]="capitalizeFirstLetter(option.value)"
+                    [nzValue]="option.id"
                   ></nz-option>
                 </nz-select>
               </nz-form-control>
             </nz-form-item>
 
-            <nz-form-item
-              *ngIf="applicationForm.value.houseOwnership === 'Rent'"
-            >
+            <nz-form-item *ngIf="applicationForm.value.houseOwnershipId === 1">
               <nz-form-control nzErrorTip="Please select the answer">
                 <nz-form-label nzRequired
                   >Does your lease allow pets</nz-form-label
@@ -240,7 +248,7 @@
           <!-- Household Info Array -->
           <ng-container
             *ngIf="
-              applicationForm.value.householdType !== 'Single' &&
+              applicationForm.value.householdType !== 'single' &&
               applicationForm.value.householdType
             "
           >
@@ -248,7 +256,7 @@
               Household Information
             </div>
 
-            <ng-container formArrayName="householdInfo">
+            <ng-container formArrayName="householdMemberInfo">
               <ng-container
                 *ngFor="let info of householdInfoArray.controls; index as i"
               >
@@ -381,7 +389,7 @@
                   home</nz-form-label
                 >
                 <nz-input-group>
-                  <input type="number" nz-input formControlName="hourAlone" />
+                  <input type="number" nz-input formControlName="hoursAlone" />
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
@@ -563,7 +571,7 @@
               References
             </div>
 
-            <ng-container formArrayName="referencesInfo">
+            <ng-container formArrayName="referenceInfo">
               <ng-container
                 *ngFor="let r of referencesInfoArray.controls; index as i"
               >
@@ -586,7 +594,7 @@
                       <nz-form-label nzRequired>Phone Number</nz-form-label>
                       <nz-input-group>
                         <input
-                          type="number"
+                          type="text"
                           nz-input
                           formControlName="phoneNumber"
                         />
@@ -621,5 +629,26 @@
         </div>
       </form>
     </div>
+
+    <ng-container *ngIf="isFormSubmitted">
+      <div class="my-auto">
+        <div class="text-xl font-bold">
+          Your form has been submitted successfully.
+          <br />
+          We will contact you as soon as possible!
+        </div>
+
+        <div class="col-span-full">
+          <button
+            nz-button
+            class="ant-btn-orange my-4"
+            nzSize="large"
+            (click)="routeToAdoptionPage()"
+          >
+            Back to Adoption Page
+          </button>
+        </div>
+      </div>
+    </ng-container>
   </white-card>
 </div>
