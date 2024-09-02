@@ -238,6 +238,9 @@ export class AdoptionApplicationFormComponent {
       );
 
       let formValue = this.applicationForm.value
+      if(this.applicationForm.value.houseOwnershipId === 2) {
+        formValue.allowPets = true; 
+       }
       formValue.petsInfo = petsInfoValue
       formValue.childrenInfo = childrenInfoValue
 
