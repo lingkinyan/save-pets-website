@@ -57,7 +57,7 @@ export class AdoptionApplicationFormComponent {
     firstName: ["", [Validators.required]],
     lastName: ["", [Validators.required]],
     age: ["", [Validators.required]],
-    socialMediaAccount: [""],
+    socialMediaAccount: ["", Validators.required],
     phoneNumber: ["", [Validators.required]],
     email: ["", [Validators.email, Validators.required]],
     address: ["", [Validators.required]],
