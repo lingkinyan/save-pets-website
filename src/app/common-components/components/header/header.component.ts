@@ -34,7 +34,7 @@ export class HeaderComponent {
 
   routeTo(site: string): void {
     if (site === "ig") {
-      window.open("https://www.instagram.com");
+      window.open("https://www.instagram.com/petsaveorg/");
     } else {
       this.visible = false;
 

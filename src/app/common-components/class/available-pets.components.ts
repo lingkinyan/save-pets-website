@@ -3,6 +3,101 @@ import { PetCategory, PetInfo, PetSex } from "./pet-info.component";
 export class AvailablePets {
   static availablePets: PetInfo[] = [
     {
+      id: 8,
+      name: "Chase",
+      sex: PetSex.M,
+      dob: "2023-09-21",
+      category: PetCategory.DOG,
+      breed: "Black Labrador Retriever",
+      weight: 44,
+      imageList: [
+        "pets/chase/chase-1.jpeg",
+        "pets/chase/chase-2.jpeg",
+        "pets/chase/chase-3.jpeg",
+        "pets/chase/chase-4.jpeg",
+      ],
+      color: "Black",
+      healthStatus: "Vaccinations up to date, spayed / neutered.",
+      personality: "",
+      houseTrained: true,
+      idealFamily: "Other dogs, children.",
+      characteristics: "Affectionate, Loyal, Playful, Loves, Smart, Friendly, Gentle",
+      description:
+        "This sweet pup is about 1 year old, neutered, and weighs 44 pounds. Chase is a lovely, active dog who adores people and enjoys playing with other dogs. He is not timid around new faces and loves to run. He doesn’t guard his food, is very brave, and has a great fondness for sticks and balls. He is also house-trained.",
+    },
+    {
+      id: 9,
+      name: "Perla",
+      sex: PetSex.F,
+      dob: "2022-03-21",
+      category: PetCategory.DOG,
+      breed: "Black Labrador Retriever",
+      weight: 57,
+      imageList: [
+        "pets/perla/perla-1.jpeg",
+        "pets/perla/perla-2.jpeg",
+        "pets/perla/perla-3.jpeg",
+      ],
+      color: "Black",
+      healthStatus: "Vaccinations up to date, spayed / neutered.",
+      personality: "",
+      houseTrained: true,
+      idealFamily: "Other dogs, cats, children.",
+      characteristics: "Affectionate, Gentle, Loves, Loyal, Playful, Quiet, Smart, Friendly",
+      description:
+        "This adorable 2 to 3 year-old girl is spayed and weighs 57 pounds. She is a mellow, calm, and quiet pup, sweet and loving towards people, and great with both other dogs and cats. Perla has a wonderful nature and is an active dog; she enjoys going for walks and playing with her friends. She is friendly and affectionate, even with new people, and she is fully house-trained.",
+    },
+    {
+      id: 10,
+      name: "Luna",
+      sex: PetSex.F,
+      dob: "2022-09-21",
+      category: PetCategory.DOG,
+      breed: "Mixed",
+      weight: 44,
+      imageList: [
+        "pets/luna/luna-1.jpeg",
+        "pets/luna/luna-2.jpeg",
+        "pets/luna/luna-3.jpeg",
+        "pets/luna/luna-4.jpeg",
+        "pets/luna/luna-5.jpeg",
+      ],
+      color: "Black",
+      healthStatus: "Vaccinations up to date, spayed / neutered.",
+      personality: "",
+      houseTrained: true,
+      idealFamily: "Other dogs, cats, children.",
+      characteristics: "Curious, Friendly, Gentle, Independent, Loves, Loyal, Playful, Quiet",
+      description:
+        "This adorable 2-year-old girl is spayed and weighs 20 kg (44 lbs). She is a mellow, sweet pup who loves people and is good with other dogs and kids. Luna's wonderful nature makes her ready for her forever home. As an active dog, she enjoys going for walks and playing with her friends. While Luna may be a little timid at first, she will warm up in a few days and show her sweet personality to everyone around her.",
+    },
+    {
+      id: 11,
+      name: "Rich",
+      sex: PetSex.M,
+      dob: "2022-09-21",
+      category: PetCategory.DOG,
+      breed: "Mixed",
+      weight: 21,
+      imageList: [
+        "pets/rich/rich-1.jpeg",
+        "pets/rich/rich-2.jpeg",
+        "pets/rich/rich-3.jpeg",
+        "pets/rich/rich-4.jpeg",
+      ],
+      color: "Brindle, Golden, White / Cream",
+      healthStatus: "Vaccinations up to date, spayed / neutered.",
+      personality: "",
+      houseTrained: true,
+      idealFamily: "Other dogs, cats, children.",
+      characteristics: "Affectionate, Friendly, Brave, Funny, Gentle, Independent, Loves, Loyal, Playful, Quiet, Smart",
+      description:
+        "A 2-year-old neutered male who weighs 9.5 kg! Rich is a sweet pup who adores his owner. He gets along well with other dogs and cats. An active dog, he loves going for walks and is good on a leash. Rich also has a healthy appetite! Although he needed a few days to adjust to his new home, he quickly settled in.",
+    },
+  ];
+
+  static adoptedPets = [
+    {
       id: 3,
       name: "Toto",
       sex: PetSex.M,
@@ -92,9 +187,7 @@ export class AvailablePets {
       description:
         "A stunning 3-year-old husky girl weighing 23 kg. She is up-to-date on all vaccinations, spayed, and microchipped. <br>Lisa loves children and is gentle with other dogs, making her a great addition to many families. <br>When she's not playing, she's happy to accompany children who are reading or watching TV, and she even enjoys a relaxing bath.",
     },
-  ];
 
-  static adoptedPets = [
     {
       id: 7,
       name: "Suki",
