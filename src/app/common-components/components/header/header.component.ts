@@ -44,6 +44,7 @@ export class HeaderComponent {
         }
       });
 
+      
       this.router.navigate([site]);
 
       setTimeout(() => {

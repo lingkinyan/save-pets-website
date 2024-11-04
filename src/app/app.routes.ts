@@ -36,6 +36,13 @@ export const routes: Routes = [
         (m) => m.ContactUsModule
       ),
   },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./module/admin/admin.module').then(
+        (m) => m.AdminModule
+      ),
+  },
 
   { path: '**', component: HomeLandingComponent },
   
