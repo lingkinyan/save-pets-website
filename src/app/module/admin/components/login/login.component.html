@@ -4,30 +4,85 @@
 
 <div class="grid grid-cols-4">
   <white-card class="px-12 col-span-full lg:col-start-2 lg:col-span-2">
-    <form nz-form [formGroup]="loginForm" class="my-auto grid gap-8">
-      <nz-form-item>
-        <nz-form-control nzErrorTip="Please enter the email">
-          <nz-form-label nzRequired>Email</nz-form-label>
-          <nz-input-group nzPrefixIcon="user">
-            <input type="text" nz-input formControlName="email" />
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
+    <ng-container *ngIf="!isLogin">
+      <ng-container *ngIf="!loginSuccess">
+        <form nz-form [formGroup]="loginForm" class="my-auto grid gap-8">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please enter the email">
+              <nz-form-label nzRequired>Email</nz-form-label>
+              <nz-input-group nzPrefixIcon="user">
+                <input type="text" nz-input formControlName="email" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
 
-      <nz-form-item>
-        <nz-form-control nzErrorTip="Please enter the password">
-          <nz-form-label nzRequired>Password</nz-form-label>
-          <nz-input-group nzPrefixIcon="lock">
-            <input [type]="isPassword" nz-input formControlName="password" />
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please enter the password">
+              <nz-form-label nzRequired>Password</nz-form-label>
+              <nz-input-group [nzSuffix]="suffixTemplate" nzPrefixIcon="lock">
+                <input
+                  [type]="isPassword"
+                  nz-input
+                  formControlName="password"
+                />
 
-      <div class="flex justify-center">
-        <button nz-button class="ant-btn-orange" nzSize="large" [disabled]="!loginForm.valid">
-          <span class="flex justify-center" (click)="login()"> Login</span>
-        </button>
+                <ng-template #suffixTemplate>
+                  <span
+                    class="material-icons cursor-pointer"
+                    (click)="changeVisible()"
+                  >
+                    {{
+                      isPassword === "password"
+                        ? "visibility"
+                        : "visibility_off"
+                    }}
+                  </span>
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <div class="col-span-full text-[red]" *ngIf="showErrorMsg">
+            Please check again your email and password.
+          </div>
+
+          <div class="flex justify-center">
+            <button
+              nz-button
+              class="ant-btn-orange"
+              nzSize="large"
+              [disabled]="!loginForm.valid"
+              (click)="login()"
+            >
+              <span class="flex justify-center"> Login</span>
+            </button>
+          </div>
+        </form>
+      </ng-container>
+
+      <ng-container #successTpl *ngIf="loginSuccess"></ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="isLogin">
+      <h3 class="text-center">
+        You have login as
+        <br />
+        <span class="font-bold my-4">
+          {{ loginEmail }}
+        </span>
+      </h3>
+
+      <div class="flex justify-center my-4" (click)="logout()">
+        <button nz-button class="ant-btn-orange">Logout</button>
       </div>
-    </form>
+    </ng-container>
   </white-card>
 </div>
+
+<ng-template #successTpl>
+  <div class="text-xl text-center">{{ action }} Success!</div>
+
+  <div class="my-4 text-xl text-center">
+    Redirect to home page in {{ redirectSecond }} seconds.
+  </div>
+</ng-template>

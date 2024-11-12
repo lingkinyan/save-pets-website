@@ -1,24 +1,26 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { AdminRoutingModule } from './admin-routing.module';
-import { CommonComponentModule } from '../../common-components/common-component.components';
-import { NzFormModule } from 'ng-zorro-antd/form';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzSelectModule } from 'ng-zorro-antd/select';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzTableModule } from 'ng-zorro-antd/table';
-import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
-import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
-import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-import { AdminLandingComponent } from './admin-landing/admin-landing.component';
-import { LoginComponent } from './components/login/login.component';
-
+import { AdminRoutingModule } from "./admin-routing.module";
+import { CommonComponentModule } from "../../common-components/common-component.components";
+import { NzFormModule } from "ng-zorro-antd/form";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NzDividerModule } from "ng-zorro-antd/divider";
+import { NzInputModule } from "ng-zorro-antd/input";
+import { NzSelectModule } from "ng-zorro-antd/select";
+import { NzButtonModule } from "ng-zorro-antd/button";
+import { NzTableModule } from "ng-zorro-antd/table";
+import { NzCheckboxModule } from "ng-zorro-antd/checkbox";
+import { NzBreadCrumbModule } from "ng-zorro-antd/breadcrumb";
+import { NzSkeletonModule } from "ng-zorro-antd/skeleton";
+import { AdminLandingComponent } from "./admin-landing/admin-landing.component";
+import { LoginComponent } from "./components/login/login.component";
+import { AddPetComponent } from "./components/add-pet/add-pet.component";
+import { NzDatePickerModule } from "ng-zorro-antd/date-picker";
+import { NzUploadModule } from "ng-zorro-antd/upload";
 
 @NgModule({
-  declarations: [AdminLandingComponent, LoginComponent],
+  declarations: [AdminLandingComponent, LoginComponent, AddPetComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -33,7 +35,9 @@ import { LoginComponent } from './components/login/login.component';
     NzTableModule,
     NzCheckboxModule,
     NzBreadCrumbModule,
-    NzSkeletonModule
-  ]
+    NzSkeletonModule,
+    NzDatePickerModule,
+    NzUploadModule,
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}

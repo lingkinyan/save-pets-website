@@ -1,14 +1,16 @@
-import { CommonModule, DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './common-components/components/header/header.component';
+import { CommonModule, DatePipe } from "@angular/common";
+import { Component } from "@angular/core";
+import { Router, RouterOutlet } from "@angular/router";
+import { HeaderComponent } from "./common-components/components/header/header.component";
+import { HttpClientModule } from "@angular/common/http";
+import { CommonComponentModule } from "./common-components/common-component.components";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   standalone: true,
-  imports: [RouterOutlet, CommonModule, HeaderComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.less',
+  imports: [RouterOutlet, CommonModule, HeaderComponent, CommonComponentModule, HttpClientModule],
+  templateUrl: "./app.component.html",
+  styleUrl: "./app.component.less",
 })
 export class AppComponent {
   constructor(private router: Router) {}

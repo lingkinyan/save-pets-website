@@ -11,7 +11,7 @@
 </div>
 
 <div class="px-4 md:px-24 text-center my-12">
-  <div class="grid lg:grid-cols-2">
+  <div class="grid lg:grid-cols-2 gap-4">
     <nz-select
       [nzMaxTagCount]="3"
       nzMode="multiple"
@@ -23,6 +23,16 @@
       <nz-option nzValue="CAT" nzLabel="Cat"></nz-option>
       <nz-option nzValue="SMALL_PET" nzLabel="Small Pet"></nz-option>
     </nz-select>
+
+    <div class="grid lg:grid-cols-4" *ngIf="isAdmin">
+      <button
+        nz-button
+        class="flex justify-center text-center ant-btn-orange lg:col-start-4"
+        (click)="addPet()"
+      >
+        <span class="my-auto"> Add Pet </span>
+      </button>
+    </div>
   </div>
 
   <div class="col-span-full col-start-1">

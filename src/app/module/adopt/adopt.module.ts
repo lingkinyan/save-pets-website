@@ -15,11 +15,12 @@ import { PetInfoComponent } from "./components/pet-info/pet-info.component";
 import { NzBreadCrumbModule } from "ng-zorro-antd/breadcrumb";
 import { NzCarouselModule } from "ng-zorro-antd/carousel";
 import { TextAlignComponent } from "./components/text-align/text-align.component";
-import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzDividerModule } from "ng-zorro-antd/divider";
 import { AdoptionApplicationFormComponent } from "./components/adoption-application-form/adoption-application-form.component";
 import { NzFormModule } from "ng-zorro-antd/form";
 import { NzInputModule } from "ng-zorro-antd/input";
 import { NzSkeletonModule } from "ng-zorro-antd/skeleton";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NzSkeletonModule } from "ng-zorro-antd/skeleton";
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     AdoptRoutingModule,
     CommonComponentModule,
     NzTimelineModule,

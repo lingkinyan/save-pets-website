@@ -27,6 +27,10 @@ export class GetDropdownService {
   }
 
   getPetTypeCategory(): Observable<any> {
-    return this.http.get(`https://api.petsaveorg.com/api/v1/pets/categories`)
+    return this.http.get(`https://api.petsaveorg.com/api/v1/pets/categories`);
+  }
+
+  getGender(): Observable<any> {
+    return this.http.get(`${url}/genders`);
   }
 }

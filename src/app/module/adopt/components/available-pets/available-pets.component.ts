@@ -26,9 +26,14 @@ export class AvailablePetsComponent {
 
   copiedAdoptedPets: any[] = [];
 
+  isAdmin: boolean = false;
+
   ngOnInit(): void {
     this.copiedAvailablePets = AvailablePets.availablePets;
     this.copiedAdoptedPets = AvailablePets.adoptedPets;
+    this.isAdmin = localStorage.getItem('token') ? true : false
+
+    console.log()
   }
 
   selectedCategoryChange(category: string[]): void {
@@ -59,5 +64,9 @@ export class AvailablePetsComponent {
 
   goToDetailsPage(id: number): void {
     this.router.navigate(["/adopt/pet-info/" + id]);
+  }
+
+  addPet(): void {
+    this.router.navigate(["/admin/add-pet"]);
   }
 }

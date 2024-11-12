@@ -1,0 +1,155 @@
+<div class="px-4 md:px-28 mt-8 mb-4">
+  <nz-breadcrumb>
+    <nz-breadcrumb-item>Admin</nz-breadcrumb-item>
+    <nz-breadcrumb-item>Add New Pet </nz-breadcrumb-item>
+  </nz-breadcrumb>
+</div>
+
+<div class="text-center mt-8 mb-4">
+  <h1>Add New Pet</h1>
+</div>
+
+<div class="px-4 md:px-24 text-center gap-4">
+  <white-card>
+    <div class="gap-4">
+      <form nz-form [formGroup]="newPetForm" class="my-auto">
+        <div class="grid lg:grid-cols-2 gap-4">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input the pet's name">
+              <nz-form-label nzRequired>Name</nz-form-label>
+              <nz-input-group>
+                <input type="text" nz-input formControlName="name" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please select category">
+              <nz-form-label nzRequired
+                >Please select the category</nz-form-label
+              >
+              <nz-select formControlName="categoryId">
+                <nz-option
+                  *ngFor="let option of categoryOptions"
+                  [nzLabel]="capitalizeFirstLetter(option.value)"
+                  [nzValue]="option.id"
+                ></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please select gender">
+              <nz-form-label nzRequired>Please select the gender</nz-form-label>
+              <nz-select formControlName="genderId">
+                <nz-option
+                  *ngFor="let option of genderOptions"
+                  [nzLabel]="capitalizeFirstLetter(option.value)"
+                  [nzValue]="option.id"
+                ></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please enter the breed">
+              <nz-form-label nzRequired>Breed</nz-form-label>
+              <nz-select formControlName="breed">
+                <nz-input-group>
+                  <input type="text" nz-input formControlName="breed" />
+                </nz-input-group>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please select the date of birth">
+              <nz-form-label nzRequired>Date of birth</nz-form-label>
+              <nz-date-picker formControlName="dateOfBirth"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please enter the weight">
+              <nz-form-label nzRequired>Weight in pounds</nz-form-label>
+              <nz-input-group>
+                <input type="number" nz-input formControlName="weight" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please enter the color">
+              <nz-form-label nzRequired>Color</nz-form-label>
+              <nz-input-group>
+                <input type="text" nz-input formControlName="color" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please select the type">
+              <nz-form-label nzRequired>House Trained</nz-form-label>
+              <nz-select formControlName="houseTrained">
+                <nz-option
+                  *ngFor="let option of yesNoOptions"
+                  [nzLabel]="option.label"
+                  [nzValue]="option.value"
+                ></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item class="col-span-full">
+            <nz-form-control nzErrorTip="Please enter the health status">
+              <nz-form-label nzRequired>Health Status</nz-form-label>
+              <nz-input-group>
+                <input type="text" nz-input formControlName="healthStatus" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item class="col-span-full">
+            <nz-form-control nzErrorTip="Please enter the ideal family">
+              <nz-form-label nzRequired>Ideal Family</nz-form-label>
+              <nz-input-group>
+                <input type="text" nz-input formControlName="idealFamily" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item class="col-span-full">
+            <nz-form-control nzErrorTip="Please enter the characteristics">
+              <nz-form-label nzRequired>Characteristics</nz-form-label>
+
+              <textarea nz-input formControlName="characteristics"></textarea>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item class="col-span-full">
+            <nz-form-control nzErrorTip="Please enter the description">
+              <nz-form-label nzRequired>Description</nz-form-label>
+
+              <textarea nz-input formControlName="description"></textarea>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-divider class="col-span-full"> </nz-divider>
+
+          <div class="col-span-full">
+            <nz-upload
+              nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              nzListType="picture"
+              [(nzFileList)]="fileList"
+            >
+              <button nz-button class="ant-btn-orange my-2">
+                <span nz-icon nzType="upload"></span>
+                Upload
+              </button>
+            </nz-upload>
+          </div>
+        </div>
+      </form>
+    </div>
+  </white-card>
+</div>

@@ -5,15 +5,17 @@ import {
   NzWaveModule,
   NzWaveRenderer,
   provideNzWave
-} from "./chunk-K4GSXJ66.js";
-import "./chunk-2G3GM3MG.js";
-import "./chunk-YL2POWHQ.js";
-import "./chunk-A637DYGK.js";
-import "./chunk-UJX4J5CF.js";
-import "./chunk-B77K27TT.js";
-import "./chunk-HHI3MFSG.js";
-import "./chunk-Z6MW6ZG3.js";
-import "./chunk-FANSKX4D.js";
+} from "./chunk-XUDBKSBE.js";
+import "./chunk-S6XKPONZ.js";
+import "./chunk-Y7QP7CSK.js";
+import "./chunk-YBGHPOLV.js";
+import "./chunk-E3WUEDZQ.js";
+import "./chunk-K7ZMTUXG.js";
+import "./chunk-L4PUJ5J4.js";
+import "./chunk-OVRYRXIP.js";
+import "./chunk-XLRD4WBL.js";
+import "./chunk-SB7K7NPI.js";
+import "./chunk-JMJQA5TZ.js";
 import "./chunk-J4B6MK7R.js";
 export {
   NZ_WAVE_GLOBAL_CONFIG,

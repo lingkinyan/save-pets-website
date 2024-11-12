@@ -1,7 +1,9 @@
-import { HttpClient, HttpResponse } from "@angular/common/http";
+import { HttpClient, HttpParams, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
 import { LoginInfo } from "../../class/user.components";
+import { Observable } from "rxjs";
+import { catchError } from "rxjs/operators";
+import { of } from "rxjs";
 
 const url = "https://api.petsaveorg.com/api/v1/users";
 
@@ -11,8 +13,16 @@ const url = "https://api.petsaveorg.com/api/v1/users";
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  login(loginInfo: LoginInfo): Observable<any> {
-    return this.http.post(`${url}/`, loginInfo);
-  }
+  login(loginInfo: LoginInfo): Observable<HttpResponse<string>> {
+    const apiUrl = `${url}?email=${loginInfo.email}&password=${loginInfo.password}`;
 
+    return this.http
+      .get(apiUrl, { responseType: "text", observe: "response" }) // No need to specify <string> here
+      .pipe(
+        catchError((error) => {
+          console.error("Login request failed", error);
+          return of(error); // Return the error as an observable
+        })
+      );
+  }
 }
