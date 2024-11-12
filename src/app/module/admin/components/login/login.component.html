@@ -60,21 +60,29 @@
         </form>
       </ng-container>
 
-      <ng-container #successTpl *ngIf="loginSuccess"></ng-container>
+      <ng-container *ngIf="loginSuccess">
+        <ng-container *ngTemplateOutlet="successTpl"></ng-container>
+      </ng-container>
     </ng-container>
 
     <ng-container *ngIf="isLogin">
-      <h3 class="text-center">
-        You have login as
-        <br />
-        <span class="font-bold my-4">
-          {{ loginEmail }}
-        </span>
-      </h3>
+      <ng-container *ngIf="!logoutSuccess">
+        <h3 class="text-center">
+          You have login as
+          <br />
+          <span class="font-bold my-4">
+            {{ loginEmail }}
+          </span>
+        </h3>
 
-      <div class="flex justify-center my-4" (click)="logout()">
-        <button nz-button class="ant-btn-orange">Logout</button>
-      </div>
+        <div class="flex justify-center my-4" (click)="logout()">
+          <button nz-button class="ant-btn-orange">Logout</button>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="logoutSuccess">
+        <ng-container *ngTemplateOutlet="successTpl"></ng-container>
+      </ng-container>
     </ng-container>
   </white-card>
 </div>

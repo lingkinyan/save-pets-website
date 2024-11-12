@@ -42,6 +42,8 @@ export class LoginComponent {
 
   loginEmail = "";
 
+  logoutSuccess: boolean = false;
+
   ngOnInit(): void {
     this.isLogin = localStorage.getItem("token") ? true : false;
 
@@ -83,6 +85,7 @@ export class LoginComponent {
   logout(): void {
     localStorage.removeItem("token");
     this.action = "Logout";
+    this.logoutSuccess = true;
     this.routerToHomePage();
   }
 

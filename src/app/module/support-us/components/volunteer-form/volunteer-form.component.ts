@@ -24,7 +24,7 @@ export class VolunteerFormComponent {
     this.title.setTitle("Volunteer Application Form | Pet Save");
   }
 
-  timetable = {};
+  timetable:any = {};
 
   isFormSubmitted: boolean = false;
 
