@@ -97,33 +97,11 @@ export class AvailablePets {
       houseTrained: true,
       idealFamily: "Other dogs, cats, children.",
       characteristics:
-        "Affectionate, Curious, Friendly, Gentle, Loves, Loyal, Playful, Quiet, Smart",
+        "Affectionate, Curious, Friendly, Gentle, Loves, Loyal, Playful, Quiet, Smart, Couch",
       description:
-        "Sally is five years old and 77 lbs. spayed and her vaccinations are up to date. <br><br>Sally is a beautiful girl with a calm and sweet temperament. She is potty trained and walks well on her leash. <br><br>Sally is a quiet, well-behaved dog who loves petting and cuddling. She and Harry are a couple and are always together, so prefer they be adopted by the same family.",
+        "The dog's description is based on foster information and our best knowledge. Please be aware that the dog may behave differently with various people and in homes.<br><br>Sally is five years old and 77 lbs. spayed and her vaccinations are up to date.<br><br>Sally is a beautiful girl with a calm and sweet temperament. She is potty trained and walks well on her leash. Sally is a quiet, well-behaved dog who loves petting and cuddling.",
     },
-    {
-      id: 14,
-      name: "Harry",
-      sex: PetSex.M,
-      dob: "2019-11-03",
-      category: PetCategory.DOG,
-      breed: "Yellow Labrador Retriever ",
-      weight: 72,
-      imageList: [
-        "pets/harry/harry-1.jpg",
-        "pets/harry/harry-2.jpg",
-        "pets/harry/harry-3.jpg",
-      ],
-      color: "Apricot / Beige",
-      healthStatus: "Vaccinations up to date, spayed / neutered.",
-      personality: "",
-      houseTrained: true,
-      idealFamily: "Other dogs, cats, children.",
-      characteristics:
-        "Curious, Friendly, Funny, Gentle, Loves, Loyal, Playful, Quiet, Smart",
-      description:
-        "Harry is a five-year-old, 72-pound neutered male with up-to-date vaccinations.<br><br>He’s a handsome boy with an active yet mellow personality. He loves water and is well-behaved, demonstrating excellent obedience. Harry enjoys being petted and is friendly and gentle with both people and other dogs.<br><br>Harry is a couple with Sally, and they are always together. We would prefer that they be adopted by the same family.",
-    },
+
     {
       id: 15,
       name: "Morning",
@@ -206,10 +184,7 @@ export class AvailablePets {
       category: PetCategory.DOG,
       breed: "Mixed Breed ",
       weight: 15,
-      imageList: [
-        "pets/coco/coco-1.jpeg",
-        "pets/coco/coco-2.jpeg",
-      ],
+      imageList: ["pets/coco/coco-1.jpeg", "pets/coco/coco-2.jpeg"],
       color: "",
       healthStatus: "",
       personality: "",
@@ -228,9 +203,7 @@ export class AvailablePets {
       category: PetCategory.DOG,
       breed: "Mixed Breed ",
       weight: 22,
-      imageList: [
-        "pets/mina/mina-1.jpg",
-      ],
+      imageList: ["pets/mina/mina-1.jpg"],
       color: "White / Cream",
       healthStatus: "Vaccinations up to date, spayed / neutered.",
       personality: "",
@@ -395,9 +368,7 @@ export class AvailablePets {
       category: PetCategory.DOG,
       breed: "Black Labrador Retriever",
       weight: 57,
-      imageList: [
-        "pets/perla/perla-1.jpeg",
-      ],
+      imageList: ["pets/perla/perla-1.jpeg"],
       color: "Black",
       healthStatus: "Vaccinations up to date, spayed / neutered.",
       personality: "",
@@ -416,9 +387,7 @@ export class AvailablePets {
       category: PetCategory.DOG,
       breed: "Mixed",
       weight: 21,
-      imageList: [
-        "pets/rich/rich-1.jpeg",
-      ],
+      imageList: ["pets/rich/rich-1.jpeg"],
       color: "Brindle, Golden, White / Cream",
       healthStatus: "Vaccinations up to date, spayed / neutered.",
       personality: "",
@@ -428,6 +397,25 @@ export class AvailablePets {
         "Affectionate, Friendly, Brave, Funny, Gentle, Independent, Loves, Loyal, Playful, Quiet, Smart",
       description:
         "A 2-year-old neutered male who weighs 9.5 kg! Rich is a sweet pup who adores his owner. He gets along well with other dogs and cats. An active dog, he loves going for walks and is good on a leash. Rich also has a healthy appetite! Although he needed a few days to adjust to his new home, he quickly settled in.",
+    },
+    {
+      id: 14,
+      name: "Harry",
+      sex: PetSex.M,
+      dob: "2019-11-03",
+      category: PetCategory.DOG,
+      breed: "Yellow Labrador Retriever ",
+      weight: 72,
+      imageList: ["pets/harry/harry-1.jpg"],
+      color: "Apricot / Beige",
+      healthStatus: "Vaccinations up to date, spayed / neutered.",
+      personality: "",
+      houseTrained: true,
+      idealFamily: "Other dogs, cats, children.",
+      characteristics:
+        "Curious, Friendly, Funny, Gentle, Loves, Loyal, Playful, Quiet, Smart",
+      description:
+        "Harry is a five-year-old, 72-pound neutered male with up-to-date vaccinations.<br><br>He’s a handsome boy with an active yet mellow personality. He loves water and is well-behaved, demonstrating excellent obedience. Harry enjoys being petted and is friendly and gentle with both people and other dogs.<br><br>Harry is a couple with Sally, and they are always together. We would prefer that they be adopted by the same family.",
     },
   ];
 }
