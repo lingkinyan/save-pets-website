@@ -2,8 +2,8 @@ import { CommonModule, DatePipe } from "@angular/common";
 import { Component } from "@angular/core";
 import { Router, RouterOutlet } from "@angular/router";
 import { HeaderComponent } from "./common-components/components/header/header.component";
-import { HttpClientModule } from "@angular/common/http";
 import { CommonComponentModule } from "./common-components/common-component.components";
+import { HttpClientModule } from "@angular/common/http";
 
 @Component({
   selector: "app-root",
@@ -13,7 +13,7 @@ import { CommonComponentModule } from "./common-components/common-component.comp
   styleUrl: "./app.component.less",
 })
 export class AppComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router,) {}
 
   ngOnInit() {
     this.router.events.subscribe(() => {

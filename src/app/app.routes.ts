@@ -1,6 +1,5 @@
 import { Routes } from "@angular/router";
 import { HomeLandingComponent } from "./module/home/home-landing/home-landing.component";
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 export const routes: Routes = [
   {

@@ -20,7 +20,8 @@ import { AdoptionApplicationFormComponent } from "./components/adoption-applicat
 import { NzFormModule } from "ng-zorro-antd/form";
 import { NzInputModule } from "ng-zorro-antd/input";
 import { NzSkeletonModule } from "ng-zorro-antd/skeleton";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { AuthInterceptor } from "../../common-components/services/users/auth.interceptor";
 
 @NgModule({
   declarations: [

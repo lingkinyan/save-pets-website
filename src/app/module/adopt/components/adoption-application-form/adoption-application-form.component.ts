@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import {
   FormArray,
   FormGroup,
@@ -13,6 +13,8 @@ import { Options } from "../../../../common-components/class/options.component";
 import { GetDropdownService } from "../../../../common-components/services/get-dropdown.service";
 import { forkJoin } from "rxjs";
 import { PostFormService } from "../../../../common-components/services/post-form.service";
+import { HttpClient } from "@angular/common/http";
+import { AuthInterceptor } from "../../../../common-components/services/users/auth.interceptor";
 
 @Component({
   selector: "app-adoption-application-form",
@@ -26,7 +28,8 @@ export class AdoptionApplicationFormComponent {
     private router: Router,
     private title: Title,
     private getDropdownService: GetDropdownService,
-    private postFormService: PostFormService
+    private postFormService: PostFormService,
+    private http: HttpClient
   ) {
     this.title.setTitle("Adopt Application Form | Pet Save");
   }
@@ -95,10 +98,11 @@ export class AdoptionApplicationFormComponent {
   isLoaded: boolean = false;
 
   ngOnInit(): void {
-    forkJoin(
+    
+    forkJoin([
       this.getDropdownService.getHouseHoldType(),
-      this.getDropdownService.getHouseOwnershipType()
-    ).subscribe((results) => {
+      this.getDropdownService.getHouseOwnershipType(),
+    ]).subscribe((results) => {
       this.houseHoldType = results[0];
       this.houseOwnership = results[1];
       this.isLoaded = true;
@@ -237,25 +241,23 @@ export class AdoptionApplicationFormComponent {
         }
       );
 
-      let formValue = this.applicationForm.value
-      if(this.applicationForm.value.houseOwnershipId === 2) {
-        formValue.allowPets = true; 
-       }
-      formValue.petsInfo = petsInfoValue
-      formValue.childrenInfo = childrenInfoValue
+      let formValue = this.applicationForm.value;
+      if (this.applicationForm.value.houseOwnershipId === 2) {
+        formValue.allowPets = true;
+      }
+      formValue.petsInfo = petsInfoValue;
+      formValue.childrenInfo = childrenInfoValue;
 
-      this.postFormService
-        .postAdoptionOrFosterForm(formValue)
-        .subscribe(
-          (ok) => {
-            this.applicationForm.reset();
+      this.postFormService.postAdoptionOrFosterForm(formValue).subscribe(
+        (ok) => {
+          this.applicationForm.reset();
 
-            this.isFormSubmitted = true;
-          },
-          (err) => {
-            FormUpdate.updateTreeValidity(this.applicationForm);
-          }
-        );
+          this.isFormSubmitted = true;
+        },
+        (err) => {
+          FormUpdate.updateTreeValidity(this.applicationForm);
+        }
+      );
     } else {
       FormUpdate.updateTreeValidity(this.applicationForm);
     }

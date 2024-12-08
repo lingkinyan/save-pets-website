@@ -5,6 +5,7 @@ import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { UserService } from "../../../../common-components/services/users/user.service";
 import { jwtDecode } from "jwt-decode";
+import { HttpClient } from "@angular/common/http";
 @Component({
   selector: "app-login",
   standalone: false,
@@ -16,7 +17,8 @@ export class LoginComponent {
     private fb: NonNullableFormBuilder,
     private title: Title,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {
     this.title.setTitle("Admin Login | Pet Save");
   }

@@ -1,13 +1,12 @@
-import { HttpClient, HttpResponse } from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
 const url = "https://api.petsaveorg.com/api/v1/settings";
-
 @Injectable({
   providedIn: "root",
 })
-export class GetDropdownService {
+export class GetDropdownService{
   constructor(private http: HttpClient) {}
 
   getHouseHoldType(): Observable<any> {

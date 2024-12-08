@@ -17,19 +17,19 @@ export class AboutUsLandingComponent extends IntersectionComponents {
     {
       imgSrc: "about-us/wendymin.jpeg",
       name: "Wendy Min",
-      position: "Co-Funder",
+      position: "Co-Founder",
       des: "I cannot help myself not saving abandoned and stray dogs and cats!",
     },
     {
       imgSrc: "about-us/aprilmiao.jpeg",
       name: "April Miao",
-      position: "Co-Funder",
+      position: "Co-Founder",
       des: "Every pup deserves a loving home. I am passionate about helping animals and giving dogs and cats a second chance.",
     },
     {
       imgSrc: "about-us/jingjingchen.jpeg",
       name: "Jingjing Chen",
-      position: "Co-funder",
+      position: "Co-Founder",
       des: "We are not rescuing stray animals but rescuing the kindness and love of human beings.",
     },
     {

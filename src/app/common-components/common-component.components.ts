@@ -5,7 +5,7 @@ import { WhiteCardComponent } from "./components/white-card/white-card.component
 import { LeftRightCardComponent } from "./components/left-right-card/left-right-card.component";
 import { NzButtonModule } from "ng-zorro-antd/button";
 import { NzSkeletonModule } from "ng-zorro-antd/skeleton";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, provideHttpClient } from "@angular/common/http";
 
 @NgModule({
   declarations: [
