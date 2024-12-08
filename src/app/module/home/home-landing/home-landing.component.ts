@@ -36,7 +36,7 @@ export class HomeLandingComponent extends IntersectionComponents {
     },
   ];
 
-  proposesList = [
+  purposeList = [
     "Rescue abandoned, sick, and/or injured animals ",
     "Find permanent owners for homeless animals ",
     "Provide safe, reliable, and low-cost medical services for cats and dogs ",
