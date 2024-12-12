@@ -18,6 +18,8 @@ import { LoginComponent } from "./components/login/login.component";
 import { AddPetComponent } from "./components/add-pet/add-pet.component";
 import { NzDatePickerModule } from "ng-zorro-antd/date-picker";
 import { NzUploadModule } from "ng-zorro-antd/upload";
+import { NzModalModule } from 'ng-zorro-antd/modal';
+
 
 @NgModule({
   declarations: [AdminLandingComponent, LoginComponent, AddPetComponent],
@@ -38,6 +40,7 @@ import { NzUploadModule } from "ng-zorro-antd/upload";
     NzSkeletonModule,
     NzDatePickerModule,
     NzUploadModule,
+    NzModalModule
   ],
 })
 export class AdminModule {}

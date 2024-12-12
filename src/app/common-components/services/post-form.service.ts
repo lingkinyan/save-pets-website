@@ -5,6 +5,7 @@ import { ContactUsForm } from "../class/form/contact-us-form.components";
 import { VolunteerForm } from "../class/form/volunteer-form.components";
 import { AdoptionForm } from "../class/form/adoption-form.components";
 import { FosterForm } from "../class/form/foster-form.components";
+import { AddPetForm } from "../class/form/add-pet-form";
 
 const url = "https://api.petsaveorg.com/api/v1/forms";
 
@@ -26,4 +27,7 @@ export class PostFormService {
     return this.http.post(`${url}/pets-applications`, form);
   }
 
+  // postAddPetForm(form: AddPetForm): Observable<any> {
+  //   return this.http.post("https://api.petsaveorg.com/api/v1/pets", form);
+  // }
 }

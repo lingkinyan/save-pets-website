@@ -54,10 +54,12 @@
           <nz-form-item>
             <nz-form-control nzErrorTip="Please enter the breed">
               <nz-form-label nzRequired>Breed</nz-form-label>
-              <nz-select formControlName="breed">
-                <nz-input-group>
-                  <input type="text" nz-input formControlName="breed" />
-                </nz-input-group>
+              <nz-select formControlName="breed" nzShowSearch>
+                <nz-option
+                  *ngFor="let option of breedList"
+                  [nzLabel]="option"
+                  [nzValue]="option"
+                ></nz-option>
               </nz-select>
             </nz-form-control>
           </nz-form-item>
@@ -134,22 +136,60 @@
             </nz-form-control>
           </nz-form-item>
 
-          <nz-divider class="col-span-full"> </nz-divider>
-
-          <div class="col-span-full">
-            <nz-upload
-              nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-              nzListType="picture"
-              [(nzFileList)]="fileList"
-            >
-              <button nz-button class="ant-btn-orange my-2">
-                <span nz-icon nzType="upload"></span>
-                Upload
-              </button>
-            </nz-upload>
+          <div class="col-span-full mx-auto">
+            <button nz-button class="ant-btn-orange my-2" (click)="addPet()">
+              Add Pet
+            </button>
           </div>
         </div>
       </form>
     </div>
   </white-card>
 </div>
+
+<!-- Photo Upload -->
+<!-- <div class="col-span-full">
+  <nz-upload
+    [nzAction]="uploadLink"
+    nzListType="picture"
+    [(nzFileList)]="fileList"
+    nzAccept=".jpg, .png, .jpeg"
+  >
+    <button nz-button class="ant-btn-orange my-2">
+      <span nz-icon nzType="upload"></span>
+      Upload
+    </button>
+  </nz-upload>
+</div> -->
+
+<!-- Pop up -->
+<nz-modal [(nzVisible)]="showPopUpModal" [nzClosable]="false" [nzFooter]="null">
+  <ng-container *nzModalContent>
+    <div class="text-center">
+      <div class="grid gap-4">
+        <ng-container *ngIf="isUnauthorized">
+          <div>Sorry you don't have the admin right.</div>
+          <div>If you do, please try to login again</div>
+
+          <div class="mx-auto">
+            <button
+              nz-button
+              class="ant-btn-orange my-2"
+              (click)="routeTo('login')"
+            >
+              <span>Login</span>
+            </button>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="isAdded">
+          <div>{{ newPetForm.value.name }} has added successfully!</div>
+
+          <div>
+            You are routing to the {{ newPetForm.value.name }}'s details page
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>

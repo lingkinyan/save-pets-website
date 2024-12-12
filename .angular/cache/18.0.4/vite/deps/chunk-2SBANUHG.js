@@ -12,6 +12,29 @@ import {
   of
 } from "./chunk-JMJQA5TZ.js";
 
+// node_modules/@angular/cdk/fesm2022/coercion.mjs
+function coerceBooleanProperty(value) {
+  return value != null && `${value}` !== "false";
+}
+function coerceNumberProperty(value, fallbackValue = 0) {
+  return _isNumberValue(value) ? Number(value) : fallbackValue;
+}
+function _isNumberValue(value) {
+  return !isNaN(parseFloat(value)) && !isNaN(Number(value));
+}
+function coerceArray(value) {
+  return Array.isArray(value) ? value : [value];
+}
+function coerceCssPixelValue(value) {
+  if (value == null) {
+    return "";
+  }
+  return typeof value === "string" ? value : `${value}px`;
+}
+function coerceElement(elementOrRef) {
+  return elementOrRef instanceof ElementRef ? elementOrRef.nativeElement : elementOrRef;
+}
+
 // node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-core-environments.mjs
 var environment = {
   isTestMode: false
@@ -35,29 +58,6 @@ function consoleCommonBehavior(consoleFunc, ...args) {
   }
 }
 var warn = (...args) => consoleCommonBehavior((...arg) => console.warn(PREFIX, ...arg), ...args);
-
-// node_modules/@angular/cdk/fesm2022/coercion.mjs
-function coerceBooleanProperty(value) {
-  return value != null && `${value}` !== "false";
-}
-function coerceNumberProperty(value, fallbackValue = 0) {
-  return _isNumberValue(value) ? Number(value) : fallbackValue;
-}
-function _isNumberValue(value) {
-  return !isNaN(parseFloat(value)) && !isNaN(Number(value));
-}
-function coerceArray(value) {
-  return Array.isArray(value) ? value : [value];
-}
-function coerceCssPixelValue(value) {
-  if (value == null) {
-    return "";
-  }
-  return typeof value === "string" ? value : `${value}px`;
-}
-function coerceElement(elementOrRef) {
-  return elementOrRef instanceof ElementRef ? elementOrRef.nativeElement : elementOrRef;
-}
 
 // node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-core-util.mjs
 function arraysEqual(array1, array2) {
@@ -99,6 +99,17 @@ function toCssPixel(value) {
 function valueFunctionProp(prop, ...args) {
   return typeof prop === "function" ? prop(...args) : prop;
 }
+function getElementOffset(elem) {
+  if (!elem.getClientRects().length) {
+    return { top: 0, left: 0 };
+  }
+  const rect = elem.getBoundingClientRect();
+  const win = elem.ownerDocument.defaultView;
+  return {
+    top: rect.top + win.pageYOffset,
+    left: rect.left + win.pageXOffset
+  };
+}
 function isTouchEvent(event) {
   return event.type.startsWith("touch");
 }
@@ -107,6 +118,15 @@ function getEventPosition(event) {
 }
 function isPromise(obj) {
   return !!obj && typeof obj.then === "function" && typeof obj.catch === "function";
+}
+function isNumberFinite(value) {
+  return typeof value === "number" && isFinite(value);
+}
+function toDecimal(value, decimal) {
+  return Math.round(value * Math.pow(10, decimal)) / Math.pow(10, decimal);
+}
+function sum(input, initial = 0) {
+  return input.reduce((previous, current) => previous + current, initial);
 }
 var isBrowser = typeof window !== "undefined";
 var isFirefox = isBrowser && window.mozInnerScreenX != null;
@@ -234,13 +254,13 @@ function getStatusClassNames(prefixCls, status, hasFeedback) {
 }
 
 export {
-  environment,
-  PREFIX,
-  warn,
   coerceNumberProperty,
   coerceArray,
   coerceCssPixelValue,
   coerceElement,
+  environment,
+  PREFIX,
+  warn,
   arraysEqual,
   isNotNil,
   isNil,
@@ -251,12 +271,17 @@ export {
   toNumber,
   toCssPixel,
   valueFunctionProp,
+  getElementOffset,
   isTouchEvent,
   getEventPosition,
+  isPromise,
+  isNumberFinite,
+  toDecimal,
+  sum,
   measureScrollbar,
   wrapIntoObservable,
   canUseDom,
   updateCSS,
   getStatusClassNames
 };
-//# sourceMappingURL=chunk-4N32RHLB.js.map
+//# sourceMappingURL=chunk-2SBANUHG.js.map

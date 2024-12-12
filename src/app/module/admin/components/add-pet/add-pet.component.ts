@@ -6,6 +6,9 @@ import { GetDropdownService } from "../../../../common-components/services/get-d
 import { forkJoin } from "rxjs";
 import { Options } from "../../../../common-components/class/options.component";
 import { NzUploadFile } from "ng-zorro-antd/upload";
+import { PostFormService } from "../../../../common-components/services/post-form.service";
+import { BreedList } from "../../../../common-components/class/breed-list.components";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-add-pet",
@@ -18,7 +21,9 @@ export class AddPetComponent {
     private fb: NonNullableFormBuilder,
     private router: Router,
     private title: Title,
-    private dropdownService: GetDropdownService
+    private dropdownService: GetDropdownService,
+    private postFormService: PostFormService,
+    private http: HttpClient
   ) {
     this.title.setTitle("Add New Pet | Pet Save");
   }
@@ -26,6 +31,12 @@ export class AddPetComponent {
   isFormSubmitted: boolean = false;
 
   isLoaded: boolean = false;
+
+  showPopUpModal: boolean = false;
+
+  isUnauthorized: boolean = false;
+
+  isAdded: boolean = false;
 
   categoryOptions = [];
 
@@ -54,6 +65,10 @@ export class AddPetComponent {
     description: ["", Validators.required],
   });
 
+  uploadLink = "";
+
+  breedList = [];
+
   ngOnInit(): void {
     forkJoin(
       this.dropdownService.getPetTypeCategory(),
@@ -63,10 +78,74 @@ export class AddPetComponent {
       this.genderOptions = results[1];
       this.isLoaded = true;
     });
+
+    this.newPetForm.controls["categoryId"]?.valueChanges.subscribe((v) => {
+      this.newPetForm.controls["breed"]?.setValue("");
+
+      if (v === 1) {
+        this.breedList = BreedList.DogBreedList;
+      } else {
+        this.breedList = BreedList.CatBreedList;
+      }
+    });
   }
 
   capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  addPet(): void {
+    if (this.newPetForm.valid) {
+      let date = new Date(this.newPetForm.value.dateOfBirth);
+      let formValue = {
+        email: localStorage.getItem("email"),
+        name: this.newPetForm.value.name,
+        categoryId: this.newPetForm.value.categoryId,
+        genderId: this.newPetForm.value.genderId,
+        breed: this.newPetForm.value.breed,
+        dateOfBirth: date.toISOString().split("T")[0],
+        weight: this.newPetForm.value.weight,
+        color: this.newPetForm.value.color,
+        healthStatus: this.newPetForm.value.healthStatus,
+        houseTrained: this.newPetForm.value.houseTrained,
+        idealFamily: this.newPetForm.value.idealFamily,
+        characteristics: this.newPetForm.value.characteristics,
+        description: this.newPetForm.value.description,
+      };
+      this.http
+        .post("https://api.petsaveorg.com/api/v1/pets", formValue)
+        .subscribe(
+          (response: any) => {
+            this.showPopUpModal = true;
+            this.isAdded = true;
+
+            setTimeout(() => {
+              this.routeTo("viewPet", response.id);
+            }, 5000);
+          },
+          (error) => {
+            if (error.error.message === "Unauthorized") {
+              this.showPopUpModal = true;
+              this.isUnauthorized = true;
+            }
+          }
+        );
+    } else {
+      Object.values(this.newPetForm.controls).forEach((control) => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
+  }
+
+  routeTo(path: string, petId?: number): void {
+    if (path === "login") {
+      this.router.navigate([`/admin/login`]);
+    } else if (path === "viewPet") {
+      this.router.navigate([`/adopt/pet-info/` + petId]);
+    }
   }
 
   defaultFileList: NzUploadFile[] = [];

@@ -68,6 +68,7 @@ export class LoginComponent {
         const token = response.body;
 
         localStorage.setItem("token", token);
+        localStorage.setItem("email", this.loginForm.value.email);
 
         this.routerToHomePage();
       } else {

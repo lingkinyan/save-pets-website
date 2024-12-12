@@ -1,22 +1,22 @@
 import {
-  NzConfigService,
-  inputToRGB,
-  rgbToHex,
-  rgbToHsv
-} from "./chunk-OC54MQHV.js";
-import {
-  warn
-} from "./chunk-4N32RHLB.js";
-import {
-  Platform
-} from "./chunk-YBGHPOLV.js";
-import {
   DomSanitizer
 } from "./chunk-E3WUEDZQ.js";
 import {
   HttpBackend,
   HttpClient
 } from "./chunk-K7ZMTUXG.js";
+import {
+  NzConfigService,
+  inputToRGB,
+  rgbToHex,
+  rgbToHsv
+} from "./chunk-JBVZT4DO.js";
+import {
+  warn
+} from "./chunk-2SBANUHG.js";
+import {
+  Platform
+} from "./chunk-YBGHPOLV.js";
 import {
   DOCUMENT
 } from "./chunk-L4PUJ5J4.js";
@@ -1379,4 +1379,4 @@ export {
   NzIconDirective,
   NzIconModule
 };
-//# sourceMappingURL=chunk-GYA7MH7A.js.map
+//# sourceMappingURL=chunk-IJK5ATXM.js.map

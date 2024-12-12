@@ -21,11 +21,11 @@ import {
 } from "./chunk-27BDGVS6.js";
 import {
   BreakpointObserver
-} from "./chunk-WWH6SNTE.js";
+} from "./chunk-CDORBHWE.js";
 import {
   coerceElement,
   coerceNumberProperty
-} from "./chunk-4N32RHLB.js";
+} from "./chunk-2SBANUHG.js";
 import {
   Platform,
   _getEventTarget,
@@ -2441,8 +2441,10 @@ var A11yModule = _A11yModule;
 export {
   FocusKeyManager,
   FocusTrapFactory,
+  isFakeMousedownFromScreenReader,
+  isFakeTouchstartFromScreenReader,
   FocusMonitor,
   CdkMonitorFocus,
   A11yModule
 };
-//# sourceMappingURL=chunk-EF67EZQ2.js.map
+//# sourceMappingURL=chunk-CWJOWVVL.js.map

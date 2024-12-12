@@ -8,16 +8,27 @@ import { HttpClientModule } from "@angular/common/http";
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [RouterOutlet, CommonModule, HeaderComponent, CommonComponentModule, HttpClientModule],
+  imports: [
+    RouterOutlet,
+    CommonModule,
+    HeaderComponent,
+    CommonComponentModule,
+    HttpClientModule,
+  ],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.less",
 })
 export class AppComponent {
-  constructor(private router: Router,) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.router.events.subscribe(() => {
       window.scrollTo(0, 0);
     });
+  }
+
+  ngOnDestroy(): void {
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
   }
 }

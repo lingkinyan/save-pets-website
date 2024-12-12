@@ -2,7 +2,7 @@ import {
   canUseDom,
   updateCSS,
   warn
-} from "./chunk-4N32RHLB.js";
+} from "./chunk-2SBANUHG.js";
 import {
   CSP_NONCE,
   Inject,
@@ -1224,4 +1224,4 @@ export {
   NzConfigService,
   WithConfig
 };
-//# sourceMappingURL=chunk-OC54MQHV.js.map
+//# sourceMappingURL=chunk-JBVZT4DO.js.map
