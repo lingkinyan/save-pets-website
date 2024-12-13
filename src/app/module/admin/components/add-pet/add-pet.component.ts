@@ -127,6 +127,8 @@ export class AddPetComponent {
             if (error.error.message === "Unauthorized") {
               this.showPopUpModal = true;
               this.isUnauthorized = true;
+              localStorage.removeItem("token");
+              localStorage.removeItem("email");
             }
           }
         );

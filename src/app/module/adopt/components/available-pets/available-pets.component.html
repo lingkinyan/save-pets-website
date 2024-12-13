@@ -11,75 +11,80 @@
 </div>
 
 <div class="px-4 md:px-24 text-center my-12">
-  <div class="grid lg:grid-cols-2 gap-4">
-    <nz-select
-      [nzMaxTagCount]="3"
-      nzMode="multiple"
-      nzPlaceHolder="Please select category"
-      [(ngModel)]="selectedCategory"
-      (ngModelChange)="selectedCategoryChange($event)"
-    >
-      <nz-option nzValue="DOG" nzLabel="Dog"></nz-option>
-      <nz-option nzValue="CAT" nzLabel="Cat"></nz-option>
-      <nz-option nzValue="SMALL_PET" nzLabel="Small Pet"></nz-option>
-    </nz-select>
-
-    <div class="grid lg:grid-cols-4" *ngIf="isAdmin">
-      <button
-        nz-button
-        class="flex justify-center text-center ant-btn-orange lg:col-start-4"
-        (click)="addPet()"
+  <ng-container *ngIf="!isLoaded">
+    <div class="grid lg:grid-cols-2 gap-4">
+      <nz-select
+        [nzMaxTagCount]="3"
+        nzMode="multiple"
+        nzPlaceHolder="Please select category"
+        [(ngModel)]="selectedCategory"
+        (ngModelChange)="selectedCategoryChange($event)"
       >
-        <span class="my-auto"> Add Pet </span>
-      </button>
+        <nz-option [nzValue]="1" nzLabel="Dog"></nz-option>
+        <nz-option [nzValue]="2" nzLabel="Cat"></nz-option>
+      </nz-select>
+
+      <div class="grid lg:grid-cols-4" *ngIf="isAdmin">
+        <button
+          nz-button
+          class="flex justify-center text-center ant-btn-orange lg:col-start-4"
+          (click)="addPet()"
+        >
+          <span class="my-auto"> Add Pet </span>
+        </button>
+      </div>
     </div>
-  </div>
 
-  <div class="col-span-full col-start-1">
-    <nz-tabset nzCentered (nzSelectChange)="nzSelectChange($event)">
-      <nz-tab nzTitle="Available Pets">
-        <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-12">
-          <div *ngFor="let pet of copiedAvailablePets">
-            <app-pet-cards
-              [name]="pet.name"
-              [dob]="pet.dob"
-              [imgSrc]="pet.imageList[0]"
-              [sex]="pet.sex"
-              (btnClicked)="goToDetailsPage(pet.id)"
-            ></app-pet-cards>
-          </div>
-
-          <div
-            *ngIf="copiedAvailablePets.length === 0"
-            class="text-lg text-fold text-center col-span-full"
-          >
-            Sorry, the category that you selected is not available now.
-          </div>
-        </div>
-      </nz-tab>
-
-      <nz-tab nzTitle="Adopted Pets">
-        <ng-container *ngIf="selectedIndex === 1">
+    <div class="col-span-full col-start-1">
+      <nz-tabset nzCentered (nzSelectChange)="nzSelectChange($event)">
+        <nz-tab nzTitle="Available Pets">
           <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-12">
-            <div *ngFor="let pet of copiedAdoptedPets">
+            <div *ngFor="let pet of availablePets">
               <app-pet-cards
                 [name]="pet.name"
-                [dob]="pet.dob"
-                [imgSrc]="pet.imageList[0]"
-                [sex]="pet.sex"
-                [showBtn]="false"
+                [dob]="pet.dateOfBirth"
+                [imgSrc]="pet.images[0]"
+                [sex]="getPetGender(pet.gender)"
+                (btnClicked)="goToDetailsPage(pet.id)"
               ></app-pet-cards>
             </div>
 
             <div
-              *ngIf="copiedAdoptedPets.length === 0"
+              *ngIf="availablePets.length === 0"
               class="text-lg text-fold text-center col-span-full"
             >
               Sorry, the category that you selected is not available now.
             </div>
           </div>
-        </ng-container>
-      </nz-tab>
-    </nz-tabset>
-  </div>
+        </nz-tab>
+
+        <nz-tab nzTitle="Adopted Pets">
+          <ng-container *ngIf="selectedIndex === 1">
+            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-12">
+              <div *ngFor="let pet of adoptedPets">
+                <app-pet-cards
+                  [name]="pet.name"
+                  [dob]="pet.dob"
+                  [imgSrc]="pet.images[0]"
+                  [sex]="getPetGender(pet.gender)"
+                  [showBtn]="false"
+                ></app-pet-cards>
+              </div>
+
+              <div
+                *ngIf="adoptedPets.length === 0"
+                class="text-lg text-fold text-center col-span-full"
+              >
+                Sorry, the category that you selected is not available now.
+              </div>
+            </div>
+          </ng-container>
+        </nz-tab>
+      </nz-tabset>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="isLoaded">
+    <nz-skeleton [nzLoading]="true"></nz-skeleton>
+  </ng-container>
 </div>

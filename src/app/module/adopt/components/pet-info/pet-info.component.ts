@@ -2,8 +2,11 @@ import { Component } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { GetAge } from "../../../../common-components/class/get-age.components";
-import { AvailablePets } from "../../../../common-components/class/available-pets.components";
-import { PetInfo } from "../../../../common-components/class/pet-info.component";
+import {
+  PetInfo,
+  PetSex,
+} from "../../../../common-components/class/pet-info.component";
+import { GetPetsService } from "../../../../common-components/services/get-pet.service";
 
 @Component({
   selector: "app-pet-info",
@@ -12,11 +15,12 @@ import { PetInfo } from "../../../../common-components/class/pet-info.component"
   styleUrl: "./pet-info.component.less",
 })
 export class PetInfoComponent {
-PetSex: any;
+  PetSex: any;
   constructor(
     private router: Router,
     private titleService: Title,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private getPetsService: GetPetsService
   ) {}
 
   petInfo: PetInfo;
@@ -25,24 +29,30 @@ PetSex: any;
 
   petAge = "";
 
-  isLoaded: boolean = false
+  isLoaded: boolean = false;
 
   ngOnInit(): void {
     this.petId = this.activatedRoute.snapshot.paramMap.get("id") ?? "";
 
     if (this.petId) {
-      this.petInfo = AvailablePets.availablePets.filter(
-        (v) => v.id === +this.petId
-      )[0];
+      this.getPetsService.getPetInfoById(+this.petId).subscribe((info) => {
+        this.petInfo = info;
 
+        this.isLoaded = true;
+
+        this.petAge = GetAge.getAge(this.petInfo.dateOfBirth);
+
+        this.titleService.setTitle(this.petInfo.name + " | Pet Save");
+      });
 
       // TODO: get pet info by APIs
-      this.titleService.setTitle(this.petInfo.name + " | Pet Save");
-
-      this.petAge = GetAge.getAge(this.petInfo.dob);
 
       this.isLoaded = true;
     }
+  }
+
+  getPetGender(gender: number): PetSex {
+    return gender === 1 ? PetSex.M : PetSex.F;
   }
 
   routeToPage(page: string): void {

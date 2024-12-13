@@ -5,7 +5,13 @@
   (visible)="onVisible(name)"
   [isHover]="true"
 >
-  <img [src]="imgSrc" [alt]="name" />
+  <img
+    [src]="
+      imgSrc ??
+      'https://www.mccanndogs.com/cdn/shop/articles/living-with-cats-dogs-689902.jpg?v=1680325849'
+    "
+    [alt]="name"
+  />
 
   <div class="text-xl font-bold flex justify-center my-2">
     {{ name }}

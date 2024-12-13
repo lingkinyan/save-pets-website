@@ -1,12 +1,12 @@
 export class PetInfo {
   id: number;
   name: string;
-  sex: PetSex;
-  dob: any;
+  gender: number;
+  dateOfBirth: any;
   category: PetCategory;
   breed: string;
   weight: number;
-  imageList: string[];
+  images: string[];
   color: string;
   healthStatus: string;
   personality: string;

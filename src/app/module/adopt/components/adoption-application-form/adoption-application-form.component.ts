@@ -7,7 +7,6 @@ import {
 } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-import { AvailablePets } from "../../../../common-components/class/available-pets.components";
 import { FormUpdate } from "../../../../common-components/function/form-update.component";
 import { Options } from "../../../../common-components/class/options.component";
 import { GetDropdownService } from "../../../../common-components/services/get-dropdown.service";
@@ -15,6 +14,7 @@ import { forkJoin } from "rxjs";
 import { PostFormService } from "../../../../common-components/services/post-form.service";
 import { HttpClient } from "@angular/common/http";
 import { AuthInterceptor } from "../../../../common-components/services/users/auth.interceptor";
+import { GetPetsService } from "../../../../common-components/services/get-pet.service";
 
 @Component({
   selector: "app-adoption-application-form",
@@ -29,14 +29,14 @@ export class AdoptionApplicationFormComponent {
     private title: Title,
     private getDropdownService: GetDropdownService,
     private postFormService: PostFormService,
-    private http: HttpClient
+    private getPetService: GetPetsService
   ) {
     this.title.setTitle("Adopt Application Form | Pet Save");
   }
 
   isFormSubmitted: boolean = false;
   // Options
-  availablePetsList = AvailablePets.availablePets;
+  availablePetsList = [];
 
   houseHoldType = [];
 
@@ -98,13 +98,14 @@ export class AdoptionApplicationFormComponent {
   isLoaded: boolean = false;
 
   ngOnInit(): void {
-    
     forkJoin([
       this.getDropdownService.getHouseHoldType(),
       this.getDropdownService.getHouseOwnershipType(),
+      this.getPetService.getAllPet(),
     ]).subscribe((results) => {
       this.houseHoldType = results[0];
       this.houseOwnership = results[1];
+      this.availablePetsList = results[2].filter((v: any) => !v.isAdopted);
       this.isLoaded = true;
     });
 

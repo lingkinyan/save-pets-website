@@ -4,38 +4,43 @@
     <nz-breadcrumb-item>
       <a (click)="routeToPage('pets')">Pets</a>
     </nz-breadcrumb-item>
-    <nz-breadcrumb-item>{{ petInfo.name }}</nz-breadcrumb-item>
+    <nz-breadcrumb-item>{{ petInfo?.name }}</nz-breadcrumb-item>
   </nz-breadcrumb>
 
-  <h1 class="text-xl font-bold text-center">Hi I'm {{ petInfo.name }}</h1>
+  <h1 class="text-xl font-bold text-center">Hi I'm {{ petInfo?.name }}</h1>
 
-  <nz-carousel nzAutoPlay [nzAutoPlaySpeed]="5000" class="block lg:hidden">
-    <div nz-carousel-content *ngFor="let image of petInfo.imageList">
-      <img [src]="image" [alt]="'Pet Save - ' + petInfo.name" />
+  <ng-container *ngIf="petInfo.images.length > 0">
+    <nz-carousel nzAutoPlay [nzAutoPlaySpeed]="5000" class="block lg:hidden">
+      <div nz-carousel-content *ngFor="let image of petInfo?.images">
+        <img [src]="image" [alt]="'Pet Save - ' + petInfo?.name" />
+      </div>
+    </nz-carousel>
+
+    <div class="hidden lg:block">
+      <div class="grid grid-cols-5">
+        <nz-carousel
+          nzAutoPlay
+          [nzAutoPlaySpeed]="5000"
+          class="col-span-3 col-start-2"
+        >
+          <div nz-carousel-content *ngFor="let image of petInfo?.images">
+            <img [src]="image" [alt]="'Pet Save - ' + petInfo?.name" />
+          </div>
+        </nz-carousel>
+      </div>
     </div>
-  </nz-carousel>
+  </ng-container>
 
-  <div class="hidden lg:block">
-    <div class="grid grid-cols-5">
-      <nz-carousel
-        nzAutoPlay
-        [nzAutoPlaySpeed]="5000"
-        class="col-span-3 col-start-2"
-      >
-        <div nz-carousel-content *ngFor="let image of petInfo.imageList">
-          <img [src]="image" [alt]="'Pet Save - ' + petInfo.name" />
-        </div>
-      </nz-carousel>
-    </div>
-  </div>
-
-  <white-card>
+  <white-card *ngIf="petInfo">
     <div class="grid gap-4">
-      <text-align [title]="'Name'" [content]="petInfo.name"></text-align>
-      <text-align [title]="'Sex'" [content]="petInfo.sex"></text-align>
+      <text-align [title]="'Name'" [content]="petInfo?.name"></text-align>
+      <text-align
+        [title]="'Sex'"
+        [content]="getPetGender(petInfo.gender)"
+      ></text-align>
       <text-align
         [title]="'Age'"
-        [content]="petAge + ' (Born on ' + petInfo.dob + ')'"
+        [content]="petAge + ' (Born on ' + petInfo.dateOfBirth + ')'"
         *ngIf="petAge"
       ></text-align>
       <text-align

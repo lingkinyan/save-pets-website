@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-import { AvailablePets } from "../../../../common-components/class/available-pets.components";
+import { GetPetsService } from "../../../../common-components/services/get-pet.service";
+import { PetSex } from "../../../../common-components/class/pet-info.component";
 
 @Component({
   selector: "app-available-pets",
@@ -10,7 +11,11 @@ import { AvailablePets } from "../../../../common-components/class/available-pet
   styleUrl: "./available-pets.component.less",
 })
 export class AvailablePetsComponent {
-  constructor(private router: Router, private title: Title) {
+  constructor(
+    private router: Router,
+    private title: Title,
+    private getPetService: GetPetsService
+  ) {
     this.title.setTitle("Pets | Pet Save");
   }
 
@@ -18,43 +23,43 @@ export class AvailablePetsComponent {
 
   selectedIndex: number = 0;
 
-  availablePets: any[] = [];
+  allPetsList: any[] = [];
 
-  copiedAvailablePets: any[] = [];
+  availablePets: any[] = [];
 
   adoptedPets: any[] = [];
 
-  copiedAdoptedPets: any[] = [];
-
   isAdmin: boolean = false;
 
-  ngOnInit(): void {
-    this.copiedAvailablePets = AvailablePets.availablePets;
-    this.copiedAdoptedPets = AvailablePets.adoptedPets;
-    this.isAdmin = localStorage.getItem('token') ? true : false
+  isLoaded: boolean = true;
 
-    console.log()
+  ngOnInit(): void {
+    this.getPetService.getAllPet().subscribe((list) => {
+      this.allPetsList = list;
+      this.availablePets = list.filter((v: any) => !v.isAdopted);
+      this.adoptedPets = list.filter((v: any) => v.isAdopted);
+      this.isLoaded = false;
+    });
+
+    this.isAdmin = localStorage.getItem("token") ? true : false;
   }
 
-  selectedCategoryChange(category: string[]): void {
-    if (category.length === 0) {
-      this.copiedAvailablePets = AvailablePets.availablePets;
-      this.copiedAdoptedPets = AvailablePets.adoptedPets;
-    } else {
-      // TODO: call APIs
-      this.copiedAvailablePets = [];
-      AvailablePets.availablePets.forEach((v) => {
-        if (category.includes(v.category)) {
-          this.copiedAvailablePets = [...this.copiedAvailablePets, v];
-        }
-      });
+  resetPetList(): void {
+    this.availablePets = this.allPetsList.filter((v: any) => !v.isAdopted);
+    this.adoptedPets = this.allPetsList.filter((v: any) => v.isAdopted);
+  }
 
-      this.copiedAdoptedPets = [];
-      AvailablePets.adoptedPets.forEach((v) => {
-        if (category.includes(v.category)) {
-          this.copiedAdoptedPets = [...this.copiedAdoptedPets, v];
-        }
-      });
+  selectedCategoryChange(category: number[]): void {
+    if (category.length === 0) {
+      this.resetPetList();
+    } else {
+      this.availablePets = this.allPetsList.filter(
+        (v) => category.includes(+v.petCategory) && !v.isAdopted
+      );
+
+      this.adoptedPets = this.allPetsList.filter(
+        (v) => category.includes(v.petCategory) && v.isAdopted
+      );
     }
   }
 
@@ -68,5 +73,9 @@ export class AvailablePetsComponent {
 
   addPet(): void {
     this.router.navigate(["/admin/add-pet"]);
+  }
+
+  getPetGender(gender: number): PetSex {
+    return gender === 1 ? PetSex.M : PetSex.F;
   }
 }
