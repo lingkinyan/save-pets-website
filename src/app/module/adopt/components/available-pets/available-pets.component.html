@@ -71,6 +71,7 @@
                   [dob]="pet.dateOfBirth"
                   [imgSrc]="pet.images[0]?.imageUrl"
                   [sex]="getPetGender(pet.gender)"
+                  [showBtn]="isAdmin"
                   (btnClicked)="goToDetailsPage(pet.id)"
                 ></app-pet-cards>
               </div>
