@@ -20,8 +20,8 @@ import { AdoptionApplicationFormComponent } from "./components/adoption-applicat
 import { NzFormModule } from "ng-zorro-antd/form";
 import { NzInputModule } from "ng-zorro-antd/input";
 import { NzSkeletonModule } from "ng-zorro-antd/skeleton";
-import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { AuthInterceptor } from "../../common-components/services/users/auth.interceptor";
+import { NzUploadModule } from "ng-zorro-antd/upload";
+import { NzModalModule } from "ng-zorro-antd/modal";
 
 @NgModule({
   declarations: [
@@ -35,7 +35,6 @@ import { AuthInterceptor } from "../../common-components/services/users/auth.int
   ],
   imports: [
     CommonModule,
-    HttpClientModule,
     AdoptRoutingModule,
     CommonComponentModule,
     NzTimelineModule,
@@ -51,6 +50,8 @@ import { AuthInterceptor } from "../../common-components/services/users/auth.int
     NzInputModule,
     NzSelectModule,
     NzSkeletonModule,
+    NzUploadModule,
+    NzModalModule,
   ],
 })
 export class AdoptModule {}

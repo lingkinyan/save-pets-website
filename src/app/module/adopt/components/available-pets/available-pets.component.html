@@ -36,14 +36,18 @@
     </div>
 
     <div class="col-span-full col-start-1">
-      <nz-tabset nzCentered (nzSelectChange)="nzSelectChange($event)">
+      <nz-tabset
+        nzCentered
+        (nzSelectChange)="nzSelectChange($event)"
+        class="my-4"
+      >
         <nz-tab nzTitle="Available Pets">
           <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-12">
             <div *ngFor="let pet of availablePets">
               <app-pet-cards
                 [name]="pet.name"
                 [dob]="pet.dateOfBirth"
-                [imgSrc]="pet.images[0]"
+                [imgSrc]="pet.images[0]?.imageUrl"
                 [sex]="getPetGender(pet.gender)"
                 (btnClicked)="goToDetailsPage(pet.id)"
               ></app-pet-cards>
@@ -64,10 +68,10 @@
               <div *ngFor="let pet of adoptedPets">
                 <app-pet-cards
                   [name]="pet.name"
-                  [dob]="pet.dob"
-                  [imgSrc]="pet.images[0]"
+                  [dob]="pet.dateOfBirth"
+                  [imgSrc]="pet.images[0]?.imageUrl"
                   [sex]="getPetGender(pet.gender)"
-                  [showBtn]="false"
+                  (btnClicked)="goToDetailsPage(pet.id)"
                 ></app-pet-cards>
               </div>
 

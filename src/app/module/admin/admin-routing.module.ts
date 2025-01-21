@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: "", component: AdminLandingComponent },
   { path: "login", component: LoginComponent },
   { path: "add-pet", component: AddPetComponent },
+  { path: "edit-pet/:id", component: AddPetComponent },
 ];
 
 @NgModule({

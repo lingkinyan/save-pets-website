@@ -6,7 +6,7 @@
 </div>
 
 <div class="text-center mt-8 mb-4">
-  <h1>Add New Pet</h1>
+  <h1>{{ petId ? "Edit" : "Add" }} New Pet</h1>
 </div>
 
 <div class="px-4 md:px-24 text-center gap-4">
@@ -136,9 +136,23 @@
             </nz-form-control>
           </nz-form-item>
 
+          <nz-form-item class="col-span-full" *ngIf="petId">
+            <nz-form-control>
+              <nz-form-label nzRequired>Is Being Adopted?</nz-form-label>
+
+              <nz-select formControlName="isAdopted">
+                <nz-option
+                  *ngFor="let option of yesNoOptions"
+                  [nzLabel]="option.label"
+                  [nzValue]="option.value"
+                ></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+
           <div class="col-span-full mx-auto">
             <button nz-button class="ant-btn-orange my-2" (click)="addPet()">
-              Add Pet
+              {{ petId ? "Edit" : "Add" }} Pet
             </button>
           </div>
         </div>
@@ -146,21 +160,6 @@
     </div>
   </white-card>
 </div>
-
-<!-- Photo Upload -->
-<!-- <div class="col-span-full">
-  <nz-upload
-    [nzAction]="uploadLink"
-    nzListType="picture"
-    [(nzFileList)]="fileList"
-    nzAccept=".jpg, .png, .jpeg"
-  >
-    <button nz-button class="ant-btn-orange my-2">
-      <span nz-icon nzType="upload"></span>
-      Upload
-    </button>
-  </nz-upload>
-</div> -->
 
 <!-- Pop up -->
 <nz-modal [(nzVisible)]="showPopUpModal" [nzClosable]="false" [nzFooter]="null">
@@ -183,7 +182,10 @@
         </ng-container>
 
         <ng-container *ngIf="isAdded">
-          <div>{{ newPetForm.value.name }} has added successfully!</div>
+          <div>
+            {{ newPetForm.value.name }} has
+            {{ petId ? "updated" : "added" }} successfully!
+          </div>
 
           <div>
             You are routing to the {{ newPetForm.value.name }}'s details page

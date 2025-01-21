@@ -1,4 +1,7 @@
-<div class="px-4 md:px-28 mt-8 mb-4 grid grid gap-12" *ngIf="isLoaded">
+<div
+  class="px-4 md:px-28 mt-8 mb-4 grid grid gap-12"
+  *ngIf="isLoaded && petInfo"
+>
   <nz-breadcrumb>
     <nz-breadcrumb-item>Adopt</nz-breadcrumb-item>
     <nz-breadcrumb-item>
@@ -8,6 +11,25 @@
   </nz-breadcrumb>
 
   <h1 class="text-xl font-bold text-center">Hi I'm {{ petInfo?.name }}</h1>
+
+  <!-- Admin add pet photo -->
+  <ng-container *ngIf="isAdmin">
+    <div class="flex justify-end">
+      <nz-upload
+        [nzAction]="uploadLink"
+        nzListType="picture"
+        [nzBeforeUpload]="beforeUpload"
+        [(nzFileList)]="fileList"
+        nzAccept=".jpg, .png, .jpeg"
+        [nzMultiple]="true"
+      >
+        <button nz-button class="ant-btn-orange my-2">
+          <span nz-icon nzType="upload"></span>
+          Upload Photos
+        </button>
+      </nz-upload>
+    </div>
+  </ng-container>
 
   <ng-container *ngIf="petInfo.images.length > 0">
     <nz-carousel nzAutoPlay [nzAutoPlaySpeed]="5000" class="block lg:hidden">
@@ -31,8 +53,29 @@
     </div>
   </ng-container>
 
-  <white-card *ngIf="petInfo">
+  <white-card>
     <div class="grid gap-4">
+      <div class="flex justify-end" *ngIf="isAdmin">
+        <div>
+          <button
+            nz-button
+            class="ant-btn-orange my-2"
+            (click)="routeToPage('editPet')"
+          >
+            Edit
+          </button>
+        </div>
+
+        <div>
+          <button
+            nz-button
+            class="ant-btn-orange m-2"
+            (click)="deleteBtnClicked()"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
       <text-align [title]="'Name'" [content]="petInfo?.name"></text-align>
       <text-align
         [title]="'Sex'"
@@ -132,3 +175,57 @@
     </button>
   </div>
 </div>
+
+<!-- Pop up -->
+<nz-modal [(nzVisible)]="showPopUpModal" [nzClosable]="false" [nzFooter]="null">
+  <ng-container *nzModalContent>
+    <div class="text-center">
+      <div class="grid gap-4">
+        <ng-container *ngIf="isUnauthorized">
+          <div>Sorry you don't have the admin right.</div>
+          <div>If you do, please try to login again</div>
+
+          <div class="mx-auto">
+            <button
+              nz-button
+              class="ant-btn-orange my-2"
+              (click)="routeToPage('login')"
+            >
+              <span>Login</span>
+            </button>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="isAdded">
+          <div>The photo(s) uploaded successfully!</div>
+        </ng-container>
+
+        <ng-container *ngIf="deleteBox">
+          Confirm delete?
+
+          <div class="flex justify-center">
+            <button
+              nz-button
+              class="ant-btn-orange m-2"
+              (click)="closeDeleteBox(true)"
+            >
+              Confirm
+            </button>
+
+            <button
+              nz-button
+              class="ant-btn-orange m-2"
+              (click)="closeDeleteBox(false)"
+            >
+              Cancel
+            </button>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="successMsg">
+          This pet has deleted successfully.
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>

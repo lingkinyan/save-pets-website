@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { FormGroup, NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { GetDropdownService } from "../../../../common-components/services/get-dropdown.service";
 import { forkJoin } from "rxjs";
 import { Options } from "../../../../common-components/class/options.component";
@@ -9,6 +9,8 @@ import { NzUploadFile } from "ng-zorro-antd/upload";
 import { PostFormService } from "../../../../common-components/services/post-form.service";
 import { BreedList } from "../../../../common-components/class/breed-list.components";
 import { HttpClient } from "@angular/common/http";
+import { GetPetsService } from "../../../../common-components/services/get-pet.service";
+import { PetInfo } from "../../../../common-components/class/pet-info.component";
 
 @Component({
   selector: "app-add-pet",
@@ -22,8 +24,9 @@ export class AddPetComponent {
     private router: Router,
     private title: Title,
     private dropdownService: GetDropdownService,
-    private postFormService: PostFormService,
-    private http: HttpClient
+    private activatedRoute: ActivatedRoute,
+    private http: HttpClient,
+    private getPetsService: GetPetsService
   ) {
     this.title.setTitle("Add New Pet | Pet Save");
   }
@@ -63,19 +66,37 @@ export class AddPetComponent {
     idealFamily: ["Other dogs, cats, children.", Validators.required],
     characteristics: ["", Validators.required],
     description: ["", Validators.required],
+    isAdopted: [""],
   });
-
-  uploadLink = "";
 
   breedList = [];
 
+  petId: string;
+
+  petInfo: any;
+
   ngOnInit(): void {
+    this.petId = this.activatedRoute.snapshot.paramMap.get("id") ?? "";
+
     forkJoin(
       this.dropdownService.getPetTypeCategory(),
       this.dropdownService.getGender()
     ).subscribe((results) => {
       this.categoryOptions = results[0];
       this.genderOptions = results[1];
+
+      if (this.petId) {
+        this.getPetsService.getPetInfoById(+this.petId).subscribe((info) => {
+          this.petInfo = info;
+          this.newPetForm.patchValue(info);
+
+          this.newPetForm.controls["categoryId"]?.setValue(
+            +this.petInfo.petCategory
+          );
+          this.newPetForm.controls["genderId"]?.setValue(+this.petInfo.gender);
+        });
+      }
+
       this.isLoaded = true;
     });
 
@@ -86,6 +107,10 @@ export class AddPetComponent {
         this.breedList = BreedList.DogBreedList;
       } else {
         this.breedList = BreedList.CatBreedList;
+      }
+
+      if (this.petId) {
+        this.newPetForm.controls["breed"]?.setValue(this.petInfo.breed);
       }
     });
   }
@@ -112,9 +137,35 @@ export class AddPetComponent {
         characteristics: this.newPetForm.value.characteristics,
         description: this.newPetForm.value.description,
       };
-      this.http
-        .post("https://api.petsaveorg.com/api/v1/pets", formValue)
-        .subscribe(
+
+      if (this.petId) {
+        this.http
+          .patch(
+            `https://api.petsaveorg.com/api/v1/pets/${this.petId}`,
+            formValue
+          )
+          .subscribe(
+            (response: any) => {
+              this.showPopUpModal = true;
+              this.isAdded = true;
+
+              setTimeout(() => {
+                this.routeTo("viewPet", response.id);
+              }, 5000);
+            },
+            (error) => {
+              if (error.error.message === "Unauthorized") {
+                this.showPopUpModal = true;
+                this.isUnauthorized = true;
+                localStorage.removeItem("token");
+                localStorage.removeItem("email");
+              }
+            }
+          );
+      } else {
+        let uploadUrl = "https://api.petsaveorg.com/api/v1/pets";
+
+        this.http.post(uploadUrl, formValue).subscribe(
           (response: any) => {
             this.showPopUpModal = true;
             this.isAdded = true;
@@ -132,6 +183,7 @@ export class AddPetComponent {
             }
           }
         );
+      }
     } else {
       Object.values(this.newPetForm.controls).forEach((control) => {
         if (control.invalid) {
@@ -149,8 +201,4 @@ export class AddPetComponent {
       this.router.navigate([`/adopt/pet-info/` + petId]);
     }
   }
-
-  defaultFileList: NzUploadFile[] = [];
-
-  fileList = [...this.defaultFileList];
 }

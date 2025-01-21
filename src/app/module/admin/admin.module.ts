@@ -17,7 +17,6 @@ import { AdminLandingComponent } from "./admin-landing/admin-landing.component";
 import { LoginComponent } from "./components/login/login.component";
 import { AddPetComponent } from "./components/add-pet/add-pet.component";
 import { NzDatePickerModule } from "ng-zorro-antd/date-picker";
-import { NzUploadModule } from "ng-zorro-antd/upload";
 import { NzModalModule } from 'ng-zorro-antd/modal';
 
 
@@ -39,7 +38,6 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     NzBreadCrumbModule,
     NzSkeletonModule,
     NzDatePickerModule,
-    NzUploadModule,
     NzModalModule
   ],
 })

@@ -36,8 +36,8 @@ export class LoginComponent {
   isLogin: boolean = false;
 
   loginForm: FormGroup = this.fb.group({
-    email: ["petsaveorg@gmail.com", [Validators.email, Validators.required]],
-    password: ["Petsave@2024", Validators.required],
+    email: ["", [Validators.email, Validators.required]],
+    password: ["", Validators.required],
   });
 
   redirectSecond: number = 5;
