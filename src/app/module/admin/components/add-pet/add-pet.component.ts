@@ -139,6 +139,7 @@ export class AddPetComponent {
       };
 
       if (this.petId) {
+        formValue["isAdopted"] = this.newPetForm.value.isAdopted;
         this.http
           .patch(
             `https://api.petsaveorg.com/api/v1/pets/${this.petId}`,
