@@ -41,6 +41,7 @@ export class AvailablePetsComponent {
       this.isLoaded = false;
     });
 
+    
     this.isAdmin = localStorage.getItem("token") ? true : false;
   }
 
