@@ -13,7 +13,6 @@ import { GetDropdownService } from "../../../../common-components/services/get-d
 import { forkJoin } from "rxjs";
 import { PostFormService } from "../../../../common-components/services/post-form.service";
 import { HttpClient } from "@angular/common/http";
-import { AuthInterceptor } from "../../../../common-components/services/users/auth.interceptor";
 import { GetPetsService } from "../../../../common-components/services/get-pet.service";
 
 @Component({

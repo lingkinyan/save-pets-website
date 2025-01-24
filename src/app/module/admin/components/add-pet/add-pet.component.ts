@@ -63,7 +63,7 @@ export class AddPetComponent {
       Validators.required,
     ],
     houseTrained: ["", Validators.required],
-    idealFamily: ["Other dogs, cats, children.", Validators.required],
+    idealFamily: ["Other dogs, cats, children."],
     characteristics: ["", Validators.required],
     description: ["", Validators.required],
     isAdopted: [""],
