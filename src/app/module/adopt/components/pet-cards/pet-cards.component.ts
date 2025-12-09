@@ -19,9 +19,11 @@ export class PetCardsComponent extends IntersectionComponents {
   @Output() btnClicked: EventEmitter<any> = new EventEmitter<any>();
 
   age: any;
+  className: string;
 
   ngOnInit(): void {
     this.age = GetAge.getAge(this.dob);
+    this.className = this.name.replace(' ', '-');
   }
 
   get sexType(): typeof PetSex {
