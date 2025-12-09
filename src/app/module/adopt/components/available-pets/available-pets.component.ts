@@ -39,10 +39,14 @@ export class AvailablePetsComponent {
       this.availablePets = list.filter((v: any) => !v.isAdopted);
       this.adoptedPets = list.filter((v: any) => v.isAdopted);
       this.isLoaded = false;
+
+      console.log(this.availablePets)
     });
 
     
     this.isAdmin = localStorage.getItem("token") ? true : false;
+
+ 
   }
 
   resetPetList(): void {

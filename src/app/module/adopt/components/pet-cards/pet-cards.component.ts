@@ -11,6 +11,7 @@ import { PetSex } from "../../../../common-components/class/pet-info.component";
   styleUrl: "./pet-cards.component.less",
 })
 export class PetCardsComponent extends IntersectionComponents {
+  @Input() id: number;
   @Input() name: string = "";
   @Input() dob: Date;
   @Input() sex: PetSex;
@@ -23,7 +24,7 @@ export class PetCardsComponent extends IntersectionComponents {
 
   ngOnInit(): void {
     this.age = GetAge.getAge(this.dob);
-    this.className = this.name.replace(' ', '-');
+    this.className = this.name.replace(' ', '-')+this.id;
   }
 
   get sexType(): typeof PetSex {

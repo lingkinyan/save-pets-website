@@ -45,6 +45,7 @@
           <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-12">
             <div *ngFor="let pet of availablePets">
               <app-pet-cards
+                [id]="pet.id"
                 [name]="pet.name"
                 [dob]="pet.dateOfBirth"
                 [imgSrc]="pet.images[0]?.imageUrl"
