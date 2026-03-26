@@ -1,7 +1,7 @@
 name: Deploy Remotely
 on:
   push:
-    branches: [ main ]
+    branches: [ admin ]
  
 jobs:
   Deploy-Remotely:
