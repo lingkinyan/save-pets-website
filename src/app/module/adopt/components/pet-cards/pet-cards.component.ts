@@ -24,7 +24,8 @@ export class PetCardsComponent extends IntersectionComponents {
 
   ngOnInit(): void {
     this.age = GetAge.getAge(this.dob);
-    this.className = this.name.replace(' ', '-')+this.id;
+    this.className = this.name.trim().replace(" ", "-") + this.id;
+    console.log(this.className);
   }
 
   get sexType(): typeof PetSex {
